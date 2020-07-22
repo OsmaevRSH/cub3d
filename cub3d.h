@@ -44,8 +44,8 @@ typedef struct  s_player //player position
 	double		player_x;
 	double		player_y;
 	double		player_angle;
-	double		player_dx;
-	double		player_dy;
+	double      player_dax;
+    double      player_day;
 }               t_player;
 
 typedef struct  s_color
@@ -68,7 +68,7 @@ typedef struct  s_mlx
 	t_color		color;
 }               t_mlx;
 
-void    drawPlayer(t_mlx *mlx, int x, int y);
+void    drawPlayer(t_mlx *mlx, double x, double y);
 void	drawMap(t_mlx *mlx);
 
 #endif
