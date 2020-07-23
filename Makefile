@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+#FLAGS = -Wall -Wextra -Werror
 LIB = -I ./mlx
 
 SRC = cub3d.c
