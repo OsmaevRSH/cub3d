@@ -50,7 +50,7 @@ typedef struct  s_color
 	int			RED;
 	int			GREEN;
 	int			BLUE;
-	int         BLACK;
+	int         WHITE;
 }               t_color;
 
 typedef struct  s_mlx
@@ -68,5 +68,6 @@ typedef struct  s_mlx
 
 void    drawPlayer(t_mlx *mlx, double x, double y);
 void	drawMap(t_mlx *mlx);
+void    trace(t_mlx *mlx);
 
 #endif

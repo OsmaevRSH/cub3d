@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 include_directories(cmake-build-debug)
 include_directories(mlx)
-add_library(mlx/libmlx.dylib)
 
 add_executable(cub3d
         mlx/man/man3/mlx.3
@@ -18,7 +17,6 @@ add_executable(cub3d
         mlx/interface.swift
         mlx/libmlx.dylib
         mlx/Makefile
-        mlx/mlx.h
         mlx/mlx_image.swift
         mlx/mlx_init.swift
         mlx/mlx_png.c
@@ -32,3 +30,9 @@ add_executable(cub3d
         cub3d.o
         Makefile
         README.md)
+
+target_link_libraries(cub3d
+        "-framework AppKit"
+        "-framework OpenGL"
+        mlx
+        )
