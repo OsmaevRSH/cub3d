@@ -11,9 +11,9 @@ void init_color(t_color *color)
 
 void    init_player(t_player *player)
 {
-	player->player_x = 50;
-	player->player_y = 50;
-	player->player_angle = PI / 2.0;
+	player->player_x = 300;
+	player->player_y = 300;
+	player->player_angle = (3.0 / 2.0) * PI;
 }
 
 void	replace(t_mlx *mlx)
@@ -166,60 +166,60 @@ void    trace(t_mlx *mlx)
 		}
 		else
 			break;
-		printf("%f\n", mlx->player.player_angle);
 	}
-//	if ((mlx->player.player_angle >= 0 && mlx->player.player_angle < M_PI_2) || (mlx->player.player_angle > M_PI_2 * 3 && mlx->player.player_angle <= M_2_PI)) // 1 and 4
-//		first_point_bx = (int)(mlx->player.player_x / 32) * 32 + 32;
-//	else if ((mlx->player.player_angle > M_PI_2 && mlx->player.player_angle <= M_PI) || (mlx->player.player_angle > M_PI && mlx->player.player_angle < M_PI_2 * 3)) // 2 and 3
-//		first_point_bx = (int)(mlx->player.player_x / 32) * 32 - 1;
-//	else
-//		first_point_bx = mlx->player.player_x;
-//
-//	if (mlx->player.player_angle > 0 && mlx->player.player_angle < M_PI_2) // 1
-//		first_point_by = mlx->player.player_y + (first_point_bx - mlx->player.player_x) * tan(mlx->player.player_angle);
-//	else if (mlx->player.player_angle > M_PI_2 && mlx->player.player_angle < M_PI) // 2
-//		first_point_by = mlx->player.player_y + (mlx->player.player_x - first_point_bx) * tan(M_PI - mlx->player.player_angle);
-//	else if (mlx->player.player_angle > M_PI && mlx->player.player_angle < M_PI_2 * 3) // 3
-//		first_point_by = mlx->player.player_y - (mlx->player.player_x - first_point_bx) * tan(mlx->player.player_angle - M_PI);
-//	else if (mlx->player.player_angle > M_PI_2 * 3 && mlx->player.player_angle < M_2_PI) // 4
-//		first_point_by = mlx->player.player_y - (first_point_bx - mlx->player.player_x) * tan(M_2_PI - mlx->player.player_angle);
-//	else
-//		first_point_by = mlx->player.player_y;
-//	while (worldMap[(int)first_point_by / 32][(int)first_point_bx / 32] != 1)
-//	{
-//		printf("%d", worldMap[(int)first_point_by / 32][(int)first_point_bx / 32]);
-//		if (mlx->player.player_angle > 0 && mlx->player.player_angle < M_PI_2)
-//		{
-//			first_point_bx += 32;
-//			first_point_by += 32 * tan(mlx->player.player_angle);
-//		}
-//		else if (mlx->player.player_angle > M_PI_2 && mlx->player.player_angle < M_PI)
-//		{
-//			first_point_bx += 32;
-//			first_point_by += 32 * tan(M_PI - mlx->player.player_angle);
-//		}
-//		else if (mlx->player.player_angle > M_PI && mlx->player.player_angle < M_PI_2 * 3)
-//		{
-//			first_point_bx += 32;
-//			first_point_by += 32 * tan(mlx->player.player_angle - M_PI);
-//		}
-//		else if (mlx->player.player_angle > M_PI_2 * 3 && mlx->player.player_angle < M_2_PI)
-//		{
-//			first_point_bx += 32;
-//			first_point_by += 32 * tan(M_2_PI - mlx->player.player_angle);
-//		}
-//		else
-//			break;
-//	}
+	/*================================================================================================================================================================================*/
+	if ((mlx->player.player_angle >= 0 && mlx->player.player_angle < (PI / 2.0)) || (mlx->player.player_angle > (3.0 / 2.0) * PI && mlx->player.player_angle <= 2 * PI)) // 1 and 4
+		first_point_bx = (int)(mlx->player.player_x / 32) * 32 + 32;
+	else if ((mlx->player.player_angle > (PI / 2.0) && mlx->player.player_angle <= PI) || (mlx->player.player_angle > PI && mlx->player.player_angle < (3.0 / 2.0) * PI)) // 2 and 3
+		first_point_bx = (int)(mlx->player.player_x / 32) * 32 - 1;
+	else
+		first_point_bx = mlx->player.player_x;
+
+	if (mlx->player.player_angle >= 0 && mlx->player.player_angle < (PI / 2.0)) // 1
+		first_point_by = mlx->player.player_y + (first_point_bx - mlx->player.player_x) * tan(mlx->player.player_angle);
+	else if (mlx->player.player_angle > (PI / 2.0) && mlx->player.player_angle <= PI) // 2
+		first_point_by = mlx->player.player_y + (mlx->player.player_x - first_point_bx) * tan(PI - mlx->player.player_angle);
+	else if (mlx->player.player_angle > PI && mlx->player.player_angle < (3.0 / 2.0) * PI) // 3
+		first_point_by = mlx->player.player_y - (mlx->player.player_x - first_point_bx) * tan(mlx->player.player_angle - PI);
+	else if (mlx->player.player_angle > (3.0 / 2.0) * PI && mlx->player.player_angle <= 2 * PI) // 4
+		first_point_by = mlx->player.player_y - (first_point_bx - mlx->player.player_x) * tan(2 * PI - mlx->player.player_angle);
+	else
+		first_point_by = mlx->player.player_y;
+	while (worldMap[(int)first_point_by / 32][(int)first_point_bx / 32] != 1)
+	{
+		printf("%d\n", worldMap[(int)first_point_by / 32][(int)first_point_bx / 32]);
+		if (mlx->player.player_angle >= 0 && mlx->player.player_angle < (PI / 2.0))
+		{
+			first_point_bx += 32;
+			first_point_by += 32 * tan(mlx->player.player_angle);
+		}
+		else if (mlx->player.player_angle > (PI / 2.0) && mlx->player.player_angle <= PI)
+		{
+			first_point_bx -= 32;
+			first_point_by += 32 * tan(PI - mlx->player.player_angle);
+		}
+		else if (mlx->player.player_angle > PI && mlx->player.player_angle < (3.0 / 2.0) * PI)
+		{
+			first_point_bx -= 32;
+			first_point_by -= 32 * tan(mlx->player.player_angle - PI);
+		}
+		else if (mlx->player.player_angle > (PI / 2.0) * 3 && mlx->player.player_angle <= 2 * PI)
+		{
+			first_point_bx += 32;
+			first_point_by -= 32 * tan(2 * PI - mlx->player.player_angle);
+		}
+		else
+			break;
+	}
 	if (first_point_ax == mlx->player.player_x && first_point_ay == mlx->player.player_y)
 		len1 = INFINITY;
 	else
 		len1 = sqrt(fabs(mlx->player.player_x - first_point_ax) * fabs(mlx->player.player_x - first_point_ax) + fabs(mlx->player.player_y - first_point_ay) * fabs(mlx->player.player_y - first_point_ay));
-//	if (first_point_bx == mlx->player.player_x && first_point_by == mlx->player.player_y)
-//		len2 = INFINITY;
-//	else
-//		len2 = sqrt(fabs(mlx->player.player_x - first_point_bx) * fabs(mlx->player.player_x - first_point_bx) + fabs(mlx->player.player_y - first_point_by) * fabs(mlx->player.player_y - first_point_by));
-	len_line = len1;
+	if (first_point_bx == mlx->player.player_x && first_point_by == mlx->player.player_y)
+		len2 = INFINITY;
+	else
+		len2 = sqrt(fabs(mlx->player.player_x - first_point_bx) * fabs(mlx->player.player_x - first_point_bx) + fabs(mlx->player.player_y - first_point_by) * fabs(mlx->player.player_y - first_point_by));
+	len_line = len1 > len2 ? len2 : len1;
 	if (len_line != INFINITY)
 	{
 		while (i <= len_line)
