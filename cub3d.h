@@ -4,8 +4,8 @@
 #include "mlx/mlx.h"
 #include <stdlib.h>
 #include "math.h"
-# define WIDTH 2560
-# define HEIGHT 1440
+# define WIDTH 1024
+# define HEIGHT 768
 # define mapWidth 24
 # define mapHeight 24
 # define PI 3.14159265359

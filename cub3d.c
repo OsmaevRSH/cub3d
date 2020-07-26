@@ -40,7 +40,7 @@ int  key_press(int keycode, t_mlx *mlx)
     }
 	if (keycode == 0) //a
 	{
-		mlx->player.player_angle -= 0.1;
+		mlx->player.player_angle -= 0.05;
 		if (mlx->player.player_angle < 0)
 			mlx->player.player_angle += 2.0 * PI;
 	}
@@ -51,7 +51,7 @@ int  key_press(int keycode, t_mlx *mlx)
     }
 	if (keycode == 2) //d
 	{
-		mlx->player.player_angle += 0.1;
+		mlx->player.player_angle += 0.05;
 		if (mlx->player.player_angle > 2.0 * PI)
 			mlx->player.player_angle -= 2.0 * PI;
 	}
@@ -138,11 +138,11 @@ void    trace(t_mlx *mlx)
 	else if (mlx->player.player_angle >= PI && mlx->player.player_angle < (3.0 / 2.0) * PI) // 3
 		first_point_ax = mlx->player.player_x - (mlx->player.player_y - first_point_ay) * tan((3.0 / 2.0) * PI - mlx->player.player_angle);
 	else if (mlx->player.player_angle > (3.0 / 2.0) * PI && mlx->player.player_angle <= 2 * PI) // 4
-		first_point_ax = mlx->player.player_x + (mlx->player.player_y - first_point_ay) * tan((3.0 / 2.0) * PI - mlx->player.player_angle);
+		first_point_ax = mlx->player.player_x + (mlx->player.player_y - first_point_ay) * tan(mlx->player.player_angle - (3.0 / 2.0) * PI);
 	else
 		first_point_ax = mlx->player.player_x;
 
-	while (worldMap[(int)first_point_ay / 32][(int)first_point_ax / 32] != 1)
+	while (worldMap[(int)first_point_ay / 32][(int)first_point_ax / 32] != 1 && first_point_ax > 0 && first_point_ay > 0 && first_point_ax < WIDTH && first_point_ay < HEIGHT)
 	{
 		if (mlx->player.player_angle > 0 && mlx->player.player_angle <= (PI / 2.0))
 		{
@@ -161,7 +161,7 @@ void    trace(t_mlx *mlx)
 		}
 		else if (mlx->player.player_angle > (3.0 / 2.0) * PI && mlx->player.player_angle < 2 * PI)
 		{
-			first_point_ax += 32 * tan((3.0 / 2.0) * PI - mlx->player.player_angle);
+			first_point_ax += 32 * tan(mlx->player.player_angle - (3.0 / 2.0) * PI);
 			first_point_ay -= 32;
 		}
 		else
@@ -185,7 +185,7 @@ void    trace(t_mlx *mlx)
 		first_point_by = mlx->player.player_y - (first_point_bx - mlx->player.player_x) * tan(2 * PI - mlx->player.player_angle);
 	else
 		first_point_by = mlx->player.player_y;
-	while (worldMap[(int)first_point_by / 32][(int)first_point_bx / 32] != 1)
+	while (worldMap[(int)first_point_by / 32][(int)first_point_bx / 32] != 1 && first_point_bx > 0 && first_point_by > 0 && first_point_bx < WIDTH && first_point_by < HEIGHT)
 	{
 		printf("%d\n", worldMap[(int)first_point_by / 32][(int)first_point_bx / 32]);
 		if (mlx->player.player_angle >= 0 && mlx->player.player_angle < (PI / 2.0))

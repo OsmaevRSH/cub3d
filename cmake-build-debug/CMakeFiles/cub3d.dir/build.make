@@ -146,7 +146,13 @@ cub3d_OBJECTS = \
 
 # External object files for target cub3d
 cub3d_EXTERNAL_OBJECTS = \
-"/Users/ltheresi/Documents/cub3d/cub3d.o"
+"/Users/ltheresi/Documents/cub3d/mlx/interface.o" \
+"/Users/ltheresi/Documents/cub3d/mlx/mlx_image.o" \
+"/Users/ltheresi/Documents/cub3d/mlx/mlx_init.o" \
+"/Users/ltheresi/Documents/cub3d/mlx/mlx_png.o" \
+"/Users/ltheresi/Documents/cub3d/mlx/mlx_string_put.o" \
+"/Users/ltheresi/Documents/cub3d/mlx/mlx_window.o" \
+"/Users/ltheresi/Documents/cub3d/mlx/mlx_xpm.o"
 
 cub3d: CMakeFiles/cub3d.dir/mlx/font.c.o
 cub3d: CMakeFiles/cub3d.dir/mlx/mlx_png.c.o
@@ -154,7 +160,13 @@ cub3d: CMakeFiles/cub3d.dir/mlx/mlx_rgb.c.o
 cub3d: CMakeFiles/cub3d.dir/mlx/mlx_string_put.c.o
 cub3d: CMakeFiles/cub3d.dir/mlx/mlx_xpm.c.o
 cub3d: CMakeFiles/cub3d.dir/cub3d.c.o
-cub3d: ../cub3d.o
+cub3d: ../mlx/interface.o
+cub3d: ../mlx/mlx_image.o
+cub3d: ../mlx/mlx_init.o
+cub3d: ../mlx/mlx_png.o
+cub3d: ../mlx/mlx_string_put.o
+cub3d: ../mlx/mlx_window.o
+cub3d: ../mlx/mlx_xpm.o
 cub3d: CMakeFiles/cub3d.dir/build.make
 cub3d: CMakeFiles/cub3d.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable cub3d"

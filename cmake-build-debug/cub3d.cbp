@@ -45,7 +45,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/ltheresi/Documents/cub3d/."/>
-					<Add directory="/Users/ltheresi/Documents/cub3d/cmake-build-debug"/>
 					<Add directory="/Users/ltheresi/Documents/cub3d/mlx"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
@@ -69,7 +68,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/Users/ltheresi/Documents/cub3d/."/>
-					<Add directory="/Users/ltheresi/Documents/cub3d/cmake-build-debug"/>
 					<Add directory="/Users/ltheresi/Documents/cub3d/mlx"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
@@ -86,13 +84,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/CMakeLists.txt">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/Makefile">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/README.md">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/cub3d">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/cub3d.c">
@@ -101,13 +99,13 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/cub3d.h">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/cub3d.o">
-			<Option target="cub3d"/>
-		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/Makefile">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/font.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/interface.o">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/interface.swift">
@@ -131,13 +129,37 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/man/man3/mlx_pixel_put.3">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx.h">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_image.o">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_image.swift">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_image.swiftdoc">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_image.swiftmodule">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_init.o">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_init.swift">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_init.swiftdoc">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_init.swiftmodule">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_png.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_png.o">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_rgb.c">
@@ -146,10 +168,25 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_string_put.c">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_string_put.o">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_window.o">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_window.swift">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_window.swiftdoc">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_window.swiftmodule">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_xpm.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_xpm.o">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/CMakeLists.txt">

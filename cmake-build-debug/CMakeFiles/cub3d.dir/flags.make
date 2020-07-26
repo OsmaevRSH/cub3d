@@ -6,5 +6,5 @@ C_FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacO
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/ltheresi/Documents/cub3d/. -I/Users/ltheresi/Documents/cub3d/cmake-build-debug -I/Users/ltheresi/Documents/cub3d/mlx 
+C_INCLUDES = -I/Users/ltheresi/Documents/cub3d/. -I/Users/ltheresi/Documents/cub3d/mlx 
 
