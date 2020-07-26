@@ -1,5 +1,5 @@
 NAME = cub3d
-CC = gcc
+CC = gcc -g
 #FLAGS = -Wall -Wextra -Werror
 LIB = -I ./mlx
 
