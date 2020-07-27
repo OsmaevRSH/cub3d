@@ -14,12 +14,14 @@ void    init_player(t_player *player)
 {
 	player->player_x = 300;
 	player->player_y = 300;
-	player->player_angle = (3.0 / 2.0) * PI;
+	player->player_angle = PI / 2.0;
 }
 
 void	replace(t_mlx *mlx)
 {
 	double vector = - PI / 6;
+	double step =PI / (3 * WIDTH);
+	double x = 0;
 	mlx_destroy_image(mlx->mlx, mlx->mlx_img);
 	if(!(mlx->mlx_img = mlx_new_image(mlx->mlx, WIDTH, HEIGHT)))
 		exit(0);
@@ -27,10 +29,11 @@ void	replace(t_mlx *mlx)
 		exit(0);
 	drawMap(mlx);
 	drawPlayer(mlx, mlx->player.player_x, mlx->player.player_y);
-	while (vector < PI / 6)
+	while (vector < PI / 6 && x < WIDTH)
 	{
-		trace(mlx, vector);
-		vector += 0.01;
+		trace(mlx, vector, (int)x);
+		x += 1;
+		vector += step;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->mlx_img, 0, 0);
 }
@@ -41,23 +44,35 @@ int  key_press(int keycode, t_mlx *mlx)
 		exit(0);
 	if (keycode == 13) //w
     {
-        mlx->player.player_y += 10 * sin(mlx->player.player_angle);
-        mlx->player.player_x += 10 * cos(mlx->player.player_angle);
+		if ((worldMap[(int)(mlx->player.player_y + 10 * sin(mlx->player.player_angle)) / 32][(int)(mlx->player.player_x) / 32]) == 1)
+			mlx->player.player_y += 0;
+		else
+			mlx->player.player_y += 10 * sin(mlx->player.player_angle);
+		if ((worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(int)(mlx->player.player_x + 10 * cos(mlx->player.player_angle)) / 32]) == 1)
+			mlx->player.player_y += 0;
+		else
+        	mlx->player.player_x += 10 * cos(mlx->player.player_angle);        	
     }
 	if (keycode == 0) //a
 	{
-		mlx->player.player_angle -= 0.05;
+		mlx->player.player_angle -= 0.1;
 		if (mlx->player.player_angle < 0)
 			mlx->player.player_angle += 2.0 * PI;
 	}
 	if (keycode == 1) //s
     {
-        mlx->player.player_y -= 10 * sin(mlx->player.player_angle);
-        mlx->player.player_x -= 10 * cos(mlx->player.player_angle);
+		if ((worldMap[(unsigned int)(mlx->player.player_y - 10 * sin(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == 1)
+			mlx->player.player_y += 0;
+		else
+			mlx->player.player_y -= 10 * sin(mlx->player.player_angle);
+		if ((worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x - 10 * cos(mlx->player.player_angle)) >> 5u]) == 1)
+			mlx->player.player_y += 0;
+		else
+        	mlx->player.player_x -= 10 * cos(mlx->player.player_angle);
     }
 	if (keycode == 2) //d
 	{
-		mlx->player.player_angle += 0.05;
+		mlx->player.player_angle += 0.1;
 		if (mlx->player.player_angle > 2.0 * PI)
 			mlx->player.player_angle -= 2.0 * PI;
 	}
@@ -75,17 +90,19 @@ void        my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 
 void	drawMap(t_mlx *mlx)
 {
-	int x = 0;
-	int y = 0;
+	unsigned int x = 0;
+	unsigned int y = 0;
+	unsigned int map_x = mapWidth;
+	unsigned int map_y = mapHeight;
 	
-	while (x < mapWidth*32)
+	while (x < map_x << 5u)
 	{
-		while (y < mapHeight*32)
+		while (y < map_y << 5u)
 		{
-			if (worldMap[y/32][x/32] == 1)
-				my_mlx_pixel_put(mlx, x, y, mlx->color.RED);
+			if (worldMap[y >> 5u][x >> 5u] == 1)
+				my_mlx_pixel_put(mlx, (int)x, (int)y, mlx->color.RED);
 			else
-				my_mlx_pixel_put(mlx, x, y, mlx->color.GREEN);
+				my_mlx_pixel_put(mlx, (int)x, (int)y, mlx->color.GREEN);
 			y++;
 		}
 		y = 0;
@@ -119,9 +136,10 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
     }
 }
 
-void    trace(t_mlx *mlx, double vector)
+void    trace(t_mlx *mlx, double vector, int x)
 {
 	double angle = mlx->player.player_angle + vector;
+	double projected_slice_height;
 	if (angle > 2*PI)
 		angle -= 2*PI;
 	if (angle < 0)
@@ -133,12 +151,15 @@ void    trace(t_mlx *mlx, double vector)
     double len1;
     double len2;
     double len_line;
+	int up_start;
+	int down_stop;
     double i = 0;
+	int color;
 
     if ((angle > 0 && angle < PI)) // 1 and 2
-        first_point_ay = (int)(mlx->player.player_y / 32) * 32 + 32;
+        first_point_ay = ((unsigned int)(mlx->player.player_y / 32) << 5u) + 32;
     else if ((angle > PI && angle < 2 * PI)) // 3 and 4
-        first_point_ay = (int)(mlx->player.player_y / 32) * 32 - 1;
+        first_point_ay = ((unsigned int)(mlx->player.player_y / 32) << 5u) - 1;
     else
         first_point_ay = mlx->player.player_y;
 
@@ -153,7 +174,7 @@ void    trace(t_mlx *mlx, double vector)
 	else
 		first_point_ax = mlx->player.player_x;
 
-	while (worldMap[(int)first_point_ay / 32][(int)first_point_ax / 32] != 1 && first_point_ax > 0 && first_point_ay > 0 && first_point_ax < WIDTH && first_point_ay < HEIGHT)
+	while (first_point_ax > 0 && first_point_ay > 0 && first_point_ax < WIDTH && first_point_ay < HEIGHT && worldMap[(unsigned int)first_point_ay >> 5u][(unsigned int)first_point_ax >> 5u] != 1)
 	{
 		if (angle > 0 && angle <= (PI / 2.0))
 		{
@@ -180,9 +201,9 @@ void    trace(t_mlx *mlx, double vector)
 	}
 	/*================================================================================================================================================================================*/
 	if ((angle >= 0 && angle < (PI / 2.0)) || (angle > (3.0 / 2.0) * PI && angle <= 2 * PI)) // 1 and 4
-		first_point_bx = (int)(mlx->player.player_x / 32) * 32 + 32;
+		first_point_bx = ((unsigned int)(mlx->player.player_x / 32) << 5u) + 32;
 	else if ((angle > (PI / 2.0) && angle <= PI) || (angle > PI && angle < (3.0 / 2.0) * PI)) // 2 and 3
-		first_point_bx = (int)(mlx->player.player_x / 32) * 32 - 1;
+		first_point_bx = ((unsigned int)(mlx->player.player_x / 32) << 5u) - 1;
 	else
 		first_point_bx = mlx->player.player_x;
 
@@ -196,9 +217,8 @@ void    trace(t_mlx *mlx, double vector)
 		first_point_by = mlx->player.player_y - (first_point_bx - mlx->player.player_x) * tan(2 * PI - angle);
 	else
 		first_point_by = mlx->player.player_y;
-	while (worldMap[(int)first_point_by / 32][(int)first_point_bx / 32] != 1 && first_point_bx > 0 && first_point_by > 0 && first_point_bx < WIDTH && first_point_by < HEIGHT)
+	while (first_point_bx > 0 && first_point_by > 0 && first_point_bx < WIDTH && first_point_by < HEIGHT && worldMap[(unsigned int)first_point_by >> 5u][(unsigned int)first_point_bx >> 5u] != 1)
 	{
-		printf("%d\n", worldMap[(int)first_point_by / 32][(int)first_point_bx / 32]);
 		if (angle >= 0 && angle < (PI / 2.0))
 		{
 			first_point_bx += 32;
@@ -230,14 +250,36 @@ void    trace(t_mlx *mlx, double vector)
 		len2 = INFINITY;
 	else
 		len2 = sqrt(fabs(mlx->player.player_x - first_point_bx) * fabs(mlx->player.player_x - first_point_bx) + fabs(mlx->player.player_y - first_point_by) * fabs(mlx->player.player_y - first_point_by));
-	len_line = len1 > len2 ? len2 : len1;
+	if (len1 > len2)
+	{
+		len_line = len2;
+		color = mlx->color.RED;
+	}
+	else
+	{
+		len_line = len1;
+		color = mlx->color.BLUE;
+	}
 	if (len_line != INFINITY)
 	{
-		while (i <= len_line)
-		{
-			my_mlx_pixel_put(mlx, (int)(mlx->player.player_x + i * cos(angle)), (int)(mlx->player.player_y + i * sin(angle)), mlx->color.BLACK);
-			i++;
-		}
+//		double len_to_viewport = ((WIDTH / 2.0) / tan(PI / 6.0));
+//		projected_slice_height = (len_to_viewport / (32 * len_line)) * HEIGHT / 2;
+//		up_start = (int)(HEIGHT/2 + projected_slice_height) ;
+//		if (up_start >= HEIGHT)
+//			up_start = HEIGHT - 1;
+//		down_stop = (int)(HEIGHT/2 - projected_slice_height);
+//		if (down_stop < 0)
+//			down_stop = 0;
+//		while (up_start > down_stop)
+//		{
+//			my_mlx_pixel_put(mlx, x, up_start, color);
+//			up_start--;
+//		}
+		 while (i <= len_line)
+		 {
+		 	my_mlx_pixel_put(mlx, (int)(mlx->player.player_x + i * cos(angle)), (int)(mlx->player.player_y + i * sin(angle)), mlx->color.BLUE);
+		 	i++;
+		 }
 	}
 }
 
@@ -245,9 +287,10 @@ int         main()
 {
 	t_mlx   mlx;
 	double vector = - PI / 6;
-
+	double step = PI / (3 * WIDTH);
 	init_color(&mlx.color);
 	init_player(&mlx.player);
+	int x = 0;
     mlx.mlx = mlx_init();
     if(!(mlx.mlx_win = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, "cub3d")))
 		exit(0);
@@ -259,8 +302,9 @@ int         main()
 	drawPlayer(&mlx, mlx.player.player_x, mlx.player.player_y);
 	while (vector < PI / 6)
 	{
-		trace(&mlx, vector);
-		vector += 0.01;
+		trace(&mlx, vector, (int)x);
+		x += 1;
+		vector += step;
 	}
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, mlx.mlx_img, 0, 0);
 	mlx_hook(mlx.mlx_win, 2, 0L, key_press, &mlx);
