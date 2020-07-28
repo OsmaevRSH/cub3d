@@ -4,8 +4,8 @@
 #include "mlx/mlx.h"
 #include <stdlib.h>
 #include "math.h"
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 2560
+# define HEIGHT 1440
 # define mapWidth 24
 # define mapHeight 28
 
@@ -91,5 +91,6 @@ typedef struct  s_mlx
 void    drawPlayer(t_mlx *mlx, double x, double y);
 void	drawMap(t_mlx *mlx);
 void    trace(t_mlx *mlx, double vector, int x);
+void 	drawFlor(t_mlx *mlx);
 
 #endif
