@@ -307,22 +307,19 @@ void    trace(t_mlx *mlx, double vector, int x)
 		len_line = len_line * cos(mlx->player.player_angle - angle);
 		double len_to_viewport = (((unsigned int)WIDTH >> 1u) / tan(M_PI / 6.0));
 		projected_slice_height = (len_to_viewport / (32 * len_line)) * HEIGHT / 2;
-		up_start = (int)(((unsigned int)HEIGHT >> 1u)  + projected_slice_height) ;
+		up_start = (int)(((unsigned int)HEIGHT >> 1u) - projected_slice_height) ;
 		int h_texture = 64;
 		double h_koef = h_texture / (projected_slice_height * 2);
 		int h_k;
 		save = up_start;
-		if (up_start >= HEIGHT)
+		if (up_start <= 0)
+			up_start = 0;
+		down_stop = (int)(((unsigned int )HEIGHT >> 1u) + projected_slice_height);
+		if (down_stop >= HEIGHT)
+			down_stop = HEIGHT - 1;
+		while (up_start < down_stop)
 		{
-			save = up_start;
-			up_start = HEIGHT - 1;
-		}
-		down_stop = (int)(((unsigned int )HEIGHT >> 1u) - projected_slice_height);
-		if (down_stop < 0)
-			down_stop = 0;
-		while (up_start > down_stop)
-		{
-			h_k = (int)((save - up_start) * h_koef);
+			h_k = (int)((up_start - save) * h_koef);
 			if (check_1 == 1)
 				color = mlx->texture.t1.mlx_addr[h_k * mlx->texture.t1.height + (tx % mlx->texture.t1.weight)];
 			else if (check_1 == 2)
@@ -332,7 +329,7 @@ void    trace(t_mlx *mlx, double vector, int x)
 			else
 				color = mlx->texture.t4.mlx_addr[h_k * mlx->texture.t4.height + (tx % mlx->texture.t4.weight)];
 			my_mlx_pixel_put(mlx, x, up_start, color);
-			up_start--;
+			up_start++;
 		}
 //		while (i <= len_line / 8)
 //		{
