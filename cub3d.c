@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include "stdio.h"
 
 void init_color(t_color *color)
 {
@@ -160,7 +159,7 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
 
 void    trace(t_mlx *mlx, double vector, int x)
 {
-	int tx, ty;
+	int tx;
 	double angle = mlx->player.player_angle + vector;
 	double projected_slice_height;
 	if (angle > 2*M_PI)
@@ -340,7 +339,7 @@ void    trace(t_mlx *mlx, double vector, int x)
 			up_start++;
 		}
 		k = down_stop;
-		while (k < HEIGHT)
+		while (k < HEIGHT - 1)
 		{
 			dst = mlx->mlx_addr + (abs(k) * mlx->mlx_line_length + abs(x) * ((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
 				*(unsigned int*)dst = 0x003CB371;
@@ -353,6 +352,12 @@ void    trace(t_mlx *mlx, double vector, int x)
 		}*/
 	}
 }
+
+//int close(t_mlx *mlx)
+//{
+//	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+//	exit(0);
+//}
 
 int         main()
 {
@@ -368,7 +373,7 @@ int         main()
 	if(!(mlx.mlx_img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT)))
 		exit(0);
 	mlx.texture.t1.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL32.xpm", &mlx.texture.t1.weight, &mlx.texture.t1.height);
-	mlx.texture.t2.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL71.xpm", &mlx.texture.t2.weight, &mlx.texture.t2.height);
+	mlx.texture.t2.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL77.xpm", &mlx.texture.t2.weight, &mlx.texture.t2.height);
 	mlx.texture.t3.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL82.xpm", &mlx.texture.t3.weight, &mlx.texture.t3.height);
 	mlx.texture.t4.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL1.xpm", &mlx.texture.t4.weight, &mlx.texture.t4.height);
 	if (!(mlx.mlx_addr = mlx_get_data_addr(mlx.mlx_img, &mlx.mlx_bits_per_pixel, &mlx.mlx_line_length, &mlx.mlx_endian)))
@@ -387,6 +392,7 @@ int         main()
 	drawPlayer(&mlx, mlx.player.player_x / 4, mlx.player.player_y / 4);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, mlx.mlx_img, 0, 0);
 	mlx_hook(mlx.mlx_win, 2, 0L, key_press, &mlx);
+//	mlx_hook(mlx.mlx_win, 17, 0L, close, &mlx);
 	mlx_loop(mlx.mlx);
     return (0);
 }
