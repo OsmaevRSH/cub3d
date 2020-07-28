@@ -48,6 +48,16 @@ typedef struct s_texture
 	int			height;
 }				t_texture;
 
+typedef struct s_save_text
+{
+	t_texture t1;
+	t_texture t2;
+	t_texture t3;
+	t_texture t4;
+}			t_save_text;
+
+
+
 typedef struct  s_player //player position
 {
 	double		player_x;
@@ -75,7 +85,7 @@ typedef struct  s_mlx
 	int			mlx_endian;
 	t_player	player;
 	t_color		color;
-	t_texture	texture;
+	t_save_text texture;
 }               t_mlx;
 
 void    drawPlayer(t_mlx *mlx, double x, double y);

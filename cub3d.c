@@ -42,39 +42,61 @@ int  key_press(int keycode, t_mlx *mlx)
 {
 	if (keycode == 53)
 		exit(0);
-	if (keycode == 13) //w
+	if (keycode == 13 || keycode == 126) //w
     {
-		if ((worldMap[(unsigned int)(mlx->player.player_y + 5 * sin(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == 1)
+		if ((worldMap[(unsigned int)(mlx->player.player_y + 10 * sin(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == 1)
 			mlx->player.player_y += 0;
 		else
-			mlx->player.player_y += 5 * sin(mlx->player.player_angle);
-		if ((worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x + 5 * cos(mlx->player.player_angle)) >> 5u]) == 1)
+			mlx->player.player_y += 10 * sin(mlx->player.player_angle);
+		if ((worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x + 10 * cos(mlx->player.player_angle)) >> 5u]) == 1)
 			mlx->player.player_y += 0;
 		else
-        	mlx->player.player_x += 5 * cos(mlx->player.player_angle);
+        	mlx->player.player_x += 10 * cos(mlx->player.player_angle);
     }
-	if (keycode == 0) //a
+	if (keycode == 123) //<-
 	{
 		mlx->player.player_angle -= 0.05;
 		if (mlx->player.player_angle < 0)
 			mlx->player.player_angle += 2.0 * M_PI;
 	}
-	if (keycode == 1) //s
+	if (keycode == 1 || keycode == 125) //s
     {
-		if ((worldMap[(unsigned int)(mlx->player.player_y - 5 * sin(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == 1)
+		if ((worldMap[(unsigned int)(mlx->player.player_y - 10 * sin(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == 1)
 			mlx->player.player_y += 0;
 		else
-			mlx->player.player_y -= 5 * sin(mlx->player.player_angle);
-		if ((worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x - 5 * cos(mlx->player.player_angle)) >> 5u]) == 1)
+			mlx->player.player_y -= 10 * sin(mlx->player.player_angle);
+		if ((worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x - 10 * cos(mlx->player.player_angle)) >> 5u]) == 1)
 			mlx->player.player_y += 0;
 		else
-        	mlx->player.player_x -= 5 * cos(mlx->player.player_angle);
+        	mlx->player.player_x -= 10 * cos(mlx->player.player_angle);
     }
-	if (keycode == 2) //d
+	if (keycode == 124) //->
 	{
 		mlx->player.player_angle += 0.05;
 		if (mlx->player.player_angle > 2.0*M_PI)
 			mlx->player.player_angle -= 2.0 * M_PI;
+	}
+	if (keycode == 0) //a
+	{
+		if ((worldMap[(unsigned int)(mlx->player.player_y - 10 * cos(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == 1)
+			mlx->player.player_y += 0;
+		else
+			mlx->player.player_y -= 10 * cos(mlx->player.player_angle);
+		if ((worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x + 10 * sin(mlx->player.player_angle)) >> 5u]) == 1)
+			mlx->player.player_y += 0;
+		else
+			mlx->player.player_x += 10 * sin(mlx->player.player_angle);
+	}
+	if (keycode == 2) //d
+	{
+		if ((worldMap[(unsigned int)(mlx->player.player_y + 10 * cos(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == 1)
+			mlx->player.player_y += 0;
+		else
+			mlx->player.player_y += 10 * cos(mlx->player.player_angle);
+		if ((worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x - 10 * sin(mlx->player.player_angle)) >> 5u]) == 1)
+			mlx->player.player_y += 0;
+		else
+			mlx->player.player_x -= 10 * sin(mlx->player.player_angle);
 	}
 	replace(mlx);
 	return (0);
@@ -84,7 +106,7 @@ void        my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char    *dst;
 
-	dst = mlx->mlx_addr + (y * mlx->mlx_line_length + x * ((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
+	dst = mlx->mlx_addr + (abs(y) * mlx->mlx_line_length + abs(x) * ((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
 	*(unsigned int*)dst = color;
 }
 
@@ -155,12 +177,23 @@ void    trace(t_mlx *mlx, double vector, int x)
 	int up_start;
 	int down_stop;
     double i = 0;
+	int save;
 	int color;
+	int check_1 = 0;
+	int check_2 = 0;
+	int flag1 = 0, flag2 = 0;
 
     if ((angle > 0 && angle < M_PI)) // 1 and 2
-        first_point_ay = ((unsigned int)(mlx->player.player_y / 32) << 5u) + 32;
+	{
+		first_point_ay = ((unsigned int)(mlx->player.player_y / 32) << 5u) + 32;
+		flag1 = 1;
+	}
     else if ((angle > M_PI && angle < 2 * M_PI)) // 3 and 4
-        first_point_ay = ((unsigned int)(mlx->player.player_y / 32) << 5u) - 0.00000001;
+	{
+		first_point_ay = ((unsigned int)(mlx->player.player_y / 32) << 5u) - 0.00000001;
+		flag1 = 2;
+	}
+
     else
         first_point_ay = mlx->player.player_y;
 
@@ -202,9 +235,15 @@ void    trace(t_mlx *mlx, double vector, int x)
 	}
 	/*================================================================================================================================================================================*/
 	if ((angle >= 0 && angle < (M_PI_2)) || (angle > 3.0 * M_PI_2 && angle <= 2 * M_PI)) // 1 and 4
+	{
 		first_point_bx = ((unsigned int)(mlx->player.player_x / 32) << 5u) + 32;
+		flag2 = 1;
+	}
 	else if ((angle > (M_PI_2) && angle <= M_PI) || (angle > M_PI && angle < 3.0 * M_PI_2)) // 2 and 3
+	{
 		first_point_bx = ((unsigned int)(mlx->player.player_x / 32) << 5u) - 0.00000001;
+		flag2 = 2;
+	}
 	else
 		first_point_bx = mlx->player.player_x;
 
@@ -254,46 +293,58 @@ void    trace(t_mlx *mlx, double vector, int x)
 	if (len1 > len2)
 	{
 		len_line = len2;
-		tx = (int)first_point_bx % 32;
-		color = mlx->color.GREEN;
+		tx = (int)first_point_by * 2;
+		check_2 = flag2;
 	}
 	else
 	{
 		len_line = len1;
-		tx = (int)first_point_ax % 32;
-		color = mlx->color.RED;
+		tx = (int)first_point_ax * 2;
+		check_1 = flag1;
 	}
 	if (len_line != INFINITY)
 	{
 		len_line = len_line * cos(mlx->player.player_angle - angle);
-		 double len_to_viewport = (((unsigned int)WIDTH >> 1u) / tan(M_PI / 6.0));
-		 projected_slice_height = (len_to_viewport / (32 * len_line)) * HEIGHT / 2;
-		 up_start = (int)(((unsigned int)HEIGHT >> 1u)  + projected_slice_height) ;
-
-		 if (up_start >= HEIGHT)
-		 	up_start = HEIGHT - 1;
-		 down_stop = (int)(((unsigned int )HEIGHT >> 1u) - projected_slice_height);
-		 if (down_stop < 0)
-		 	down_stop = 0;
-		 while (up_start > down_stop)
-		 {
-//		 	color = mlx->texture.mlx_addr[(x % 64)*64+tx];
-		 	my_mlx_pixel_put(mlx, x, up_start, color);
-		 	up_start--;
-		 }
-//		 while (i <= len_line / 8)
-//		 {
-//		 	my_mlx_pixel_put(mlx, (int)(mlx->player.player_x + i * cos(angle)), (int)(mlx->player.player_y + i * sin(angle)), color);
-//		 	i++;
-//		 }
+		double len_to_viewport = (((unsigned int)WIDTH >> 1u) / tan(M_PI / 6.0));
+		projected_slice_height = (len_to_viewport / (32 * len_line)) * HEIGHT / 2;
+		up_start = (int)(((unsigned int)HEIGHT >> 1u)  + projected_slice_height) ;
+		int h_texture = 64;
+		double h_koef = h_texture / (projected_slice_height * 2);
+		int h_k;
+		save = up_start;
+		if (up_start >= HEIGHT)
+		{
+			save = up_start;
+			up_start = HEIGHT - 1;
+		}
+		down_stop = (int)(((unsigned int )HEIGHT >> 1u) - projected_slice_height);
+		if (down_stop < 0)
+			down_stop = 0;
+		while (up_start > down_stop)
+		{
+			h_k = (int)((save - up_start) * h_koef);
+			if (check_1 == 1)
+				color = mlx->texture.t1.mlx_addr[h_k * mlx->texture.t1.height + (tx % mlx->texture.t1.weight)];
+			else if (check_1 == 2)
+				color = mlx->texture.t2.mlx_addr[h_k * mlx->texture.t2.height + (tx % mlx->texture.t2.weight)];
+			else if (check_2 == 1)
+				color = mlx->texture.t3.mlx_addr[h_k * mlx->texture.t3.height + (tx % mlx->texture.t3.weight)];
+			else
+				color = mlx->texture.t4.mlx_addr[h_k * mlx->texture.t4.height + (tx % mlx->texture.t4.weight)];
+			my_mlx_pixel_put(mlx, x, up_start, color);
+			up_start--;
+		}
+//		while (i <= len_line / 8)
+//		{
+//			my_mlx_pixel_put(mlx, (int)(mlx->player.player_x + i * cos(angle)), (int)(mlx->player.player_y + i * sin(angle)), color);
+//			i++;
+//		}
 	}
 }
 
 int         main()
 {
 	t_mlx   mlx;
-	int texture_wight;
-	int texture_height;
 	double vector = - M_PI / 6;
 	double step = M_PI / (3 * WIDTH);
 	init_color(&mlx.color);
@@ -302,10 +353,18 @@ int         main()
     mlx.mlx = mlx_init();
     if(!(mlx.mlx_win = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, "cub3d")))
 		exit(0);
-	if(!(mlx.mlx_img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT)) || !(mlx.texture.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "WALL71.xpm", &mlx.texture.weight, &mlx.texture.height)))
+	if(!(mlx.mlx_img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT)))
 		exit(0);
-	if (!(mlx.mlx_addr = mlx_get_data_addr(mlx.mlx_img, &mlx.mlx_bits_per_pixel, &mlx.mlx_line_length, &mlx.mlx_endian)) || !(mlx.texture.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.mlx_img, &mlx.texture.mlx_bits_per_pixel, &mlx.texture.mlx_line_length, &mlx.texture.mlx_endian)))
+	mlx.texture.t1.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL1.xpm", &mlx.texture.t1.weight, &mlx.texture.t1.height);
+	mlx.texture.t2.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL71.xpm", &mlx.texture.t2.weight, &mlx.texture.t2.height);
+	mlx.texture.t3.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL74.xpm", &mlx.texture.t3.weight, &mlx.texture.t3.height);
+	mlx.texture.t4.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL77.xpm", &mlx.texture.t4.weight, &mlx.texture.t4.height);
+	if (!(mlx.mlx_addr = mlx_get_data_addr(mlx.mlx_img, &mlx.mlx_bits_per_pixel, &mlx.mlx_line_length, &mlx.mlx_endian)))
 		exit(0);
+	mlx.texture.t1.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t1.mlx_img, &mlx.texture.t1.mlx_bits_per_pixel, &mlx.texture.t1.mlx_line_length, &mlx.texture.t1.mlx_endian);
+	mlx.texture.t2.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t2.mlx_img, &mlx.texture.t2.mlx_bits_per_pixel, &mlx.texture.t2.mlx_line_length, &mlx.texture.t2.mlx_endian);
+	mlx.texture.t3.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t3.mlx_img, &mlx.texture.t3.mlx_bits_per_pixel, &mlx.texture.t3.mlx_line_length, &mlx.texture.t3.mlx_endian);
+	mlx.texture.t4.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t4.mlx_img, &mlx.texture.t4.mlx_bits_per_pixel, &mlx.texture.t4.mlx_line_length, &mlx.texture.t4.mlx_endian);
 	while (vector < M_PI / 6)
 	{
 		trace(&mlx, vector, (int)x);
