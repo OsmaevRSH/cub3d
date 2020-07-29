@@ -150,6 +150,60 @@ cub3d.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/cub3d.c.s
 .PHONY : cub3d.c.s
 
+libft/ft_check_file_extension.o: libft/ft_check_file_extension.c.o
+
+.PHONY : libft/ft_check_file_extension.o
+
+# target to build an object file
+libft/ft_check_file_extension.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/libft/ft_check_file_extension.c.o
+.PHONY : libft/ft_check_file_extension.c.o
+
+libft/ft_check_file_extension.i: libft/ft_check_file_extension.c.i
+
+.PHONY : libft/ft_check_file_extension.i
+
+# target to preprocess a source file
+libft/ft_check_file_extension.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/libft/ft_check_file_extension.c.i
+.PHONY : libft/ft_check_file_extension.c.i
+
+libft/ft_check_file_extension.s: libft/ft_check_file_extension.c.s
+
+.PHONY : libft/ft_check_file_extension.s
+
+# target to generate assembly for a file
+libft/ft_check_file_extension.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/libft/ft_check_file_extension.c.s
+.PHONY : libft/ft_check_file_extension.c.s
+
+libft/ft_isdigit_from_string.o: libft/ft_isdigit_from_string.c.o
+
+.PHONY : libft/ft_isdigit_from_string.o
+
+# target to build an object file
+libft/ft_isdigit_from_string.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/libft/ft_isdigit_from_string.c.o
+.PHONY : libft/ft_isdigit_from_string.c.o
+
+libft/ft_isdigit_from_string.i: libft/ft_isdigit_from_string.c.i
+
+.PHONY : libft/ft_isdigit_from_string.i
+
+# target to preprocess a source file
+libft/ft_isdigit_from_string.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/libft/ft_isdigit_from_string.c.i
+.PHONY : libft/ft_isdigit_from_string.c.i
+
+libft/ft_isdigit_from_string.s: libft/ft_isdigit_from_string.c.s
+
+.PHONY : libft/ft_isdigit_from_string.s
+
+# target to generate assembly for a file
+libft/ft_isdigit_from_string.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/libft/ft_isdigit_from_string.c.s
+.PHONY : libft/ft_isdigit_from_string.c.s
+
 mlx/font.o: mlx/font.c.o
 
 .PHONY : mlx/font.o
@@ -285,6 +339,33 @@ mlx/mlx_xpm.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/mlx/mlx_xpm.c.s
 .PHONY : mlx/mlx_xpm.c.s
 
+parce_map_file.o: parce_map_file.c.o
+
+.PHONY : parce_map_file.o
+
+# target to build an object file
+parce_map_file.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/parce_map_file.c.o
+.PHONY : parce_map_file.c.o
+
+parce_map_file.i: parce_map_file.c.i
+
+.PHONY : parce_map_file.i
+
+# target to preprocess a source file
+parce_map_file.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/parce_map_file.c.i
+.PHONY : parce_map_file.c.i
+
+parce_map_file.s: parce_map_file.c.s
+
+.PHONY : parce_map_file.s
+
+# target to generate assembly for a file
+parce_map_file.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/parce_map_file.c.s
+.PHONY : parce_map_file.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -297,6 +378,12 @@ help:
 	@echo "... cub3d.o"
 	@echo "... cub3d.i"
 	@echo "... cub3d.s"
+	@echo "... libft/ft_check_file_extension.o"
+	@echo "... libft/ft_check_file_extension.i"
+	@echo "... libft/ft_check_file_extension.s"
+	@echo "... libft/ft_isdigit_from_string.o"
+	@echo "... libft/ft_isdigit_from_string.i"
+	@echo "... libft/ft_isdigit_from_string.s"
 	@echo "... mlx/font.o"
 	@echo "... mlx/font.i"
 	@echo "... mlx/font.s"
@@ -312,6 +399,9 @@ help:
 	@echo "... mlx/mlx_xpm.o"
 	@echo "... mlx/mlx_xpm.i"
 	@echo "... mlx/mlx_xpm.s"
+	@echo "... parce_map_file.o"
+	@echo "... parce_map_file.i"
+	@echo "... parce_map_file.s"
 .PHONY : help
 
 

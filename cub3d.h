@@ -2,40 +2,42 @@
 #define CUB3D_H
 
 #include "mlx/mlx.h"
-#include <stdlib.h>
-#include "math.h"
-# define WIDTH 2560
-# define HEIGHT 1440
-# define mapWidth 24
-# define mapHeight 28
+# include <stdlib.h>
+# include "math.h"
+# include "libft/libft.h"
+# include "fcntl.h"
+# include "stdio.h"
+# define WIDTH 1920
+# define HEIGHT 1080
+# define mapWidth 39
+# define mapHeight 16
 
-int worldMap[mapWidth][mapHeight]=
-		{
-				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1},
-				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1},
-				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1},
-				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
-				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1},
-				{1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-		};
+typedef struct	s_screen_size
+{
+	int width;
+	int height;
+}				t_screen_size;
+
+typedef struct	s_color_floor_and_roof
+{
+	int r;
+	int g;
+	int b;
+}				t_color_f_and_r;
+
+typedef struct	parce_map_file
+{
+	t_screen_size R;
+	char *NO;
+	char *SO;
+	char *WE;
+	char *EA;
+	char *S;
+	t_color_f_and_r F;
+	t_color_f_and_r C;
+	char **worldMap;
+
+}				t_parce;
 
 typedef struct s_texture
 {
@@ -86,11 +88,25 @@ typedef struct  s_mlx
 	t_player	player;
 	t_color		color;
 	t_save_text texture;
+	t_parce 	map;
 }               t_mlx;
 
-void    drawPlayer(t_mlx *mlx, double x, double y);
-void	drawMap(t_mlx *mlx);
-void    trace(t_mlx *mlx, double vector, int x);
-void 	drawFlor(t_mlx *mlx);
+typedef struct	s_check
+{
+	int R;
+	int NO;
+	int SO;
+	int WE;
+	int EA;
+	int S;
+	int F;
+	int C;
+}				t_check;
+
+void    	drawPlayer(t_mlx *mlx, double x, double y);
+void		drawMap(t_mlx *mlx);
+void    	trace(t_mlx *mlx, double vector, int x);
+char		*ft_parce_map(int fd, char *line);
+void		ft_parce(char *file_name, t_mlx *mlx);
 
 #endif

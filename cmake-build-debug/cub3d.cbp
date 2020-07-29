@@ -99,6 +99,12 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/cub3d.h">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/ft_check_file_extension.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/ft_isdigit_from_string.c">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/Makefile">
 			<Option target="cub3d"/>
 		</Unit>
@@ -187,6 +193,9 @@
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_xpm.o">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/parce_map_file.c">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/CMakeLists.txt">

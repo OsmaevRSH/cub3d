@@ -4,7 +4,9 @@
       <w>fclean</w>
       <w>keycode</w>
       <w>koef</w>
+      <w>libft</w>
       <w>mlx</w>
+      <w>parce</w>
     </words>
   </dictionary>
 </component>
