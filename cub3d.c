@@ -1,33 +1,5 @@
 #include "cub3d.h"
 
-//int mlx->map.worldMap[mapWidth][mapHeight]=
-//		{
-//				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1},
-//				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1,1,1},
-//				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1},
-//				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
-//				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1},
-//				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,1},
-//				{1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0,1},
-//				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-//		};
-
 void init_color(t_color *color)
 {
 	color->RED = 0x00FF0000;
@@ -39,9 +11,9 @@ void init_color(t_color *color)
 
 void    init_player(t_player *player)
 {
-	player->player_x = 512;
-	player->player_y = 160;
-	player->player_angle = M_PI_2;
+//	player->player_x = 1024;
+//	player->player_y = 330;
+//	player->player_angle = M_PI_2;
 }
 
 void	replace(t_mlx *mlx)
@@ -54,14 +26,14 @@ void	replace(t_mlx *mlx)
 		exit(0);
 	if(!(mlx->mlx_addr = mlx_get_data_addr(mlx->mlx_img, &mlx->mlx_bits_per_pixel, &mlx->mlx_line_length, &mlx->mlx_endian)))
 		exit(0);
-	 while (vector < M_PI / 6 && x < WIDTH)
-	 {
-	 	trace(mlx, vector, (int)x);
-	 	x += 1;
-	 	vector += step;
-	 }
-//	drawMap(mlx);
-//	drawPlayer(mlx, mlx->player.player_x / 8, mlx->player.player_y / 8);
+	while (vector < M_PI / 6 && x < WIDTH)
+	{
+		trace(mlx, vector, (int)x);
+		x += 1;
+		vector += step;
+	}
+	drawMap(mlx);
+	drawPlayer(mlx, (unsigned int)mlx->player.player_x >> 2u, (unsigned int)mlx->player.player_y >> 2u);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->mlx_img, 0, 0);
 }
 
@@ -71,14 +43,14 @@ int  key_press(int keycode, t_mlx *mlx)
 		exit(0);
 	if (keycode == 13 || keycode == 126) //w
     {
-		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y + 10 * sin(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == '1')
+		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y + 6 * sin(mlx->player.player_angle)) >> 6u][(unsigned int)(mlx->player.player_x) >> 6u]) == '1')
 			mlx->player.player_y += 0;
 		else
-			mlx->player.player_y += 10 * sin(mlx->player.player_angle);
-		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x + 10 * cos(mlx->player.player_angle)) >> 5u]) == '1')
+			mlx->player.player_y += 6 * sin(mlx->player.player_angle);
+		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y) >> 6u][(unsigned int)(mlx->player.player_x + 6 * cos(mlx->player.player_angle)) >> 6u]) == '1')
 			mlx->player.player_y += 0;
 		else
-        	mlx->player.player_x += 10 * cos(mlx->player.player_angle);
+        	mlx->player.player_x += 6 * cos(mlx->player.player_angle);
     }
 	if (keycode == 123) //<-
 	{
@@ -88,14 +60,14 @@ int  key_press(int keycode, t_mlx *mlx)
 	}
 	if (keycode == 1 || keycode == 125) //s
     {
-		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y - 10 * sin(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == '1')
+		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y - 6 * sin(mlx->player.player_angle)) >> 6u][(unsigned int)(mlx->player.player_x) >> 6u]) == '1')
 			mlx->player.player_y += 0;
 		else
-			mlx->player.player_y -= 10 * sin(mlx->player.player_angle);
-		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x - 10 * cos(mlx->player.player_angle)) >> 5u]) == '1')
+			mlx->player.player_y -= 6 * sin(mlx->player.player_angle);
+		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y) >> 6u][(unsigned int)(mlx->player.player_x - 6 * cos(mlx->player.player_angle)) >> 6u]) == '1')
 			mlx->player.player_y += 0;
 		else
-        	mlx->player.player_x -= 10 * cos(mlx->player.player_angle);
+        	mlx->player.player_x -= 6 * cos(mlx->player.player_angle);
     }
 	if (keycode == 124) //->
 	{
@@ -105,25 +77,25 @@ int  key_press(int keycode, t_mlx *mlx)
 	}
 	if (keycode == 0) //a
 	{
-		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y - 10 * cos(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == '1')
+		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y - 6 * cos(mlx->player.player_angle)) >> 6u][(unsigned int)(mlx->player.player_x) >> 6u]) == '1')
 			mlx->player.player_y += 0;
 		else
-			mlx->player.player_y -= 10 * cos(mlx->player.player_angle);
-		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x + 10 * sin(mlx->player.player_angle)) >> 5u]) == '1')
+			mlx->player.player_y -= 6 * cos(mlx->player.player_angle);
+		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y) >> 6u][(unsigned int)(mlx->player.player_x + 6 * sin(mlx->player.player_angle)) >> 6u]) == '1')
 			mlx->player.player_y += 0;
 		else
-			mlx->player.player_x += 10 * sin(mlx->player.player_angle);
+			mlx->player.player_x += 6 * sin(mlx->player.player_angle);
 	}
 	if (keycode == 2) //d
 	{
-		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y + 10 * cos(mlx->player.player_angle)) >> 5u][(unsigned int)(mlx->player.player_x) >> 5u]) == '1')
+		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y + 3 * cos(mlx->player.player_angle)) >> 6u][(unsigned int)(mlx->player.player_x) >> 6u]) == '1')
 			mlx->player.player_y += 0;
 		else
-			mlx->player.player_y += 10 * cos(mlx->player.player_angle);
-		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y) >> 5u][(unsigned int)(mlx->player.player_x - 10 * sin(mlx->player.player_angle)) >> 5u]) == '1')
+			mlx->player.player_y += 6 * cos(mlx->player.player_angle);
+		if ((mlx->map.worldMap[(unsigned int)(mlx->player.player_y) >> 6u][(unsigned int)(mlx->player.player_x - 6 * sin(mlx->player.player_angle)) >> 6u]) == '1')
 			mlx->player.player_y += 0;
 		else
-			mlx->player.player_x -= 10 * sin(mlx->player.player_angle);
+			mlx->player.player_x -= 6 * sin(mlx->player.player_angle);
 	}
 	replace(mlx);
 	return (0);
@@ -148,7 +120,6 @@ void	drawMap(t_mlx *mlx)
 	{
 		while (y < map_y << 4u)
 		{
-			printf("%c", **mlx->map.worldMap);
 			if (mlx->map.worldMap[y >> 4u][x >> 4u] == 49)
 				my_mlx_pixel_put(mlx, (int)x, (int)y, mlx->color.BLACK);
 			else
@@ -174,9 +145,9 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
        my_mlx_pixel_put(mlx, (int)(x + i * cos(mlx->player.player_angle)), (int)(y + i * sin(mlx->player.player_angle)), mlx->color.RED);
        i++;
    }
-   while (tmp_x < x + 5)
+   while (tmp_x < x + 3)
    {
-       while (tmp_y < y + 5)
+       while (tmp_y < y + 3)
        {
            my_mlx_pixel_put(mlx, (int)tmp_x, (int)tmp_y, mlx->color.RED);
            tmp_y++;
@@ -213,12 +184,12 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
 
      if ((angle > 0 && angle < M_PI)) // 1 and 2
  	{
- 		first_point_ay = ((unsigned int)(mlx->player.player_y / 32) << 5u) + 32;
+ 		first_point_ay = ((unsigned int)(mlx->player.player_y / 64) << 6u) + 64;
  		flag1 = 1;
  	}
      else if ((angle > M_PI && angle < 2 * M_PI)) // 3 and 4
  	{
- 		first_point_ay = ((unsigned int)(mlx->player.player_y / 32) << 5u) - 0.00000001;
+ 		first_point_ay = ((unsigned int)(mlx->player.player_y / 64) << 6u) - 0.00000001;
  		flag1 = 2;
  	}
 
@@ -236,27 +207,27 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
  	else
  		first_point_ax = mlx->player.player_x;
 
- 	while (first_point_ax > 0 && first_point_ay > 0 && first_point_ax < (unsigned int)mapWidth << 5u && first_point_ay < (unsigned int)mapHeight << 5u && mlx->map.worldMap[(unsigned int)first_point_ay >> 5u][(unsigned int)first_point_ax >> 5u] != '1')
+ 	while (first_point_ax > 0 && first_point_ay > 0 && first_point_ax < (unsigned int)mapWidth << 6u && first_point_ay < (unsigned int)mapHeight << 6u && mlx->map.worldMap[(unsigned int)first_point_ay >> 6u][(unsigned int)first_point_ax >> 6u] != '1')
  	{
  		if (angle > 0 && angle <= (M_PI_2))
  		{
- 			first_point_ax += 32 * tan((M_PI_2) - angle);
- 			first_point_ay += 32;
+ 			first_point_ax += 64 * tan((M_PI_2) - angle);
+ 			first_point_ay += 64;
  		}
  		else if (angle > (M_PI_2) && angle < M_PI)
  		{
- 			first_point_ax -= 32 * tan(angle - (M_PI_2));
- 			first_point_ay += 32;
+ 			first_point_ax -= 64 * tan(angle - (M_PI_2));
+ 			first_point_ay += 64;
  		}
  		else if (angle > M_PI && angle <= 3.0 * M_PI_2)
  		{
- 			first_point_ax -= 32 * tan(3.0 * M_PI_2 - angle);
- 			first_point_ay -= 32;
+ 			first_point_ax -= 64 * tan(3.0 * M_PI_2 - angle);
+ 			first_point_ay -= 64;
  		}
  		else if (angle > 3.0 * M_PI_2 && angle < 2 * M_PI)
  		{
- 			first_point_ax += 32 * tan(angle - 3.0 * M_PI_2);
- 			first_point_ay -= 32;
+ 			first_point_ax += 64 * tan(angle - 3.0 * M_PI_2);
+ 			first_point_ay -= 64;
  		}
  		else
  			break;
@@ -264,12 +235,12 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
  	/*================================================================================================================================================================================*/
  	if ((angle >= 0 && angle < (M_PI_2)) || (angle > 3.0 * M_PI_2 && angle <= 2 * M_PI)) // 1 and 4
  	{
- 		first_point_bx = ((unsigned int)(mlx->player.player_x / 32) << 5u) + 32;
+ 		first_point_bx = ((unsigned int)(mlx->player.player_x / 64) << 6u) + 64;
  		flag2 = 1;
  	}
  	else if ((angle > (M_PI_2) && angle <= M_PI) || (angle > M_PI && angle < 3.0 * M_PI_2)) // 2 and 3
  	{
- 		first_point_bx = ((unsigned int)(mlx->player.player_x / 32) << 5u) - 0.00000001;
+ 		first_point_bx = ((unsigned int)(mlx->player.player_x / 64) << 6u) - 0.00000001;
  		flag2 = 2;
  	}
  	else
@@ -285,27 +256,27 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
  		first_point_by = mlx->player.player_y - (first_point_bx - mlx->player.player_x) * tan(2 * M_PI - angle);
  	else
  		first_point_by = mlx->player.player_y;
- 	while (first_point_bx > 0 && first_point_by > 0 && first_point_bx < (unsigned int)mapWidth << 5u && first_point_by < (unsigned int)mapHeight << 5u && mlx->map.worldMap[(unsigned int)first_point_by >> 5u][(unsigned int)first_point_bx >> 5u] != '1')
+ 	while (first_point_bx > 0 && first_point_by > 0 && first_point_bx < (unsigned int)mapWidth << 6u && first_point_by < (unsigned int)mapHeight << 6u && mlx->map.worldMap[(unsigned int)first_point_by >> 6u][(unsigned int)first_point_bx >> 6u] != '1')
  	{
  		if (angle >= 0 && angle < (M_PI_2))
  		{
- 			first_point_bx += 32;
- 			first_point_by += 32 * tan(angle);
+ 			first_point_bx += 64;
+ 			first_point_by += 64 * tan(angle);
  		}
  		else if (angle > (M_PI_2) && angle <= M_PI)
  		{
- 			first_point_bx -= 32;
- 			first_point_by += 32 * tan(M_PI - angle);
+ 			first_point_bx -= 64;
+ 			first_point_by += 64 * tan(M_PI - angle);
  		}
  		else if (angle > M_PI && angle < 3.0 * M_PI_2)
  		{
- 			first_point_bx -= 32;
- 			first_point_by -= 32 * tan(angle - M_PI);
+ 			first_point_bx -= 64;
+ 			first_point_by -= 64 * tan(angle - M_PI);
  		}
  		else if (angle > (M_PI_2) * 3 && angle <= 2 * M_PI)
  		{
- 			first_point_bx += 32;
- 			first_point_by -= 32 * tan(2 * M_PI - angle);
+ 			first_point_bx += 64;
+ 			first_point_by -= 64 * tan(2 * M_PI - angle);
  		}
  		else
  			break;
@@ -334,7 +305,7 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
  	{
  		len_line = len_line * cos(mlx->player.player_angle - angle);
  		double len_to_viewport = (((unsigned int)WIDTH >> 1u) / tan(M_PI / 6.0));
- 		projected_slice_height = (len_to_viewport / (64 * len_line)) * HEIGHT / 2;
+ 		projected_slice_height = (len_to_viewport / (64 * len_line)) * HEIGHT;
  		up_start = (int)(((unsigned int)HEIGHT >> 1u) - projected_slice_height) ;
  		int h_texture = 64;
  		double h_koef = h_texture / (projected_slice_height * 2);
@@ -382,11 +353,11 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
  	}
  }
 
-//int close(t_mlx *mlx)
-//{
-//	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-//	exit(0);
-//}
+int close_window(t_mlx *mlx)
+{
+	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	exit(0);
+}
 
 int         main()
 {
@@ -419,11 +390,11 @@ int         main()
 	 	x += 1;
 	 	vector += step;
 	 }
-//	drawMap(&mlx);
-//	drawPlayer(&mlx, mlx.player.player_x / 4, mlx.player.player_y / 4);
+	drawMap(&mlx);
+	drawPlayer(&mlx, mlx.player.player_x / 4, mlx.player.player_y / 4);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, mlx.mlx_img, 0, 0);
 	mlx_hook(mlx.mlx_win, 2, 0L, key_press, &mlx);
-//	mlx_hook(mlx.mlx_win, 17, 0L, close, &mlx);
+	mlx_hook(mlx.mlx_win, 17, 0L, close_window, &mlx);
 	mlx_loop(mlx.mlx);
     return (0);
 }

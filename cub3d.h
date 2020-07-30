@@ -65,6 +65,8 @@ typedef struct  s_player //player position
 	double		player_x;
 	double		player_y;
 	double		player_angle;
+	int 		player_rectangle_x;
+	int 		player_rectangle_y;
 }               t_player;
 
 typedef struct  s_color
@@ -106,7 +108,8 @@ typedef struct	s_check
 void    	drawPlayer(t_mlx *mlx, double x, double y);
 void		drawMap(t_mlx *mlx);
 void    	trace(t_mlx *mlx, double vector, int x);
-char		*ft_parce_map(int fd, char *line);
 void		ft_parce(char *file_name, t_mlx *mlx);
+char		*ft_parce_map(int fd, char *line, t_mlx *mlx);
+int			check_map(char **map, t_mlx *mlx);
 
 #endif

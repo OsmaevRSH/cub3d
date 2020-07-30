@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+int check(char **map, int x, int y);
+
 void		ft_parce(char *file_name, t_mlx *mlx)
 {
 	int fd;
@@ -16,9 +18,9 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 		split_str = ft_split(line, ' ');
 		if (split_str[0] == NULL)
 			continue ;
-		else if (!ft_strncmp(split_str[0], "R", ft_strlen(split_str[0])))
+		else if (!ft_strncmp(split_str[0], "R", ft_strlen(split_str[0])) && flag.R == 0)
 		{
-			if (ft_isdigit_from_string(split_str[1]) && ft_isdigit_from_string(split_str[2]) && split_str[3] == NULL && flag.R == 0)
+			if (ft_isdigit_from_string(split_str[1]) && ft_isdigit_from_string(split_str[2]) && split_str[3] == NULL)
 			{
 				flag.R = 1;
 				mlx->map.R.width = ft_atoi(split_str[1]);
@@ -30,9 +32,9 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 				exit(0);
 			}
 		}
-		else if (!ft_strncmp(split_str[0], "NO", ft_strlen(split_str[0])))
+		else if (!ft_strncmp(split_str[0], "NO", ft_strlen(split_str[0])) && flag.NO == 0)
 		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && flag.NO == 0)
+			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm"))
 			{
 				flag.NO = 1;
 				close(fd_for_check_file_extension);
@@ -44,9 +46,9 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 				exit(0);
 			}
 		}
-		else if (!ft_strncmp(split_str[0], "SO", 3))
+		else if (!ft_strncmp(split_str[0], "SO", 3) && flag.SO == 0)
 		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL && flag.SO == 0)
+			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
 			{
 				flag.SO = 1;
 				close(fd_for_check_file_extension);
@@ -58,9 +60,9 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 				exit(0);
 			}
 		}
-		else if (!ft_strncmp(split_str[0], "WE", ft_strlen(split_str[0])))
+		else if (!ft_strncmp(split_str[0], "WE", ft_strlen(split_str[0])) && flag.WE == 0)
 		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL && flag.WE == 0)
+			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
 			{
 				flag.WE = 1;
 				close(fd_for_check_file_extension);
@@ -72,9 +74,9 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 				exit(0);
 			}
 		}
-		else if (!ft_strncmp(split_str[0], "EA", ft_strlen(split_str[0])))
+		else if (!ft_strncmp(split_str[0], "EA", ft_strlen(split_str[0])) && flag.EA == 0)
 		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL && flag.EA == 0)
+			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
 			{
 				flag.EA = 1;
 				close(fd_for_check_file_extension);
@@ -86,9 +88,9 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 				exit(0);
 			}
 		}
-		else if (!ft_strncmp(split_str[0], "S", ft_strlen(split_str[0])))
+		else if (!ft_strncmp(split_str[0], "S", ft_strlen(split_str[0])) && flag.S == 0)
 		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL && flag.S == 0)
+			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
 			{
 				flag.S = 1;
 				close(fd_for_check_file_extension);
@@ -100,9 +102,9 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 				exit(0);
 			}
 		}
-		else if (!ft_strncmp(split_str[0], "F", ft_strlen(split_str[0])))
+		else if (!ft_strncmp(split_str[0], "F", ft_strlen(split_str[0])) && flag.F == 0)
 		{
-			if (split_str[1] && split_str[2] == NULL && flag.F == 0)
+			if (split_str[1] && split_str[2] == NULL)
 			{
 				flag.F = 1;
 				color = ft_split(split_str[1], ',');
@@ -137,9 +139,9 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 				exit(0);
 			}
 		}
-		else if (!ft_strncmp(split_str[0], "C", ft_strlen(split_str[0])))
+		else if (!ft_strncmp(split_str[0], "C", ft_strlen(split_str[0])) && flag.C == 0)
 		{
-			if (split_str[1] && split_str[2] == NULL && flag.C == 0)
+			if (split_str[1] && split_str[2] == NULL)
 			{
 				flag.C = 1;
 				color = ft_split(split_str[1], ',');
@@ -178,17 +180,18 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 		{
 			if (flag.F && flag.S && flag.EA && flag.WE && flag.SO && flag.NO && flag.R && flag.C)
 			{
-				if (!(line = ft_parce_map(fd, line)))
+				if (!(line = ft_parce_map(fd, line, mlx)))
 				{
 					printf("%s", "9");
 					exit(0);
 				}
 				mlx->map.worldMap = ft_split(line, '\n');
-//				if (!check_map(mlx->map.mlx->map.worldMap))
-//				{
-//					printf("%s", "error");
-//					exit(0);
-//				}
+				check_map(mlx->map.worldMap, mlx);
+				// if (!check_map(mlx->map.mlx->map.worldMap))
+				// {
+				// 	printf("%s", "error");
+				// 	exit(0);
+				// }
 				return;
 			}
 			else
@@ -200,18 +203,92 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 	}
 }
 
-int		check_map(char **pString)
+int check_map(char **map, t_mlx *mlx)
 {
-		return 0;
+	int x;
+	int y;
+
+	x = mlx->player.player_rectangle_x;
+	y = mlx->player.player_rectangle_y;
+	check(map, x, y);
+	return (1);
 }
 
-char		*ft_parce_map(int fd, char *line)
+int check(char **map, int x, int y)
+{
+	int i = 0;
+	while (map[i])
+	{
+		write(1, map[i], ft_strlen(map[i]));
+		write(1, "\n", 1);
+		i++;
+	}
+	write(1, "\n", 1);
+	write(1, "\n", 1);
+	write(1, "\n", 1);
+	if (map[y][x] == '1' || map[y][x] == '2' || map[y][x] == '.')
+		return (1);
+	if (map[y + 1][x] == ' ' || map[y][x + 1] == ' ' || map[y - 1][x] == ' ' || map[y][x - 1] == ' ')
+	{
+		printf("%s", "error map don't close");
+		exit(0);
+	}
+	map[y][x] = '.';
+	check(map, x - 1, y);
+	check(map, x + 1, y);
+	check(map, x, y - 1);
+	check(map, x, y + 1);
+	return (1);
+}
+
+void		check_count_player_in_map(const char *str, t_mlx *mlx)
+{
+	static int count;
+	static int line_number;
+	int i;
+
+	i = 0;
+	line_number++;
+	while (str[i])
+	{
+		if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'N' && str[i] != 'S' && str[i] != 'W' && str[i] != 'E' && str[i] != ' ')
+		{
+			printf("%s", "map error1");
+			exit(0);
+		}
+		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
+		{
+			count++;
+			if (count == 2)
+			{
+				printf("%s", "map error2");
+				exit(0);
+			}
+			mlx->player.player_x = (i + 1) * 64 + 32;
+			mlx->player.player_rectangle_x = i + 1;
+			mlx->player.player_y = line_number * 64 + 32;
+			mlx->player.player_rectangle_y = line_number;
+			if (str[i] == 'N')
+				mlx->player.player_angle = 3 * M_PI_2;
+			else if (str[i] == 'S')
+				mlx->player.player_angle = M_PI_2;
+			else if (str[i] == 'W')
+				mlx->player.player_angle = M_PI;
+			else
+				mlx->player.player_angle = 0;
+		}
+		i++;
+	}
+}
+
+char		*ft_parce_map(int fd, char *line, t_mlx *mlx)
 {
 	char *str_map;
 	int len_line;
 	char *tmp;
 	char *str;
 
+	check_count_player_in_map(line, mlx);
 	len_line = ft_strlen(line);
 	if (!(str_map = (char *)malloc(sizeof(char) * (len_line + 4))))
 		return (0);
@@ -229,6 +306,7 @@ char		*ft_parce_map(int fd, char *line)
 	free(tmp);
 	while (get_next_line(fd, &line))
 	{
+		check_count_player_in_map(line, mlx);
 		tmp = str_map;
 		str_map = ft_strjoin(str_map, " ");
 		free(tmp);
@@ -239,6 +317,7 @@ char		*ft_parce_map(int fd, char *line)
 		str_map = ft_strjoin(str_map, " \n");
 		free(tmp);
 	}
+	check_count_player_in_map(line, mlx);
 	tmp = str_map;
 	str_map = ft_strjoin(str_map, " ");
 	free(tmp);
