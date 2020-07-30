@@ -13,7 +13,7 @@ void    init_player(t_player *player)
 {
 //	player->player_x = 1024;
 //	player->player_y = 330;
-//	player->player_angle = M_PI_2;
+// player->player_angle = 4.7298422729;
 }
 
 void	replace(t_mlx *mlx)
@@ -120,7 +120,7 @@ void	drawMap(t_mlx *mlx)
 	{
 		while (y < map_y << 4u)
 		{
-			if (mlx->map.worldMap[y >> 4u][x >> 4u] == 49)
+			if (mlx->map.worldMap[y >> 4u][x >> 4u] == '1')
 				my_mlx_pixel_put(mlx, (int)x, (int)y, mlx->color.BLACK);
 			else
 				my_mlx_pixel_put(mlx, (int)x, (int)y, mlx->color.WHITE);
@@ -366,7 +366,6 @@ int         main()
 	double vector = - M_PI / 6;
 	double step = M_PI / (3 * WIDTH);
 	init_color(&mlx.color);
-	init_player(&mlx.player);
 	int x = 0;
     mlx.mlx = mlx_init();
 	ft_parce("map1.cub", &mlx);
@@ -374,16 +373,17 @@ int         main()
 		exit(0);
 	if(!(mlx.mlx_img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT)))
 		exit(0);
-	mlx.texture.t1.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL32.xpm", &mlx.texture.t1.weight, &mlx.texture.t1.height);
-	mlx.texture.t2.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL77.xpm", &mlx.texture.t2.weight, &mlx.texture.t2.height);
-	mlx.texture.t3.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL82.xpm", &mlx.texture.t3.weight, &mlx.texture.t3.height);
-	mlx.texture.t4.mlx_img = mlx_xpm_file_to_image(mlx.mlx, "texture_xpm/WALL1.xpm", &mlx.texture.t4.weight, &mlx.texture.t4.height);
+	mlx.texture.t1.mlx_img = mlx_xpm_file_to_image(mlx.mlx, mlx.map.SO, &mlx.texture.t1.weight, &mlx.texture.t1.height);
+	mlx.texture.t2.mlx_img = mlx_xpm_file_to_image(mlx.mlx, mlx.map.NO, &mlx.texture.t2.weight, &mlx.texture.t2.height);
+	mlx.texture.t3.mlx_img = mlx_xpm_file_to_image(mlx.mlx, mlx.map.EA, &mlx.texture.t3.weight, &mlx.texture.t3.height);
+	mlx.texture.t4.mlx_img = mlx_xpm_file_to_image(mlx.mlx, mlx.map.WE, &mlx.texture.t4.weight, &mlx.texture.t4.height);
 	if (!(mlx.mlx_addr = mlx_get_data_addr(mlx.mlx_img, &mlx.mlx_bits_per_pixel, &mlx.mlx_line_length, &mlx.mlx_endian)))
 		exit(0);
 	mlx.texture.t1.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t1.mlx_img, &mlx.texture.t1.mlx_bits_per_pixel, &mlx.texture.t1.mlx_line_length, &mlx.texture.t1.mlx_endian);
 	mlx.texture.t2.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t2.mlx_img, &mlx.texture.t2.mlx_bits_per_pixel, &mlx.texture.t2.mlx_line_length, &mlx.texture.t2.mlx_endian);
 	mlx.texture.t3.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t3.mlx_img, &mlx.texture.t3.mlx_bits_per_pixel, &mlx.texture.t3.mlx_line_length, &mlx.texture.t3.mlx_endian);
 	mlx.texture.t4.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t4.mlx_img, &mlx.texture.t4.mlx_bits_per_pixel, &mlx.texture.t4.mlx_line_length, &mlx.texture.t4.mlx_endian);
+	
 	 while (vector < M_PI / 6)
 	 {
 	 	trace(&mlx, vector, (int)x);

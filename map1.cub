@@ -1,7 +1,7 @@
 R 1920 1080
-NO ./texture_xpm/WALL1.xpm
-SO ./texture_xpm/WALL1.xpm
-WE ./texture_xpm/WALL1.xpm
+NO ./texture_xpm/WALL74.xpm
+SO ./texture_xpm/WALL77.xpm
+WE ./texture_xpm/WALL32.xpm
 EA ./texture_xpm/WALL1.xpm
 S ./texture_xpm/WALL1.xpm
 F 220,100,0
