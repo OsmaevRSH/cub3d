@@ -13,7 +13,7 @@ void    init_player(t_player *player)
 {
 //	player->player_x = 1024;
 //	player->player_y = 330;
-// player->player_angle = 4.7298422729;
+ player->player_angle -= 0.3;
 }
 
 void	replace(t_mlx *mlx)
@@ -55,7 +55,7 @@ int  key_press(int keycode, t_mlx *mlx)
     }
 	if (keycode == 123) //<-
 	{
-		mlx->player.player_angle -= 0.05;
+		mlx->player.player_angle -= 0.01;
 		if (mlx->player.player_angle < 0)
 			mlx->player.player_angle += 2.0 * M_PI;
 	}
@@ -72,7 +72,7 @@ int  key_press(int keycode, t_mlx *mlx)
     }
 	if (keycode == 124) //->
 	{
-		mlx->player.player_angle += 0.05;
+		mlx->player.player_angle += 0.01;
 		if (mlx->player.player_angle > 2.0*M_PI)
 			mlx->player.player_angle -= 2.0 * M_PI;
 	}
@@ -135,22 +135,34 @@ void	drawMap(t_mlx *mlx)
 
 void 	draw_Sprite(t_mlx *mlx)
 {
-	double step_for_angle = M_PI / 3.0 * WIDTH;
+	int x_offset;
+	int y_offset;
+	int count_pixels = 0;
+	double step_for_angle = M_PI / (3.0 * WIDTH);
 	double sprite_dir = atan2(mlx->sprite.y - mlx->player.player_y, mlx->sprite.x - mlx->player.player_x);
 	while (sprite_dir > 2 * M_PI)
 		sprite_dir -= 2 * M_PI;
 	while (sprite_dir < 0)
 		sprite_dir += 2 * M_PI;
-	if (sprite_dir - mlx->player.player_angle > (M_PI / 6) /*- (32 * step_for_angle)*/ || sprite_dir - mlx->player.player_angle < -M_PI / 6)
+	if (sprite_dir - mlx->player.player_angle > (M_PI / 6)/* + (32 * step_for_angle)*/ || sprite_dir - mlx->player.player_angle < (-M_PI / 6)/* - (32 * step_for_angle)*/)
 		return ;
 	double sprite_dist = sqrt(pow(mlx->player.player_x - mlx->sprite.x, 2) + pow(mlx->player.player_y - mlx->sprite.y, 2));
 	int sprite_screen_size = HEIGHT / sprite_dist * 64;
 
-	double angle = sprite_dir - mlx->player.player_angle; //< 0 ? mlx->player.player_angle - sprite_dir : sprite_dir - mlx->player.player_angle;
-	int x_offset = (int)((angle / (M_PI / 3.0) * WIDTH + (WIDTH / 2.0)) - sprite_screen_size / 2.0);
-	int y_offset = HEIGHT / 2 - sprite_screen_size / 2;
+	double angle = sprite_dir - mlx->player.player_angle;
+	if (angle < -M_PI / 6)
+	{
+		double save_angel = angle + M_PI / 6;
+		angle = -M_PI / 6;
+		count_pixels = (int)(save_angel / step_for_angle);
+	}
 
-	int check_x = x_offset + sprite_screen_size;
+	x_offset = (int)((angle / (M_PI / 3.0) * WIDTH + (WIDTH / 2.0)) - sprite_screen_size / 2.0);
+	y_offset = HEIGHT / 2 - sprite_screen_size / 2;
+
+	int check_x = x_offset + sprite_screen_size - count_pixels;
+	if (check_x > WIDTH)
+		check_x = WIDTH;
 	int check_y = y_offset + sprite_screen_size;
 
 	while (x_offset < check_x)
@@ -417,6 +429,7 @@ int         main()
 	mlx.texture.t3.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t3.mlx_img, &mlx.texture.t3.mlx_bits_per_pixel, &mlx.texture.t3.mlx_line_length, &mlx.texture.t3.mlx_endian);
 	mlx.texture.t4.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t4.mlx_img, &mlx.texture.t4.mlx_bits_per_pixel, &mlx.texture.t4.mlx_line_length, &mlx.texture.t4.mlx_endian);
 
+	init_player(&mlx.player);
 	 while (vector < M_PI / 6)
 	 {
 	 	trace(&mlx, vector, (int)x);
