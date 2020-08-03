@@ -187,11 +187,6 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 				}
 				mlx->map.worldMap = ft_split(line, '\n');
 				check_map(mlx->map.worldMap, mlx);
-				// if (!check_map(mlx->map.mlx->map.worldMap))
-				// {
-				// 	printf("%s", "error");
-				// 	exit(0);
-				// }
 				return;
 			}
 			else
@@ -255,6 +250,11 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 		{
 			printf("%s", "map error1");
 			exit(0);
+		}
+		if (str[i] == '2')
+		{
+			mlx->sprite.x = (i + 1) * 64 + 32;
+			mlx->sprite.y = line_number * 64 + 32;
 		}
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
 		{

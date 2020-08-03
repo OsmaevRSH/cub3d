@@ -39,6 +39,13 @@ typedef struct	parce_map_file
 
 }				t_parce;
 
+typedef struct	s_sprite
+{
+	double x;
+	double y;
+	size_t tex_id;
+}				t_sprite;
+
 typedef struct s_texture
 {
 	void		*mlx_img;
@@ -91,6 +98,7 @@ typedef struct  s_mlx
 	t_color		color;
 	t_save_text texture;
 	t_parce 	map;
+	t_sprite	sprite;
 }               t_mlx;
 
 typedef struct	s_check
@@ -111,5 +119,5 @@ void    	trace(t_mlx *mlx, double vector, int x);
 void		ft_parce(char *file_name, t_mlx *mlx);
 char		*ft_parce_map(int fd, char *line, t_mlx *mlx);
 int			check_map(char **map, t_mlx *mlx);
-
+void 		draw_Sprite(t_mlx *mlx);
 #endif

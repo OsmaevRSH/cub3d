@@ -34,6 +34,7 @@ void	replace(t_mlx *mlx)
 	}
 	drawMap(mlx);
 	drawPlayer(mlx, (unsigned int)mlx->player.player_x >> 2u, (unsigned int)mlx->player.player_y >> 2u);
+	draw_Sprite(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->mlx_img, 0, 0);
 }
 
@@ -101,6 +102,7 @@ int  key_press(int keycode, t_mlx *mlx)
 	return (0);
 }
 
+
 void        my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char    *dst;
@@ -128,6 +130,38 @@ void	drawMap(t_mlx *mlx)
 		}
 		y = 0;
 		x++;
+	}
+}
+
+void 	draw_Sprite(t_mlx *mlx)
+{
+	double step_for_angle = M_PI / 3.0 * WIDTH;
+	double sprite_dir = atan2(mlx->sprite.y - mlx->player.player_y, mlx->sprite.x - mlx->player.player_x);
+	while (sprite_dir > 2 * M_PI)
+		sprite_dir -= 2 * M_PI;
+	while (sprite_dir < 0)
+		sprite_dir += 2 * M_PI;
+	if (sprite_dir - mlx->player.player_angle > (M_PI / 6) /*- (32 * step_for_angle)*/ || sprite_dir - mlx->player.player_angle < -M_PI / 6)
+		return ;
+	double sprite_dist = sqrt(pow(mlx->player.player_x - mlx->sprite.x, 2) + pow(mlx->player.player_y - mlx->sprite.y, 2));
+	int sprite_screen_size = HEIGHT / sprite_dist * 64;
+
+	double angle = sprite_dir - mlx->player.player_angle; //< 0 ? mlx->player.player_angle - sprite_dir : sprite_dir - mlx->player.player_angle;
+	int x_offset = (int)((angle / (M_PI / 3.0) * WIDTH + (WIDTH / 2.0)) - sprite_screen_size / 2.0);
+	int y_offset = HEIGHT / 2 - sprite_screen_size / 2;
+
+	int check_x = x_offset + sprite_screen_size;
+	int check_y = y_offset + sprite_screen_size;
+
+	while (x_offset < check_x)
+	{
+		while (y_offset < check_y)
+		{
+			my_mlx_pixel_put(mlx, x_offset, y_offset, mlx->color.BLACK);
+			y_offset++;
+		}
+		y_offset = HEIGHT / 2 - sprite_screen_size / 2;
+		x_offset++;
 	}
 }
 
@@ -361,7 +395,6 @@ int close_window(t_mlx *mlx)
 
 int         main()
 {
-
 	t_mlx   mlx;
 	double vector = - M_PI / 6;
 	double step = M_PI / (3 * WIDTH);
@@ -383,7 +416,7 @@ int         main()
 	mlx.texture.t2.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t2.mlx_img, &mlx.texture.t2.mlx_bits_per_pixel, &mlx.texture.t2.mlx_line_length, &mlx.texture.t2.mlx_endian);
 	mlx.texture.t3.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t3.mlx_img, &mlx.texture.t3.mlx_bits_per_pixel, &mlx.texture.t3.mlx_line_length, &mlx.texture.t3.mlx_endian);
 	mlx.texture.t4.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t4.mlx_img, &mlx.texture.t4.mlx_bits_per_pixel, &mlx.texture.t4.mlx_line_length, &mlx.texture.t4.mlx_endian);
-	
+
 	 while (vector < M_PI / 6)
 	 {
 	 	trace(&mlx, vector, (int)x);
@@ -392,6 +425,7 @@ int         main()
 	 }
 	drawMap(&mlx);
 	drawPlayer(&mlx, mlx.player.player_x / 4, mlx.player.player_y / 4);
+	draw_Sprite(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.mlx_win, mlx.mlx_img, 0, 0);
 	mlx_hook(mlx.mlx_win, 2, 0L, key_press, &mlx);
 	mlx_hook(mlx.mlx_win, 17, 0L, close_window, &mlx);
