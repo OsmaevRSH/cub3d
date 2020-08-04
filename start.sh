@@ -1,0 +1,2 @@
+make
+./cub3d

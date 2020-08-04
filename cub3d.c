@@ -13,7 +13,7 @@ void    init_player(t_player *player)
 {
 //	player->player_x = 1024;
 //	player->player_y = 330;
- player->player_angle -= 0.3;
+// player->player_angle -= 0.3;
 }
 
 void	replace(t_mlx *mlx)
@@ -55,7 +55,7 @@ int  key_press(int keycode, t_mlx *mlx)
     }
 	if (keycode == 123) //<-
 	{
-		mlx->player.player_angle -= 0.01;
+		mlx->player.player_angle -= 0.02;
 		if (mlx->player.player_angle < 0)
 			mlx->player.player_angle += 2.0 * M_PI;
 	}
@@ -72,7 +72,7 @@ int  key_press(int keycode, t_mlx *mlx)
     }
 	if (keycode == 124) //->
 	{
-		mlx->player.player_angle += 0.01;
+		mlx->player.player_angle += 0.02;
 		if (mlx->player.player_angle > 2.0*M_PI)
 			mlx->player.player_angle -= 2.0 * M_PI;
 	}
@@ -137,43 +137,79 @@ void 	draw_Sprite(t_mlx *mlx)
 {
 	int x_offset;
 	int y_offset;
+	double save;
 	int count_pixels = 0;
+	int i = 0, j = 0;
 	double step_for_angle = M_PI / (3.0 * WIDTH);
 	double sprite_dir = atan2(mlx->sprite.y - mlx->player.player_y, mlx->sprite.x - mlx->player.player_x);
 	while (sprite_dir > 2 * M_PI)
 		sprite_dir -= 2 * M_PI;
 	while (sprite_dir < 0)
 		sprite_dir += 2 * M_PI;
-	if (sprite_dir - mlx->player.player_angle > (M_PI / 6)/* + (32 * step_for_angle)*/ || sprite_dir - mlx->player.player_angle < (-M_PI / 6)/* - (32 * step_for_angle)*/)
-		return ;
+	double angel;
 	double sprite_dist = sqrt(pow(mlx->player.player_x - mlx->sprite.x, 2) + pow(mlx->player.player_y - mlx->sprite.y, 2));
 	int sprite_screen_size = HEIGHT / sprite_dist * 64;
-
-	double angle = sprite_dir - mlx->player.player_angle;
-	if (angle < -M_PI / 6)
+	if (fabs(sprite_dir - mlx->player.player_angle) > (M_PI / 6.0) + (sprite_screen_size / 2.0 * step_for_angle) && fabs(sprite_dir - mlx->player.player_angle) < (11.0 * M_PI / 6.0) - (sprite_screen_size / 2.0 * step_for_angle))
 	{
-		double save_angel = angle + M_PI / 6;
-		angle = -M_PI / 6;
-		count_pixels = (int)(save_angel / step_for_angle);
+		printf("|I am exit:%lf| ", fabs(sprite_dir - mlx->player.player_angle));
+		return ;
 	}
+	angel = sprite_dir - mlx->player.player_angle;
+	while (angel < -M_PI)
+		angel += (2*M_PI);
+	while (angel > M_PI)
+		angel -= (2*M_PI);
 
-	x_offset = (int)((angle / (M_PI / 3.0) * WIDTH + (WIDTH / 2.0)) - sprite_screen_size / 2.0);
+	x_offset = (int)((angel / (M_PI / 6.0) * (WIDTH / 2.0) + (WIDTH / 2.0)) - sprite_screen_size / 2.0);
+	if (x_offset > WIDTH)
+		x_offset = WIDTH - 1;
+	if (x_offset < 0)
+		x_offset = 0;
 	y_offset = HEIGHT / 2 - sprite_screen_size / 2;
-
-	int check_x = x_offset + sprite_screen_size - count_pixels;
+	int check_x = x_offset + sprite_screen_size;
 	if (check_x > WIDTH)
 		check_x = WIDTH;
 	int check_y = y_offset + sprite_screen_size;
+	if (check_y > HEIGHT)
+		check_y = HEIGHT;
 
-	while (x_offset < check_x)
+	if (angel - (sprite_screen_size / 2.0 * step_for_angle) < -M_PI / 6.0)
 	{
-		while (y_offset < check_y)
+		save = -M_PI / 6.0 - (angel - (sprite_screen_size / 2.0 * step_for_angle));
+		save = save / step_for_angle;
+		x_offset += (int)save;
+		i = (int)save;
+		check_x -= (int)save;
+	}
+
+	double h_koef = 64.0 / sprite_screen_size;
+	int h_k, w_k;
+	int color;
+	while (y_offset < check_y)
+	{
+		while (x_offset < check_x)
 		{
-			my_mlx_pixel_put(mlx, x_offset, y_offset, mlx->color.BLACK);
-			y_offset++;
+			h_k = (int)(j * h_koef);
+			w_k = (int)(i * h_koef);
+			color = mlx->texture.sprite.mlx_addr[h_k * 64 + (w_k % 64)];
+			if (color > 0)
+				my_mlx_pixel_put(mlx, x_offset, y_offset, color);
+			x_offset++;
+			i++;
 		}
-		y_offset = HEIGHT / 2 - sprite_screen_size / 2;
-		x_offset++;
+		i = 0;
+		j++;
+		x_offset = (int)((angel / (M_PI / 6.0) * (WIDTH / 2.0) + (WIDTH / 2.0)) - sprite_screen_size / 2.0);
+		if (angel - (sprite_screen_size / 2.0 * step_for_angle) < -M_PI / 6.0)
+		{
+			x_offset += (int)save;
+			i = (int)save;
+		}
+		if (x_offset > WIDTH)
+			x_offset = WIDTH - 1;
+		if (x_offset < 0)
+			x_offset = 0;
+		y_offset++;
 	}
 }
 
@@ -422,12 +458,14 @@ int         main()
 	mlx.texture.t2.mlx_img = mlx_xpm_file_to_image(mlx.mlx, mlx.map.NO, &mlx.texture.t2.weight, &mlx.texture.t2.height);
 	mlx.texture.t3.mlx_img = mlx_xpm_file_to_image(mlx.mlx, mlx.map.EA, &mlx.texture.t3.weight, &mlx.texture.t3.height);
 	mlx.texture.t4.mlx_img = mlx_xpm_file_to_image(mlx.mlx, mlx.map.WE, &mlx.texture.t4.weight, &mlx.texture.t4.height);
+	mlx.texture.sprite.mlx_img = mlx_xpm_file_to_image(mlx.mlx, mlx.map.S, &mlx.texture.sprite.weight, &mlx.texture.sprite.height);
 	if (!(mlx.mlx_addr = mlx_get_data_addr(mlx.mlx_img, &mlx.mlx_bits_per_pixel, &mlx.mlx_line_length, &mlx.mlx_endian)))
 		exit(0);
 	mlx.texture.t1.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t1.mlx_img, &mlx.texture.t1.mlx_bits_per_pixel, &mlx.texture.t1.mlx_line_length, &mlx.texture.t1.mlx_endian);
 	mlx.texture.t2.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t2.mlx_img, &mlx.texture.t2.mlx_bits_per_pixel, &mlx.texture.t2.mlx_line_length, &mlx.texture.t2.mlx_endian);
 	mlx.texture.t3.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t3.mlx_img, &mlx.texture.t3.mlx_bits_per_pixel, &mlx.texture.t3.mlx_line_length, &mlx.texture.t3.mlx_endian);
 	mlx.texture.t4.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.t4.mlx_img, &mlx.texture.t4.mlx_bits_per_pixel, &mlx.texture.t4.mlx_line_length, &mlx.texture.t4.mlx_endian);
+	mlx.texture.sprite.mlx_addr = (int *)mlx_get_data_addr(mlx.texture.sprite.mlx_img, &mlx.texture.sprite.mlx_bits_per_pixel, &mlx.texture.sprite.mlx_line_length, &mlx.texture.sprite.mlx_endian);
 
 	init_player(&mlx.player);
 	 while (vector < M_PI / 6)

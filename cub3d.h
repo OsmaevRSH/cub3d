@@ -63,6 +63,7 @@ typedef struct s_save_text
 	t_texture t2;
 	t_texture t3;
 	t_texture t4;
+	t_texture sprite;
 }			t_save_text;
 
 

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(cub3d)
 
-set(CMAKE_CXX_STANDARD 14)
+set (CMAKE_C_FLAGS "-L. -lmlx -framework OpenGL -framework AppKit")
 
 include_directories(.)
 include_directories(mlx)
@@ -15,7 +15,7 @@ add_executable(cub3d
         mlx/font.c
         mlx/interface.o
         mlx/interface.swift
-        mlx/libmlx.dylib
+        libmlx.dylib
         mlx/Makefile
         mlx/mlx.h
         mlx/mlx_image.o

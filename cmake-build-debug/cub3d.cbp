@@ -105,6 +105,9 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/ft_isdigit_from_string.c">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/libmlx.dylib">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/Makefile">
 			<Option target="cub3d"/>
 		</Unit>
@@ -115,9 +118,6 @@
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/interface.swift">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/libmlx.dylib">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/man/man3/mlx.3">
