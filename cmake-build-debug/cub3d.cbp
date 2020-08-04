@@ -99,6 +99,9 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/cub3d.h">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/ft_sprite_list.c">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/ft_check_file_extension.c">
 			<Option target="cub3d"/>
 		</Unit>

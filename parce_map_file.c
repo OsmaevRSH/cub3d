@@ -1,7 +1,5 @@
 #include "cub3d.h"
 
-int check(char **map, int x, int y);
-
 void		ft_parce(char *file_name, t_mlx *mlx)
 {
 	int fd;
@@ -191,7 +189,7 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 			}
 			else
 			{
-				printf("%s", "9");
+				printf("%s", "10");
 				exit(0);
 			}
 		}
@@ -241,6 +239,7 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 	static int count;
 	static int line_number;
 	int i;
+	static size_t sprite_id;
 
 	i = 0;
 	line_number++;
@@ -253,8 +252,8 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 		}
 		if (str[i] == '2')
 		{
-			mlx->sprite.x = (i + 1) * 64 + 32;
-			mlx->sprite.y = line_number * 64 + 32;
+			ft_push_back_new_sprite((i + 1) * 64 + 32, line_number * 64 + 32, sprite_id, &mlx->head_for_sprite_list);
+			sprite_id++;
 		}
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
 		{

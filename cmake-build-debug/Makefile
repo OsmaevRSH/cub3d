@@ -150,6 +150,33 @@ cub3d.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/cub3d.c.s
 .PHONY : cub3d.c.s
 
+ft_sprite_list.o: ft_sprite_list.c.o
+
+.PHONY : ft_sprite_list.o
+
+# target to build an object file
+ft_sprite_list.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_sprite_list.c.o
+.PHONY : ft_sprite_list.c.o
+
+ft_sprite_list.i: ft_sprite_list.c.i
+
+.PHONY : ft_sprite_list.i
+
+# target to preprocess a source file
+ft_sprite_list.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_sprite_list.c.i
+.PHONY : ft_sprite_list.c.i
+
+ft_sprite_list.s: ft_sprite_list.c.s
+
+.PHONY : ft_sprite_list.s
+
+# target to generate assembly for a file
+ft_sprite_list.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_sprite_list.c.s
+.PHONY : ft_sprite_list.c.s
+
 libft/ft_check_file_extension.o: libft/ft_check_file_extension.c.o
 
 .PHONY : libft/ft_check_file_extension.o
@@ -378,6 +405,9 @@ help:
 	@echo "... cub3d.o"
 	@echo "... cub3d.i"
 	@echo "... cub3d.s"
+	@echo "... ft_sprite_list.o"
+	@echo "... ft_sprite_list.i"
+	@echo "... ft_sprite_list.s"
 	@echo "... libft/ft_check_file_extension.o"
 	@echo "... libft/ft_check_file_extension.i"
 	@echo "... libft/ft_check_file_extension.s"

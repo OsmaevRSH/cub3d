@@ -4,7 +4,7 @@ CC = gcc -g
 LIB = -I ./mlx
 HEADER = ./cub3d.h
 
-SRC = cub3d.c parce_map_file.c
+SRC = cub3d.c parce_map_file.c ft_sprite_list.c
 
 OBJ = $(SRC:.c=.o)
 

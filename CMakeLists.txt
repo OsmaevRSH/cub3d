@@ -41,4 +41,4 @@ add_executable(cub3d
         cub3d.c
         cub3d.h
         Makefile
-        README.md parce_map_file.c libft/ft_isdigit_from_string.c libft/ft_check_file_extension.c)
+        README.md parce_map_file.c libft/ft_isdigit_from_string.c libft/ft_check_file_extension.c ft_sprite_list.c)

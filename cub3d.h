@@ -44,6 +44,8 @@ typedef struct	s_sprite
 	double x;
 	double y;
 	size_t tex_id;
+	double distance;
+	struct s_sprite *next;
 }				t_sprite;
 
 typedef struct s_texture
@@ -59,11 +61,12 @@ typedef struct s_texture
 
 typedef struct s_save_text
 {
-	t_texture t1;
-	t_texture t2;
-	t_texture t3;
-	t_texture t4;
-	t_texture sprite;
+	t_texture	t1;
+	t_texture	t2;
+	t_texture	t3;
+	t_texture	t4;
+	t_texture	sprite;
+	double		*arr_len_trace;
 }			t_save_text;
 
 
@@ -95,6 +98,7 @@ typedef struct  s_mlx
 	int			mlx_bits_per_pixel;
 	int			mlx_line_length;
 	int			mlx_endian;
+	struct 		s_sprite *head_for_sprite_list;
 	t_player	player;
 	t_color		color;
 	t_save_text texture;
@@ -121,4 +125,8 @@ void		ft_parce(char *file_name, t_mlx *mlx);
 char		*ft_parce_map(int fd, char *line, t_mlx *mlx);
 int			check_map(char **map, t_mlx *mlx);
 void 		draw_Sprite(t_mlx *mlx);
+int			check(char **map, int x, int y);
+void		ft_push_back_new_sprite(int x, int y, size_t id, t_sprite **head);
+int			ft_count_sprites(t_sprite *head);
+t_sprite	*ft_search_sprite(size_t id, t_sprite *head);
 #endif

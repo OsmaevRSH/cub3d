@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/ltheresi/Documents/cub3d/cub3d.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/cub3d.c.o"
+  "/Users/ltheresi/Documents/cub3d/ft_sprite_list.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/ft_sprite_list.c.o"
   "/Users/ltheresi/Documents/cub3d/libft/ft_check_file_extension.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/libft/ft_check_file_extension.c.o"
   "/Users/ltheresi/Documents/cub3d/libft/ft_isdigit_from_string.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/libft/ft_isdigit_from_string.c.o"
   "/Users/ltheresi/Documents/cub3d/mlx/font.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/mlx/font.c.o"

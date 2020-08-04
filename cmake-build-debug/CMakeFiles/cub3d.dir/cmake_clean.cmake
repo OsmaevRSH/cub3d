@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/cub3d.dir/cub3d.c.o"
+  "CMakeFiles/cub3d.dir/ft_sprite_list.c.o"
   "CMakeFiles/cub3d.dir/libft/ft_check_file_extension.c.o"
   "CMakeFiles/cub3d.dir/libft/ft_isdigit_from_string.c.o"
   "CMakeFiles/cub3d.dir/mlx/font.c.o"
