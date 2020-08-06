@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 static void				ft_set_hex(int value, unsigned char *start)
 {

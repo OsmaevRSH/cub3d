@@ -1,0 +1,129 @@
+cmake_minimum_required(VERSION 3.16)
+project(cub3d)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(.)
+include_directories(cmake-build-debug)
+include_directories(libft)
+include_directories(mlx)
+include_directories(texture_bmp)
+include_directories(texture_xpm)
+
+add_executable(cub3d
+        libft/ft_atoi.c
+        libft/ft_bzero.c
+        libft/ft_calloc.c
+        libft/ft_check_file_extension.c
+        libft/ft_isalnum.c
+        libft/ft_isalpha.c
+        libft/ft_isascii.c
+        libft/ft_isdigit.c
+        libft/ft_isdigit_from_string.c
+        libft/ft_isprint.c
+        libft/ft_itoa.c
+        libft/ft_lstadd_back.c
+        libft/ft_lstadd_front.c
+        libft/ft_lstclear.c
+        libft/ft_lstdelone.c
+        libft/ft_lstiter.c
+        libft/ft_lstlast.c
+        libft/ft_lstmap.c
+        libft/ft_lstnew.c
+        libft/ft_lstsize.c
+        libft/ft_memccpy.c
+        libft/ft_memchr.c
+        libft/ft_memcmp.c
+        libft/ft_memcpy.c
+        libft/ft_memmove.c
+        libft/ft_memset.c
+        libft/ft_putchar_fd.c
+        libft/ft_putendl_fd.c
+        libft/ft_putnbr_fd.c
+        libft/ft_putstr_fd.c
+        libft/ft_split.c
+        libft/ft_strchr.c
+        libft/ft_strdup.c
+        libft/ft_strjoin.c
+        libft/ft_strlcat.c
+        libft/ft_strlcpy.c
+        libft/ft_strlen.c
+        libft/ft_strmapi.c
+        libft/ft_strncmp.c
+        libft/ft_strnstr.c
+        libft/ft_strrchr.c
+        libft/ft_strtrim.c
+        libft/ft_substr.c
+        libft/ft_tolower.c
+        libft/ft_toupper.c
+        libft/get_next_line.c
+        libft/get_next_line_utils.c
+        libft/libft.h
+        libft/Makefile
+        mlx/man/man3/mlx.3
+        mlx/man/man3/mlx_loop.3
+        mlx/man/man3/mlx_new_image.3
+        mlx/man/man3/mlx_new_window.3
+        mlx/man/man3/mlx_pixel_put.3
+        mlx/font.c
+        mlx/interface.o
+        mlx/interface.swift
+        mlx/libmlx.dylib
+        mlx/Makefile
+        mlx/mlx.h
+        mlx/mlx_image.o
+        mlx/mlx_image.swift
+        mlx/mlx_image.swiftdoc
+        mlx/mlx_image.swiftmodule
+        mlx/mlx_init.o
+        mlx/mlx_init.swift
+        mlx/mlx_init.swiftdoc
+        mlx/mlx_init.swiftmodule
+        mlx/mlx_png.c
+        mlx/mlx_png.o
+        mlx/mlx_rgb.c
+        mlx/mlx_string_put.c
+        mlx/mlx_string_put.o
+        mlx/mlx_window.o
+        mlx/mlx_window.swift
+        mlx/mlx_window.swiftdoc
+        mlx/mlx_window.swiftmodule
+        mlx/mlx_xpm.c
+        mlx/mlx_xpm.o
+        texture_bmp/sprite.png
+        texture_bmp/WALL1.bmp
+        texture_bmp/WALL32.bmp
+        texture_bmp/WALL71.bmp
+        texture_bmp/WALL74.bmp
+        texture_bmp/WALL76.bmp
+        texture_bmp/WALL77.bmp
+        texture_bmp/WALL82.bmp
+        texture_bmp/WALL83.bmp
+        texture_xpm/1111.xpm
+        texture_xpm/pngwing.com.xpm
+        texture_xpm/sprite.xpm
+        texture_xpm/WALL1.xpm
+        texture_xpm/WALL32.xpm
+        texture_xpm/WALL71.xpm
+        texture_xpm/WALL74.xpm
+        texture_xpm/WALL76.xpm
+        texture_xpm/WALL77.xpm
+        texture_xpm/WALL82.xpm
+        texture_xpm/WALL83.xpm
+        srcs/cub3d.c
+        includes/cub3d.h
+        srcs/ft_create_bitmap.c
+        srcs/ft_draw_sprite.c
+        srcs/ft_draw_world.c
+        srcs/ft_init_struct.c
+        srcs/ft_replace_frame.c
+        srcs/ft_sprite_list_1.c
+        srcs/ft_sprite_list_2.c
+        srcs/ft_trace.c
+        includes/ft_trace.h
+        Makefile
+        maps/map1.cub
+        srcs/parce_map_file.c
+        README.md
+        Screenshot.bmp
+        start.sh srcs/ft_key_press.c srcs/ft_utils.c)

@@ -2,10 +2,20 @@ NAME = cub3d
 CC = gcc -g
 #FLAGS = -Wall -Wextra -Werror
 LIB = -I ./mlx
-HEADER = ./cub3d.h
+HEADER = headers/cub3d.h headers/ft_trace.h
 
-SRC = cub3d.c parce_map_file.c ft_sprite_list_1.c ft_create_bitmap.c ft_trace.c ft_draw_world.c ft_init_struct.c ft_draw_sprite.c \
-		ft_sprite_list_2.c ft_replace_frame.c
+SRC = srcs/cub3d.c \
+		srcs/parce_map_file.c \
+		srcs/ft_sprite_list_1.c \
+		srcs/ft_create_bitmap.c \
+		srcs/ft_trace.c \
+		srcs/ft_draw_world.c \
+		srcs/ft_init_struct.c \
+		srcs/ft_draw_sprite.c \
+		srcs/ft_sprite_list_2.c \
+		srcs/ft_replace_frame.c \
+		srcs/ft_key_press.c \
+		srcs/ft_utils.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,4 +1,4 @@
-#include "ft_trace.h"
+#include "../includes/ft_trace.h"
 
 void 	ft_check_len_to_wall(t_trace *trace, t_mlx *mlx)
 {

@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 int		ft_draw_sprite_one(t_mlx *mlx)
 {

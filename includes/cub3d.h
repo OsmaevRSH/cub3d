@@ -1,10 +1,10 @@
 #ifndef CUB3D_H
 #define CUB3D_H
 
-#include		"mlx/mlx.h"
+#include		"../mlx/mlx.h"
 # include		<stdlib.h>
 # include		"math.h"
-# include		"libft/libft.h"
+# include		"../libft/libft.h"
 # include		"fcntl.h"
 # include		"stdio.h"
 # define WIDTH 1920
@@ -160,4 +160,8 @@ void				ft_swap_elem_in_list(t_sprite *first, t_sprite *second, t_sprite **head)
 void				ft_list_sort(t_sprite **sprite);
 double				ft_get_distance(t_mlx *mlx, t_sprite *sprite);
 void				replace(t_mlx *mlx);
+int					key_press(int keycode, t_mlx *mlx);
+void				my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+int					close_window(t_mlx *mlx);
+void				ft_init_textures(t_mlx *mlx);
 #endif

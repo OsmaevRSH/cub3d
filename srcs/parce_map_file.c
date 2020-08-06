@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void		ft_parce(char *file_name, t_mlx *mlx)
 {

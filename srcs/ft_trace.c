@@ -1,4 +1,4 @@
-#include "ft_trace.h"
+#include "../includes/ft_trace.h"
 
 static void		search_first_point_a(t_trace *trace, t_mlx *mlx)
 {

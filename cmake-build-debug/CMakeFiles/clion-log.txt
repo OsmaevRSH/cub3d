@@ -1,1 +1,4 @@
-CMakeLists.txt not found in /Users/ltheresi/Documents/cub3d Select CMakeLists.txt file...
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/ltheresi/Documents/cub3d
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/ltheresi/Documents/cub3d/cmake-build-debug

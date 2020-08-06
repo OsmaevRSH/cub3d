@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 void			ft_list_sort(t_sprite **sprite)
 {

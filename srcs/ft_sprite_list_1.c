@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../includes/cub3d.h"
 
 static t_sprite	*ft_create_new_sprite(int x, int y, size_t id)
 {
