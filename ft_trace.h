@@ -32,10 +32,11 @@ typedef struct	s_trace
 	char		*dst;
 }				t_trace;
 
-void		ft_check_len_to_wall(t_trace *trace, t_mlx *mlx);
-void 	ft_get_wall_size(t_trace *trace, t_mlx *mlx, int x);
-void 	ft_draw_roof(t_trace *trace, t_mlx *mlx, int x);
-void 	ft_draw_wall(t_trace *trace, t_mlx *mlx, int x);
-void	ft_draw_floor(t_trace *trace, t_mlx *mlx, int x);
+void			ft_check_len_to_wall(t_trace *trace, t_mlx *mlx);
+void			ft_get_wall_size(t_trace *trace, t_mlx *mlx, int x);
+void			ft_draw_roof(t_trace *trace, t_mlx *mlx, int x);
+void			ft_draw_wall(t_trace *trace, t_mlx *mlx, int x);
+void			ft_draw_floor(t_trace *trace, t_mlx *mlx, int x);
+void			ft_init_tracer_struct(t_trace *trace);
 
 #endif

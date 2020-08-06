@@ -201,24 +201,14 @@ int check_map(char **map, t_mlx *mlx)
 	int x;
 	int y;
 
-	x = mlx->player.player_rectangle_x;
-	y = mlx->player.player_rectangle_y;
+	x = mlx->player.rectangle_x;
+	y = mlx->player.rectangle_y;
 	check(map, x, y);
 	return (1);
 }
 
 int check(char **map, int x, int y)
 {
-	int i = 0;
-	while (map[i])
-	{
-		write(1, map[i], ft_strlen(map[i]));
-		write(1, "\n", 1);
-		i++;
-	}
-	write(1, "\n", 1);
-	write(1, "\n", 1);
-	write(1, "\n", 1);
 	if (map[y][x] == '1' || map[y][x] == '2' || map[y][x] == '.')
 		return (1);
 	if (map[y + 1][x] == ' ' || map[y][x + 1] == ' ' || map[y - 1][x] == ' ' || map[y][x - 1] == ' ')
@@ -263,18 +253,18 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 				printf("%s", "map error2");
 				exit(0);
 			}
-			mlx->player.player_x = (i + 1) * 64 + 32;
-			mlx->player.player_rectangle_x = i + 1;
-			mlx->player.player_y = line_number * 64 + 32;
-			mlx->player.player_rectangle_y = line_number;
+			mlx->player.x = (i + 1) * 64 + 32;
+			mlx->player.rectangle_x = i + 1;
+			mlx->player.y = line_number * 64 + 32;
+			mlx->player.rectangle_y = line_number;
 			if (str[i] == 'N')
-				mlx->player.player_angle = 3 * M_PI_2;
+				mlx->player.angle = 3 * M_PI_2;
 			else if (str[i] == 'S')
-				mlx->player.player_angle = M_PI_2;
+				mlx->player.angle = M_PI_2;
 			else if (str[i] == 'W')
-				mlx->player.player_angle = M_PI;
+				mlx->player.angle = M_PI;
 			else
-				mlx->player.player_angle = 0;
+				mlx->player.angle = 0;
 		}
 		i++;
 	}

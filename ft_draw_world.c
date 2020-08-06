@@ -2,14 +2,14 @@
 
 void 	ft_check_len_to_wall(t_trace *trace, t_mlx *mlx)
 {
-	if (trace->first_point_ax == mlx->player.player_x && trace->first_point_ay == mlx->player.player_y)
+	if (trace->first_point_ax == mlx->player.x && trace->first_point_ay == mlx->player.y)
 		trace->len1 = INFINITY;
 	else
-		trace->len1 = sqrt(pow((mlx->player.player_x - trace->first_point_ax), 2.0) + pow((mlx->player.player_y - trace->first_point_ay), 2.0));
-	if (trace->first_point_bx == mlx->player.player_x && trace->first_point_by == mlx->player.player_y)
+		trace->len1 = sqrt(pow((mlx->player.x - trace->first_point_ax), 2.0) + pow((mlx->player.y - trace->first_point_ay), 2.0));
+	if (trace->first_point_bx == mlx->player.x && trace->first_point_by == mlx->player.y)
 		trace->len2 = INFINITY;
 	else
-		trace->len2 = sqrt(pow((mlx->player.player_x - trace->first_point_bx), 2.0) + pow((mlx->player.player_y - trace->first_point_by), 2.0));
+		trace->len2 = sqrt(pow((mlx->player.x - trace->first_point_bx), 2.0) + pow((mlx->player.y - trace->first_point_by), 2.0));
 	if (trace->len1 > trace->len2)
 	{
 		trace->len_line = trace->len2;
@@ -27,7 +27,7 @@ void 	ft_check_len_to_wall(t_trace *trace, t_mlx *mlx)
 void 	ft_get_wall_size(t_trace *trace, t_mlx *mlx, int x)
 {
 	mlx->texture.arr_len_trace[x] = trace->len_line;
-	trace->len_line = trace->len_line * cos(mlx->player.player_angle - trace->angle);
+	trace->len_line = trace->len_line * cos(mlx->player.angle - trace->angle);
 	trace->len_to_viewport = (((unsigned int)mlx->map.R.width >> 1u) / tan(M_PI / 6.0));
 	trace->projected_slice_height = (trace->len_to_viewport / (64 * trace->len_line)) * mlx->map.R.height;
 	trace->up_start = (int)(((unsigned int)mlx->map.R.height >> 1u) - trace->projected_slice_height) ;
