@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_draw_world.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/06 20:51:12 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/06 20:51:14 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_trace.h"
 
 void 	ft_check_len_to_wall(t_trace *trace, t_mlx *mlx)
@@ -47,7 +59,7 @@ void 	ft_draw_roof(t_trace *trace, t_mlx *mlx, int x)
 	while (trace->k < trace->up_start)
 	{
 		trace->dst = mlx->mlx_addr + (abs(trace->k) * mlx->mlx_line_length + abs(x) * ((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
-		*(unsigned int*)trace->dst = 0x0087CEEB;
+		*(unsigned int*)trace->dst = ft_get_color_from_rgb(mlx->map.C.r, mlx->map.C.g, mlx->map.C.b);
 		trace->k++;
 	}
 }
@@ -58,13 +70,13 @@ void 	ft_draw_wall(t_trace *trace, t_mlx *mlx, int x)
 	{
 		trace->h_k = (int)((trace->up_start - trace->save) * trace->h_koef);
 		if (trace->check_1 == 1)
-			trace->color = mlx->texture.t1.mlx_addr[trace->h_k * mlx->texture.t1.height + (abs(trace->tx - WIDTH) % mlx->texture.t1.weight)];
+			trace->color = mlx->texture.t1.mlx_addr[trace->h_k * mlx->texture.t1.height + (abs(trace->tx - mlx->map.R.width) % mlx->texture.t1.weight)];
 		else if (trace->check_1 == 2)
-			trace->color = mlx->texture.t2.mlx_addr[trace->h_k * mlx->texture.t2.height + (abs(trace->tx - WIDTH) % mlx->texture.t2.weight)];
+			trace->color = mlx->texture.t2.mlx_addr[trace->h_k * mlx->texture.t2.height + (abs(trace->tx - mlx->map.R.width) % mlx->texture.t2.weight)];
 		else if (trace->check_2 == 1)
-			trace->color = mlx->texture.t3.mlx_addr[trace->h_k * mlx->texture.t3.height + (abs(trace->tx - WIDTH) % mlx->texture.t3.weight)];
+			trace->color = mlx->texture.t3.mlx_addr[trace->h_k * mlx->texture.t3.height + (abs(trace->tx - mlx->map.R.width) % mlx->texture.t3.weight)];
 		else
-			trace->color = mlx->texture.t4.mlx_addr[trace->h_k * mlx->texture.t4.height + (abs(trace->tx - WIDTH) % mlx->texture.t4.weight)];
+			trace->color = mlx->texture.t4.mlx_addr[trace->h_k * mlx->texture.t4.height + (abs(trace->tx - mlx->map.R.width) % mlx->texture.t4.weight)];
 		my_mlx_pixel_put(mlx, x, trace->up_start, trace->color);
 		trace->up_start++;
 	}
@@ -73,10 +85,10 @@ void 	ft_draw_wall(t_trace *trace, t_mlx *mlx, int x)
 void	ft_draw_floor(t_trace *trace, t_mlx *mlx, int x)
 {
 	trace->k = trace->down_stop;
-	while (trace->k < HEIGHT - 1)
+	while (trace->k < mlx->map.R.height - 1)
 	{
 		trace->dst = mlx->mlx_addr + (abs(trace->k) * mlx->mlx_line_length + abs(x) * ((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
-		*(unsigned int*)trace->dst = 0x003CB371;
+		*(unsigned int*)trace->dst = ft_get_color_from_rgb(mlx->map.F.r, mlx->map.F.g, mlx->map.F.b);
 		trace->k++;
 	}
 }

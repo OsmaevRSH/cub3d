@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init_struct.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/06 20:51:23 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/06 20:51:25 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_trace.h"
 
 void	ft_init_tracer_struct(t_trace *trace)
@@ -51,9 +63,9 @@ void	ft_init_draw_sprite_struct(t_draw_sprite *sprite)
 
 void	ft_init_textures(t_mlx *mlx)
 {
-	mlx->texture.arr_len_trace = (double *)malloc(sizeof(double) * WIDTH);
-	mlx->mlx_win = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "cub3d");
-	mlx->mlx_img = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
+	mlx->texture.arr_len_trace = (double *)malloc(sizeof(double) * mlx->map.R.width);
+	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->map.R.width, mlx->map.R.height, "cub3d");
+	mlx->mlx_img = mlx_new_image(mlx->mlx, mlx->map.R.width, mlx->map.R.height);
 	mlx->texture.t1.mlx_img = mlx_xpm_file_to_image(mlx->mlx, mlx->map.SO, &mlx->texture.t1.weight, &mlx->texture.t1.height);
 	mlx->texture.t2.mlx_img = mlx_xpm_file_to_image(mlx->mlx, mlx->map.NO, &mlx->texture.t2.weight, &mlx->texture.t2.height);
 	mlx->texture.t3.mlx_img = mlx_xpm_file_to_image(mlx->mlx, mlx->map.EA, &mlx->texture.t3.weight, &mlx->texture.t3.height);

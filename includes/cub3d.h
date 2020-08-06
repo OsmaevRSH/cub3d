@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/06 20:53:32 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/06 20:53:34 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 #define CUB3D_H
 
@@ -7,8 +19,6 @@
 # include		"../libft/libft.h"
 # include		"fcntl.h"
 # include		"stdio.h"
-# define WIDTH 1920
-# define HEIGHT 1080
 # define mapWidth 39
 # define mapHeight 16
 
@@ -164,4 +174,5 @@ int					key_press(int keycode, t_mlx *mlx);
 void				my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int					close_window(t_mlx *mlx);
 void				ft_init_textures(t_mlx *mlx);
+int					ft_get_color_from_rgb(int r, int g, int b);
 #endif

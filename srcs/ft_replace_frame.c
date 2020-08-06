@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_replace_frame.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/06 20:51:46 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/06 20:51:48 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	replace(t_mlx *mlx)
@@ -5,15 +17,15 @@ void	replace(t_mlx *mlx)
 	int count_sprites;
 	t_sprite *tmp;
 	double vector = - M_PI / 6;
-	double step =M_PI / (3 * WIDTH);
+	double step =M_PI / (3 * mlx->map.R.width);
 	double x = 0;
 	int i = 0;
 	mlx_destroy_image(mlx->mlx, mlx->mlx_img);
-	if(!(mlx->mlx_img = mlx_new_image(mlx->mlx, WIDTH, HEIGHT)))
+	if(!(mlx->mlx_img = mlx_new_image(mlx->mlx, mlx->map.R.width, mlx->map.R.height)))
 		exit(0);
 	if(!(mlx->mlx_addr = mlx_get_data_addr(mlx->mlx_img, &mlx->mlx_bits_per_pixel, &mlx->mlx_line_length, &mlx->mlx_endian)))
 		exit(0);
-	while (vector < M_PI / 6 && x < WIDTH)
+	while (vector < M_PI / 6 && x < mlx->map.R.width)
 	{
 		trace(mlx, vector, (int)x);
 		x += 1;

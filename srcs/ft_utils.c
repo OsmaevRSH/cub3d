@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/06 20:52:27 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/06 20:52:30 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void        my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
@@ -54,4 +66,12 @@ void    drawPlayer(t_mlx *mlx, double x, double y)
 		tmp_y = y - 4;
 		tmp_x++;
 	}
+}
+
+int		ft_get_color_from_rgb(int r, int g, int b)
+{
+	int color;
+
+	color = r << 16 | g << 8 | b;
+	return (color);
 }

@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_draw_sprite.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/06 20:51:03 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/06 20:51:05 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int		ft_draw_sprite_one(t_mlx *mlx)
 {
-	mlx->draw_sprite.step_for_angle = M_PI / (3.0 * WIDTH);
+	mlx->draw_sprite.step_for_angle = M_PI / (3.0 * mlx->map.R.width);
 	mlx->draw_sprite.sprite_dir = atan2(mlx->sprite.y - mlx->player.y, mlx->sprite.x - mlx->player.x);
 	while (mlx->draw_sprite.sprite_dir > 2 * M_PI)
 		mlx->draw_sprite.sprite_dir -= 2 * M_PI;
 	while (mlx->draw_sprite.sprite_dir < 0)
 		mlx->draw_sprite.sprite_dir += 2 * M_PI;
 	mlx->draw_sprite.sprite_dist = sqrt(pow(mlx->player.x - mlx->sprite.x, 2) + pow(mlx->player.y - mlx->sprite.y, 2));
-	mlx->draw_sprite.sprite_screen_size = HEIGHT / mlx->draw_sprite.sprite_dist * 64;
+	mlx->draw_sprite.sprite_screen_size = (int)(mlx->map.R.height / mlx->draw_sprite.sprite_dist * 64);
 	if (fabs(mlx->draw_sprite.sprite_dir - mlx->player.angle) > (M_PI / 6.0) + (mlx->draw_sprite.sprite_screen_size / 2.0 * mlx->draw_sprite.step_for_angle) && fabs(mlx->draw_sprite.sprite_dir - mlx->player.angle) < (11.0 * M_PI / 6.0) - (mlx->draw_sprite.sprite_screen_size / 2.0 * mlx->draw_sprite.step_for_angle))
 		return (1);
 	mlx->draw_sprite.angel = mlx->draw_sprite.sprite_dir - mlx->player.angle;
@@ -22,18 +34,18 @@ int		ft_draw_sprite_one(t_mlx *mlx)
 
 void	ft_draw_sprite_two(t_mlx *mlx)
 {
-	mlx->draw_sprite.x_offset = (int)((mlx->draw_sprite.angel / (M_PI / 6.0) * (WIDTH / 2.0) + (WIDTH / 2.0)) - mlx->draw_sprite.sprite_screen_size / 2.0);
-	if (mlx->draw_sprite.x_offset > WIDTH)
-		mlx->draw_sprite.x_offset = WIDTH - 1;
+	mlx->draw_sprite.x_offset = (int)((mlx->draw_sprite.angel / (M_PI / 6.0) * (mlx->map.R.width / 2.0) + (mlx->map.R.width / 2.0)) - mlx->draw_sprite.sprite_screen_size / 2.0);
+	if (mlx->draw_sprite.x_offset > mlx->map.R.width)
+		mlx->draw_sprite.x_offset = mlx->map.R.width - 1;
 	if (mlx->draw_sprite.x_offset < 0)
 		mlx->draw_sprite.x_offset = 0;
-	mlx->draw_sprite.y_offset = HEIGHT / 2 - mlx->draw_sprite.sprite_screen_size / 2;
+	mlx->draw_sprite.y_offset = mlx->map.R.height / 2 - mlx->draw_sprite.sprite_screen_size / 2;
 	mlx->draw_sprite.check_x = mlx->draw_sprite.x_offset + mlx->draw_sprite.sprite_screen_size;
-	if (mlx->draw_sprite.check_x > WIDTH)
-		mlx->draw_sprite.check_x = WIDTH;
+	if (mlx->draw_sprite.check_x > mlx->map.R.width)
+		mlx->draw_sprite.check_x = mlx->map.R.width;
 	mlx->draw_sprite.check_y = mlx->draw_sprite.y_offset + mlx->draw_sprite.sprite_screen_size;
-	if (mlx->draw_sprite.check_y > HEIGHT)
-		mlx->draw_sprite.check_y = HEIGHT;
+	if (mlx->draw_sprite.check_y > mlx->map.R.height)
+		mlx->draw_sprite.check_y = mlx->map.R.height;
 	if (mlx->draw_sprite.angel - (mlx->draw_sprite.sprite_screen_size / 2.0 * mlx->draw_sprite.step_for_angle) < -M_PI / 6.0)
 	{
 		mlx->draw_sprite.save = -M_PI / 6.0 - (mlx->draw_sprite.angel - (mlx->draw_sprite.sprite_screen_size / 2.0 * mlx->draw_sprite.step_for_angle));
@@ -58,14 +70,14 @@ void	ft_draw_sprite_three(t_mlx *mlx)
 	}
 	mlx->draw_sprite.i = 0;
 	mlx->draw_sprite.j++;
-	mlx->draw_sprite.x_offset = (int)((mlx->draw_sprite.angel / (M_PI / 6.0) * (WIDTH / 2.0) + (WIDTH / 2.0)) - mlx->draw_sprite.sprite_screen_size / 2.0);
+	mlx->draw_sprite.x_offset = (int)((mlx->draw_sprite.angel / (M_PI / 6.0) * (mlx->map.R.width / 2.0) + (mlx->map.R.width / 2.0)) - mlx->draw_sprite.sprite_screen_size / 2.0);
 	if (mlx->draw_sprite.angel - (mlx->draw_sprite.sprite_screen_size / 2.0 * mlx->draw_sprite.step_for_angle) < -M_PI / 6.0)
 	{
 		mlx->draw_sprite.x_offset += (int)mlx->draw_sprite.save;
 		mlx->draw_sprite.i = (int)mlx->draw_sprite.save;
 	}
-	if (mlx->draw_sprite.x_offset > WIDTH)
-		mlx->draw_sprite.x_offset = WIDTH - 1;
+	if (mlx->draw_sprite.x_offset > mlx->map.R.width)
+		mlx->draw_sprite.x_offset = mlx->map.R.width - 1;
 	if (mlx->draw_sprite.x_offset < 0)
 		mlx->draw_sprite.x_offset = 0;
 	mlx->draw_sprite.y_offset++;
