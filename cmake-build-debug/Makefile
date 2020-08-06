@@ -150,6 +150,60 @@ cub3d.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/cub3d.c.s
 .PHONY : cub3d.c.s
 
+ft_create_bitmap.o: ft_create_bitmap.c.o
+
+.PHONY : ft_create_bitmap.o
+
+# target to build an object file
+ft_create_bitmap.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_create_bitmap.c.o
+.PHONY : ft_create_bitmap.c.o
+
+ft_create_bitmap.i: ft_create_bitmap.c.i
+
+.PHONY : ft_create_bitmap.i
+
+# target to preprocess a source file
+ft_create_bitmap.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_create_bitmap.c.i
+.PHONY : ft_create_bitmap.c.i
+
+ft_create_bitmap.s: ft_create_bitmap.c.s
+
+.PHONY : ft_create_bitmap.s
+
+# target to generate assembly for a file
+ft_create_bitmap.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_create_bitmap.c.s
+.PHONY : ft_create_bitmap.c.s
+
+ft_draw_world.o: ft_draw_world.c.o
+
+.PHONY : ft_draw_world.o
+
+# target to build an object file
+ft_draw_world.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_draw_world.c.o
+.PHONY : ft_draw_world.c.o
+
+ft_draw_world.i: ft_draw_world.c.i
+
+.PHONY : ft_draw_world.i
+
+# target to preprocess a source file
+ft_draw_world.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_draw_world.c.i
+.PHONY : ft_draw_world.c.i
+
+ft_draw_world.s: ft_draw_world.c.s
+
+.PHONY : ft_draw_world.s
+
+# target to generate assembly for a file
+ft_draw_world.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_draw_world.c.s
+.PHONY : ft_draw_world.c.s
+
 ft_sprite_list.o: ft_sprite_list.c.o
 
 .PHONY : ft_sprite_list.o
@@ -176,6 +230,33 @@ ft_sprite_list.s: ft_sprite_list.c.s
 ft_sprite_list.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_sprite_list.c.s
 .PHONY : ft_sprite_list.c.s
+
+ft_trace.o: ft_trace.c.o
+
+.PHONY : ft_trace.o
+
+# target to build an object file
+ft_trace.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_trace.c.o
+.PHONY : ft_trace.c.o
+
+ft_trace.i: ft_trace.c.i
+
+.PHONY : ft_trace.i
+
+# target to preprocess a source file
+ft_trace.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_trace.c.i
+.PHONY : ft_trace.c.i
+
+ft_trace.s: ft_trace.c.s
+
+.PHONY : ft_trace.s
+
+# target to generate assembly for a file
+ft_trace.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_trace.c.s
+.PHONY : ft_trace.c.s
 
 libft/ft_check_file_extension.o: libft/ft_check_file_extension.c.o
 
@@ -405,9 +486,18 @@ help:
 	@echo "... cub3d.o"
 	@echo "... cub3d.i"
 	@echo "... cub3d.s"
+	@echo "... ft_create_bitmap.o"
+	@echo "... ft_create_bitmap.i"
+	@echo "... ft_create_bitmap.s"
+	@echo "... ft_draw_world.o"
+	@echo "... ft_draw_world.i"
+	@echo "... ft_draw_world.s"
 	@echo "... ft_sprite_list.o"
 	@echo "... ft_sprite_list.i"
 	@echo "... ft_sprite_list.s"
+	@echo "... ft_trace.o"
+	@echo "... ft_trace.i"
+	@echo "... ft_trace.s"
 	@echo "... libft/ft_check_file_extension.o"
 	@echo "... libft/ft_check_file_extension.i"
 	@echo "... libft/ft_check_file_extension.s"

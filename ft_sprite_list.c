@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sprite_list.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/05 11:55:07 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/05 11:55:17 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static t_sprite	*ft_create_new_sprite(int x, int y, size_t id)
 {
-	t_sprite *new_list;
+	t_sprite	*new_list;
 
 	if (!(new_list = (t_sprite *)malloc(sizeof(t_sprite))))
 		return (0);
@@ -13,9 +25,10 @@ static t_sprite	*ft_create_new_sprite(int x, int y, size_t id)
 	return (new_list);
 }
 
-void	ft_push_back_new_sprite(int x, int y, size_t id, t_sprite **head)
+void			ft_push_back_new_sprite(int x, int y,
+				size_t id, t_sprite **head)
 {
-	t_sprite *tmp_list;
+	t_sprite	*tmp_list;
 
 	tmp_list = *head;
 	if (!tmp_list)
@@ -28,9 +41,9 @@ void	ft_push_back_new_sprite(int x, int y, size_t id, t_sprite **head)
 	}
 }
 
-int		ft_count_sprites(t_sprite *head)
+int				ft_count_sprites(t_sprite *head)
 {
-	size_t count;
+	size_t		count;
 
 	count = 0;
 	while (head)
@@ -41,7 +54,7 @@ int		ft_count_sprites(t_sprite *head)
 	return (count);
 }
 
-t_sprite	*ft_search_sprite(size_t id, t_sprite *head)
+t_sprite		*ft_search_sprite(size_t id, t_sprite *head)
 {
 	while (head)
 	{

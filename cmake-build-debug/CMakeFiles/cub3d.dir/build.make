@@ -187,6 +187,45 @@ CMakeFiles/cub3d.dir/ft_sprite_list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cub3d.dir/ft_sprite_list.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ltheresi/Documents/cub3d/ft_sprite_list.c -o CMakeFiles/cub3d.dir/ft_sprite_list.c.s
 
+CMakeFiles/cub3d.dir/ft_create_bitmap.c.o: CMakeFiles/cub3d.dir/flags.make
+CMakeFiles/cub3d.dir/ft_create_bitmap.c.o: ../ft_create_bitmap.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/cub3d.dir/ft_create_bitmap.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cub3d.dir/ft_create_bitmap.c.o   -c /Users/ltheresi/Documents/cub3d/ft_create_bitmap.c
+
+CMakeFiles/cub3d.dir/ft_create_bitmap.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cub3d.dir/ft_create_bitmap.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ltheresi/Documents/cub3d/ft_create_bitmap.c > CMakeFiles/cub3d.dir/ft_create_bitmap.c.i
+
+CMakeFiles/cub3d.dir/ft_create_bitmap.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cub3d.dir/ft_create_bitmap.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ltheresi/Documents/cub3d/ft_create_bitmap.c -o CMakeFiles/cub3d.dir/ft_create_bitmap.c.s
+
+CMakeFiles/cub3d.dir/ft_trace.c.o: CMakeFiles/cub3d.dir/flags.make
+CMakeFiles/cub3d.dir/ft_trace.c.o: ../ft_trace.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/cub3d.dir/ft_trace.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cub3d.dir/ft_trace.c.o   -c /Users/ltheresi/Documents/cub3d/ft_trace.c
+
+CMakeFiles/cub3d.dir/ft_trace.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cub3d.dir/ft_trace.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ltheresi/Documents/cub3d/ft_trace.c > CMakeFiles/cub3d.dir/ft_trace.c.i
+
+CMakeFiles/cub3d.dir/ft_trace.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cub3d.dir/ft_trace.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ltheresi/Documents/cub3d/ft_trace.c -o CMakeFiles/cub3d.dir/ft_trace.c.s
+
+CMakeFiles/cub3d.dir/ft_draw_world.c.o: CMakeFiles/cub3d.dir/flags.make
+CMakeFiles/cub3d.dir/ft_draw_world.c.o: ../ft_draw_world.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/cub3d.dir/ft_draw_world.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/cub3d.dir/ft_draw_world.c.o   -c /Users/ltheresi/Documents/cub3d/ft_draw_world.c
+
+CMakeFiles/cub3d.dir/ft_draw_world.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cub3d.dir/ft_draw_world.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/ltheresi/Documents/cub3d/ft_draw_world.c > CMakeFiles/cub3d.dir/ft_draw_world.c.i
+
+CMakeFiles/cub3d.dir/ft_draw_world.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cub3d.dir/ft_draw_world.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/ltheresi/Documents/cub3d/ft_draw_world.c -o CMakeFiles/cub3d.dir/ft_draw_world.c.s
+
 # Object files for target cub3d
 cub3d_OBJECTS = \
 "CMakeFiles/cub3d.dir/mlx/font.c.o" \
@@ -198,7 +237,10 @@ cub3d_OBJECTS = \
 "CMakeFiles/cub3d.dir/parce_map_file.c.o" \
 "CMakeFiles/cub3d.dir/libft/ft_isdigit_from_string.c.o" \
 "CMakeFiles/cub3d.dir/libft/ft_check_file_extension.c.o" \
-"CMakeFiles/cub3d.dir/ft_sprite_list.c.o"
+"CMakeFiles/cub3d.dir/ft_sprite_list.c.o" \
+"CMakeFiles/cub3d.dir/ft_create_bitmap.c.o" \
+"CMakeFiles/cub3d.dir/ft_trace.c.o" \
+"CMakeFiles/cub3d.dir/ft_draw_world.c.o"
 
 # External object files for target cub3d
 cub3d_EXTERNAL_OBJECTS = \
@@ -220,6 +262,9 @@ cub3d: CMakeFiles/cub3d.dir/parce_map_file.c.o
 cub3d: CMakeFiles/cub3d.dir/libft/ft_isdigit_from_string.c.o
 cub3d: CMakeFiles/cub3d.dir/libft/ft_check_file_extension.c.o
 cub3d: CMakeFiles/cub3d.dir/ft_sprite_list.c.o
+cub3d: CMakeFiles/cub3d.dir/ft_create_bitmap.c.o
+cub3d: CMakeFiles/cub3d.dir/ft_trace.c.o
+cub3d: CMakeFiles/cub3d.dir/ft_draw_world.c.o
 cub3d: ../mlx/interface.o
 cub3d: ../mlx/mlx_image.o
 cub3d: ../mlx/mlx_init.o
@@ -229,7 +274,7 @@ cub3d: ../mlx/mlx_window.o
 cub3d: ../mlx/mlx_xpm.o
 cub3d: CMakeFiles/cub3d.dir/build.make
 cub3d: CMakeFiles/cub3d.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking C executable cub3d"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking C executable cub3d"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cub3d.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

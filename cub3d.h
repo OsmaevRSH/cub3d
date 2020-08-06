@@ -129,4 +129,6 @@ int			check(char **map, int x, int y);
 void		ft_push_back_new_sprite(int x, int y, size_t id, t_sprite **head);
 int			ft_count_sprites(t_sprite *head);
 t_sprite	*ft_search_sprite(size_t id, t_sprite *head);
+int			save_bmp(t_mlx *mlx);
+void        my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 #endif
