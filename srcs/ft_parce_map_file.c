@@ -12,13 +12,93 @@
 
 #include "../includes/cub3d.h"
 
+void		ft_get_textures(char *str_1, const char *str_2, t_mlx *mlx, int *flag, char **mlx_str)
+{
+	int fd;
+	if ((fd = open(str_1, O_RDONLY)) && ft_check_file_extension(str_1, "xpm") && str_2 == NULL)
+	{
+		*flag = 1;
+		close(fd);
+		*mlx_str = ft_strdup(str_1);
+	}
+	else
+	{
+		printf("%s", "texture error");
+		exit(0);
+	}
+}
+
+void		ft_get_color(const char *str_1, const char *str_2, int *flag, t_color_f_and_r *data)
+{
+	char **color;
+	if (str_1 && str_2 == NULL)
+	{
+		*flag = 1;
+		color = ft_split(str_1, ',');
+		if (color[3] == NULL)
+		{
+			if (ft_isdigit_from_string(color[0]) && ft_atoi(color[0]) >= 0 && ft_atoi(color[0]) <= 255
+			&& ft_isdigit_from_string(color[1]) && ft_atoi(color[1]) >= 0 && ft_atoi(color[1]) <= 255
+			&& ft_isdigit_from_string(color[2]) && ft_atoi(color[2]) >= 0 && ft_atoi(color[2]) <= 255)
+			{
+				(*data).r = ft_atoi(color[0]);
+				(*data).g = ft_atoi(color[1]);
+				(*data).b = ft_atoi(color[2]);
+			}
+			else
+			{
+				printf("%s", "invalid color");
+				exit(0);
+			}
+		}
+	}
+	else
+	{
+		printf("%s", "invalid color");
+		exit(0);
+	}
+}
+
+void		ft_get_resolution_size(char *str_1, char *str_2, const char *str_3, int *flag, t_screen_size *data)
+{
+	if (ft_isdigit_from_string(str_1) && ft_isdigit_from_string(str_2) && str_3 == NULL)
+	{
+		*flag = 1;
+		(*data).width = ft_atoi(str_1);
+		(*data).height = ft_atoi(str_2);
+	}
+	else
+	{
+		printf("%s", "1");
+		exit(0);
+	}
+}
+
+void		ft_get_map(t_check flag, char *line, int fd, t_mlx *mlx)
+{
+	if (flag.F && flag.S && flag.EA && flag.WE && flag.SO && flag.NO && flag.R && flag.C)
+	{
+		if (!(line = ft_parce_map(fd, line, mlx)))
+		{
+			printf("%s", "mapError");
+			exit(0);
+		}
+		mlx->map.worldMap = ft_split(line, '\n');
+		check_map(mlx->map.worldMap, mlx);
+		return;
+	}
+	else
+	{
+		printf("%s", "mapError");
+		exit(0);
+	}
+}
+
 void		ft_parce(char *file_name, t_mlx *mlx)
 {
 	int fd;
-	int fd_for_check_file_extension;
 	char *line;
 	char **split_str;
-	char **color;
 	t_check flag;
 
 
@@ -29,182 +109,23 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 		if (split_str[0] == NULL)
 			continue ;
 		else if (!ft_strncmp(split_str[0], "R", ft_strlen(split_str[0])) && flag.R == 0)
-		{
-			if (ft_isdigit_from_string(split_str[1]) && ft_isdigit_from_string(split_str[2]) && split_str[3] == NULL)
-			{
-				flag.R = 1;
-				mlx->map.R.width = ft_atoi(split_str[1]);
-				mlx->map.R.height = ft_atoi(split_str[2]);
-			}
-			else
-			{
-				printf("%s", "1");
-				exit(0);
-			}
-		}
+			ft_get_resolution_size(split_str[1], split_str[2], split_str[3], &flag.R, &mlx->map.R);
 		else if (!ft_strncmp(split_str[0], "NO", ft_strlen(split_str[0])) && flag.NO == 0)
-		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
-			{
-				flag.NO = 1;
-				close(fd_for_check_file_extension);
-				mlx->map.NO = ft_strdup(split_str[1]);
-			}
-			else
-			{
-				printf("%s", "2");
-				exit(0);
-			}
-		}
-		else if (!ft_strncmp(split_str[0], "SO", 3) && flag.SO == 0)
-		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
-			{
-				flag.SO = 1;
-				close(fd_for_check_file_extension);
-				mlx->map.SO = ft_strdup(split_str[1]);
-			}
-			else
-			{
-				printf("%s", "3");
-				exit(0);
-			}
-		}
+			ft_get_textures(split_str[1], split_str[2], mlx, &flag.NO, &mlx->map.NO);
+		else if (!ft_strncmp(split_str[0], "SO", ft_strlen(split_str[0])) && flag.SO == 0)
+			ft_get_textures(split_str[1], split_str[2], mlx, &flag.SO, &mlx->map.SO);
 		else if (!ft_strncmp(split_str[0], "WE", ft_strlen(split_str[0])) && flag.WE == 0)
-		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
-			{
-				flag.WE = 1;
-				close(fd_for_check_file_extension);
-				mlx->map.WE = ft_strdup(split_str[1]);
-			}
-			else
-			{
-				printf("%s", "4");
-				exit(0);
-			}
-		}
+			ft_get_textures(split_str[1], split_str[2], mlx, &flag.WE, &mlx->map.WE);
 		else if (!ft_strncmp(split_str[0], "EA", ft_strlen(split_str[0])) && flag.EA == 0)
-		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
-			{
-				flag.EA = 1;
-				close(fd_for_check_file_extension);
-				mlx->map.EA = ft_strdup(split_str[1]);
-			}
-			else
-			{
-				printf("%s", "5");
-				exit(0);
-			}
-		}
+			ft_get_textures(split_str[1], split_str[2], mlx, &flag.EA, &mlx->map.EA);
 		else if (!ft_strncmp(split_str[0], "S", ft_strlen(split_str[0])) && flag.S == 0)
-		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
-			{
-				flag.S = 1;
-				close(fd_for_check_file_extension);
-				mlx->map.S = ft_strdup(split_str[1]);
-			}
-			else
-			{
-				printf("%s", "6");
-				exit(0);
-			}
-		}
+			ft_get_textures(split_str[1], split_str[2], mlx, &flag.S, &mlx->map.S);
 		else if (!ft_strncmp(split_str[0], "F", ft_strlen(split_str[0])) && flag.F == 0)
-		{
-			if (split_str[1] && split_str[2] == NULL)
-			{
-				flag.F = 1;
-				color = ft_split(split_str[1], ',');
-				if (color[3] == NULL)
-				{
-					if (ft_isdigit_from_string(color[0]) && ft_atoi(color[0]) >= 0 && ft_atoi(color[0]) <= 255)
-						mlx->map.F.r = ft_atoi(color[0]);
-					else
-					{
-						printf("%s", "7");
-						exit(0);
-					}
-					if (ft_isdigit_from_string(color[1]) && ft_atoi(color[1]) >= 0 && ft_atoi(color[1]) <= 255)
-						mlx->map.F.g = ft_atoi(color[1]);
-					else
-					{
-						printf("%s", "7");
-						exit(0);
-					}
-					if (ft_isdigit_from_string(color[2]) && ft_atoi(color[2]) >= 0 && ft_atoi(color[2]) <= 255)
-						mlx->map.F.b = ft_atoi(color[2]);
-					else
-					{
-						printf("%s", "7");
-						exit(0);
-					}
-				}
-			}
-			else
-			{
-				printf("%s", "7");
-				exit(0);
-			}
-		}
+			ft_get_color(split_str[1], split_str[2], &flag.F, &mlx->map.F);
 		else if (!ft_strncmp(split_str[0], "C", ft_strlen(split_str[0])) && flag.C == 0)
-		{
-			if (split_str[1] && split_str[2] == NULL)
-			{
-				flag.C = 1;
-				color = ft_split(split_str[1], ',');
-				if (color[3] == NULL)
-				{
-					if (ft_isdigit_from_string(color[0]) && ft_atoi(color[0]) >= 0 && ft_atoi(color[0]) <= 255)
-						mlx->map.C.r = ft_atoi(color[0]);
-					else
-					{
-						printf("%s", "8");
-						exit(0);
-					}
-					if (ft_isdigit_from_string(color[1]) && ft_atoi(color[1]) >= 0 && ft_atoi(color[1]) <= 255)
-						mlx->map.C.g = ft_atoi(color[1]);
-					else
-					{
-						printf("%s", "8");
-						exit(0);
-					}
-					if (ft_isdigit_from_string(color[2]) && ft_atoi(color[2]) >= 0 && ft_atoi(color[2]) <= 255)
-						mlx->map.C.b = ft_atoi(color[2]);
-					else
-					{
-						printf("%s", "8");
-						exit(0);
-					}
-				}
-			}
-			else
-			{
-				printf("%s", "8");
-				exit(0);
-			}
-		}
+			ft_get_color(split_str[1], split_str[2], &flag.C, &mlx->map.C);
 		else
-		{
-			if (flag.F && flag.S && flag.EA && flag.WE && flag.SO && flag.NO && flag.R && flag.C)
-			{
-				if (!(line = ft_parce_map(fd, line, mlx)))
-				{
-					printf("%s", "9");
-					exit(0);
-				}
-				mlx->map.worldMap = ft_split(line, '\n');
-				check_map(mlx->map.worldMap, mlx);
-				return;
-			}
-			else
-			{
-				printf("%s", "10");
-				exit(0);
-			}
-		}
+			ft_get_map(flag, line, fd, mlx);
 	}
 }
 
