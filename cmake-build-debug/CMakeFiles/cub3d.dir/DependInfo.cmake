@@ -62,12 +62,13 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/ltheresi/Documents/cub3d/srcs/ft_draw_world.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_draw_world.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_init_struct.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_init_struct.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_key_press.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_key_press.c.o"
+  "/Users/ltheresi/Documents/cub3d/srcs/ft_lst_in_map.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_lst_in_map.c.o"
+  "/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_parce_map_file.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_replace_frame.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_replace_frame.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_sprite_list_1.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_sprite_list_1.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_sprite_list_2.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_sprite_list_2.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_trace.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_trace.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_utils.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_utils.c.o"
-  "/Users/ltheresi/Documents/cub3d/srcs/parce_map_file.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/parce_map_file.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

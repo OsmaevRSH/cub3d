@@ -1689,6 +1689,60 @@ srcs/ft_key_press.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_key_press.c.s
 .PHONY : srcs/ft_key_press.c.s
 
+srcs/ft_lst_in_map.o: srcs/ft_lst_in_map.c.o
+
+.PHONY : srcs/ft_lst_in_map.o
+
+# target to build an object file
+srcs/ft_lst_in_map.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_lst_in_map.c.o
+.PHONY : srcs/ft_lst_in_map.c.o
+
+srcs/ft_lst_in_map.i: srcs/ft_lst_in_map.c.i
+
+.PHONY : srcs/ft_lst_in_map.i
+
+# target to preprocess a source file
+srcs/ft_lst_in_map.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_lst_in_map.c.i
+.PHONY : srcs/ft_lst_in_map.c.i
+
+srcs/ft_lst_in_map.s: srcs/ft_lst_in_map.c.s
+
+.PHONY : srcs/ft_lst_in_map.s
+
+# target to generate assembly for a file
+srcs/ft_lst_in_map.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_lst_in_map.c.s
+.PHONY : srcs/ft_lst_in_map.c.s
+
+srcs/ft_parce_map_file.o: srcs/ft_parce_map_file.c.o
+
+.PHONY : srcs/ft_parce_map_file.o
+
+# target to build an object file
+srcs/ft_parce_map_file.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file.c.o
+.PHONY : srcs/ft_parce_map_file.c.o
+
+srcs/ft_parce_map_file.i: srcs/ft_parce_map_file.c.i
+
+.PHONY : srcs/ft_parce_map_file.i
+
+# target to preprocess a source file
+srcs/ft_parce_map_file.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file.c.i
+.PHONY : srcs/ft_parce_map_file.c.i
+
+srcs/ft_parce_map_file.s: srcs/ft_parce_map_file.c.s
+
+.PHONY : srcs/ft_parce_map_file.s
+
+# target to generate assembly for a file
+srcs/ft_parce_map_file.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file.c.s
+.PHONY : srcs/ft_parce_map_file.c.s
+
 srcs/ft_replace_frame.o: srcs/ft_replace_frame.c.o
 
 .PHONY : srcs/ft_replace_frame.o
@@ -1823,33 +1877,6 @@ srcs/ft_utils.s: srcs/ft_utils.c.s
 srcs/ft_utils.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_utils.c.s
 .PHONY : srcs/ft_utils.c.s
-
-srcs/parce_map_file.o: srcs/parce_map_file.c.o
-
-.PHONY : srcs/parce_map_file.o
-
-# target to build an object file
-srcs/parce_map_file.c.o:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/parce_map_file.c.o
-.PHONY : srcs/parce_map_file.c.o
-
-srcs/parce_map_file.i: srcs/parce_map_file.c.i
-
-.PHONY : srcs/parce_map_file.i
-
-# target to preprocess a source file
-srcs/parce_map_file.c.i:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/parce_map_file.c.i
-.PHONY : srcs/parce_map_file.c.i
-
-srcs/parce_map_file.s: srcs/parce_map_file.c.s
-
-.PHONY : srcs/parce_map_file.s
-
-# target to generate assembly for a file
-srcs/parce_map_file.c.s:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/parce_map_file.c.s
-.PHONY : srcs/parce_map_file.c.s
 
 # Help Target
 help:
@@ -2034,6 +2061,12 @@ help:
 	@echo "... srcs/ft_key_press.o"
 	@echo "... srcs/ft_key_press.i"
 	@echo "... srcs/ft_key_press.s"
+	@echo "... srcs/ft_lst_in_map.o"
+	@echo "... srcs/ft_lst_in_map.i"
+	@echo "... srcs/ft_lst_in_map.s"
+	@echo "... srcs/ft_parce_map_file.o"
+	@echo "... srcs/ft_parce_map_file.i"
+	@echo "... srcs/ft_parce_map_file.s"
 	@echo "... srcs/ft_replace_frame.o"
 	@echo "... srcs/ft_replace_frame.i"
 	@echo "... srcs/ft_replace_frame.s"
@@ -2049,9 +2082,6 @@ help:
 	@echo "... srcs/ft_utils.o"
 	@echo "... srcs/ft_utils.i"
 	@echo "... srcs/ft_utils.s"
-	@echo "... srcs/parce_map_file.o"
-	@echo "... srcs/parce_map_file.i"
-	@echo "... srcs/parce_map_file.s"
 .PHONY : help
 
 

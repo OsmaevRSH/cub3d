@@ -365,6 +365,12 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_key_press.c">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_lst_in_map.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file.c">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_replace_frame.c">
 			<Option target="cub3d"/>
 		</Unit>
@@ -378,9 +384,6 @@
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_utils.c">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/parce_map_file.c">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/start.sh">

@@ -123,7 +123,7 @@ add_executable(cub3d
         includes/ft_trace.h
         Makefile
         maps/map1.cub
-        srcs/parce_map_file.c
+        srcs/ft_parce_map_file.c
         README.md
         Screenshot.bmp
-        start.sh srcs/ft_key_press.c srcs/ft_utils.c)
+        start.sh srcs/ft_key_press.c srcs/ft_utils.c srcs/ft_lst_in_map.c)

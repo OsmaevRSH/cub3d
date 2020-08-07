@@ -99,9 +99,14 @@ typedef struct		s_save_text
 	double			*arr_len_trace;
 }					t_save_text;
 
+typedef struct			s_map_len
+{
+	int					len;
+	char				*str;
+	struct s_map_len	*next;
+}						t_map_len;
 
-
-typedef struct		s_player //player position
+typedef struct		s_player
 {
 	double			x;
 	double			y;
@@ -175,4 +180,6 @@ void				my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int					close_window(t_mlx *mlx);
 void				ft_init_textures(t_mlx *mlx);
 int					ft_get_color_from_rgb(int r, int g, int b);
+void				ft_lst_map_add(int len, char *str, t_map_len **head);
+int					ft_search_max_len_in_lst(t_map_len **head);
 #endif

@@ -21,7 +21,7 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 	char **color;
 	t_check flag;
 
-	
+
 	fd = open(file_name, O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
@@ -44,7 +44,7 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 		}
 		else if (!ft_strncmp(split_str[0], "NO", ft_strlen(split_str[0])) && flag.NO == 0)
 		{
-			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm"))
+			if ((fd_for_check_file_extension = open(split_str[1], O_RDONLY)) && ft_check_file_extension(split_str[1], "xpm") && split_str[2] == NULL)
 			{
 				flag.NO = 1;
 				close(fd_for_check_file_extension);
@@ -282,59 +282,53 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 	}
 }
 
-char		*ft_parce_map(int fd, char *line, t_mlx *mlx)
+char			*ft_parce_map(int fd, char *line, t_mlx *mlx)
 {
-	char *str_map;
-	int len_line;
-	char *tmp;
-	char *str;
+	t_map_len	*str_in_map = NULL;
+	t_map_len	*tmp;
+	char		*tmp_str;
+	char		*str;
+	int			max_len;
 
 	check_count_player_in_map(line, mlx);
-	len_line = ft_strlen(line);
-	if (!(str_map = (char *)malloc(sizeof(char) * (len_line + 4))))
-		return (0);
-	ft_memset(str_map, ' ', len_line + 2);
-	str_map[len_line + 2] = '\n';
-	str_map[len_line + 3] = '\0';
-	tmp = str_map;
-	str_map = ft_strjoin(str_map, " ");
-	free(tmp);
-	tmp = str_map;
-	str_map = ft_strjoin(str_map, line);
-	free(tmp);
-	tmp = str_map;
-	str_map = ft_strjoin(str_map, " \n");
-	free(tmp);
+	ft_lst_map_add(ft_strlen(line), line, &str_in_map);
 	while (get_next_line(fd, &line))
 	{
 		check_count_player_in_map(line, mlx);
-		tmp = str_map;
-		str_map = ft_strjoin(str_map, " ");
-		free(tmp);
-		tmp = str_map;
-		str_map = ft_strjoin(str_map, line);
-		free(tmp);
-		tmp = str_map;
-		str_map = ft_strjoin(str_map, " \n");
-		free(tmp);
+		ft_lst_map_add(ft_strlen(line), line, &str_in_map);
 	}
 	check_count_player_in_map(line, mlx);
-	tmp = str_map;
-	str_map = ft_strjoin(str_map, " ");
-	free(tmp);
-	tmp = str_map;
-	str_map = ft_strjoin(str_map, line);
-	free(tmp);
-	tmp = str_map;
-	str_map = ft_strjoin(str_map, " \n");
-	free(tmp);
-	if (!(str = (char *)malloc(sizeof(char) * (ft_strlen(line) + 3))))
+	ft_lst_map_add(ft_strlen(line), line, &str_in_map);
+	max_len = ft_search_max_len_in_lst(&str_in_map);
+	if (!(line = (char *)malloc(max_len + 4)))
 		return (0);
-	ft_memset(str, ' ', ft_strlen(line) + 2);
-	str[ft_strlen(line) + 2] = '\0';
-	tmp = str_map;
-	str_map = ft_strjoin(str_map, str);
-	free(tmp);
-	return (str_map);
+	ft_memset(line, ' ', max_len + 2);
+	line[max_len + 2] = '\n';
+	line[max_len + 3] = '\0';
+	tmp = str_in_map;
+	while (tmp)
+	{
+		if (!(str = (char *)malloc(max_len + 4)))
+			return (0);
+		ft_memset(str, ' ', max_len + 2);
+		ft_memcpy(str + 1, tmp->str, ft_strlen(tmp->str));
+		str[max_len + 2] = '\n';
+		str[max_len + 3] = '\0';
+		tmp_str = line;
+		line = ft_strjoin(line, str);
+		free(str);
+		free(tmp_str);
+		tmp = tmp->next;
+	}
+	if (!(str = (char *)malloc(max_len + 4)))
+		return (0);
+	ft_memset(str, ' ', max_len + 2);
+	str[max_len + 2] = '\n';
+	str[max_len + 3] = '\0';
+	tmp_str = line;
+	line = ft_strjoin(line, str);
+	free(tmp_str);
+	return (line);
 }
+
 

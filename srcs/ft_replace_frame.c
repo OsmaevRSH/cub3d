@@ -16,6 +16,7 @@ void	replace(t_mlx *mlx)
 {
 	int count_sprites;
 	t_sprite *tmp;
+
 	double vector = - M_PI / 6;
 	double step =M_PI / (3 * mlx->map.R.width);
 	double x = 0;
