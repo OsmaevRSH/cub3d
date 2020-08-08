@@ -41,6 +41,7 @@ typedef struct		parce_map_file
 	char			*WE;
 	char			*EA;
 	char			*S;
+	char			*SS;
 	t_color_f_and_r	F;
 	t_color_f_and_r	C;
 	char			**worldMap;
@@ -72,6 +73,7 @@ typedef struct		s_sprite
 	double			x;
 	double			y;
 	size_t			tex_id;
+	int				id;
 	double			distance;
 	struct s_sprite	*next;
 }					t_sprite;
@@ -93,7 +95,8 @@ typedef struct		s_save_text
 	t_texture		t2;
 	t_texture		t3;
 	t_texture		t4;
-	t_texture		sprite;
+	t_texture		sprite_1;
+	t_texture		sprite_2;
 	double			*arr_len_trace;
 }					t_save_text;
 
@@ -154,6 +157,7 @@ typedef struct		s_check
 	int				S;
 	int				F;
 	int				C;
+	int				SS;
 }					t_check;
 
 void    			drawPlayer(t_mlx *mlx, double x, double y);
@@ -162,17 +166,16 @@ void    			trace(t_mlx *mlx, double vector, int x);
 void				ft_parce(char *file_name, t_mlx *mlx);
 char				*ft_parce_map(int fd, char *line, t_mlx *mlx);
 int					check_map(char **map, t_mlx *mlx);
-void 				draw_Sprite(t_mlx *mlx);
 int					check(char **map, int x, int y);
-void				ft_push_back_new_sprite(int x, int y, size_t id, t_sprite **head);
 int					ft_count_sprites(t_sprite *head);
 t_sprite			*ft_search_sprite(size_t id, t_sprite *head);
 int					save_bmp(t_mlx *mlx);
 void        		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int					ft_draw_sprite_one(t_mlx *mlx);
 void				ft_draw_sprite_two(t_mlx *mlx);
-void				ft_draw_sprite_three(t_mlx *mlx);
+void				ft_draw_sprite_three(t_mlx *mlx, t_sprite *sprite, int save);
 void				ft_init_draw_sprite_struct(t_draw_sprite *sprite);
+void				ft_push_back_new_sprite(int x, int y,size_t id, t_sprite **head, int text_id);
 void				ft_swap_elem_in_list(t_sprite *first, t_sprite *second, t_sprite **head);
 void				ft_list_sort(t_sprite **sprite);
 double				ft_get_distance(t_mlx *mlx, t_sprite *sprite);
@@ -185,4 +188,5 @@ int					ft_get_color_from_rgb(int r, int g, int b);
 void				ft_lst_map_add(int len, char *str, t_map_len **head);
 int					ft_search_max_len_in_lst(t_map_len **head);
 void				ft_delete_sprite_by_rectangle(t_sprite **head, int x_rectangle, int y_rectangle);
+void 				draw_Sprite(t_mlx *mlx, t_sprite *sprite);
 #endif

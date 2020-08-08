@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static t_sprite	*ft_create_new_sprite(int x, int y, size_t id)
+static t_sprite	*ft_create_new_sprite(int x, int y, size_t id, int text_id)
 {
 	t_sprite	*new_list;
 
@@ -22,22 +22,23 @@ static t_sprite	*ft_create_new_sprite(int x, int y, size_t id)
 	new_list->y = y;
 	new_list->next = NULL;
 	new_list->tex_id = id;
+	new_list->id = text_id;
 	return (new_list);
 }
 
 void			ft_push_back_new_sprite(int x, int y,
-				size_t id, t_sprite **head)
+				size_t id, t_sprite **head, int text_id)
 {
 	t_sprite	*tmp_list;
 
 	tmp_list = *head;
 	if (!tmp_list)
-		*head = ft_create_new_sprite(x, y, id);
+		*head = ft_create_new_sprite(x, y, id, text_id);
 	else
 	{
 		while (tmp_list->next)
 			tmp_list = tmp_list->next;
-		tmp_list->next = ft_create_new_sprite(x, y, id);
+		tmp_list->next = ft_create_new_sprite(x, y, id, text_id);
 	}
 }
 

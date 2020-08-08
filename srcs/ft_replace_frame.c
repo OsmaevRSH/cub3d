@@ -47,8 +47,8 @@ void	replace(t_mlx *mlx)
 		{
 			mlx->sprite.x = tmp->x;
 			mlx->sprite.y = tmp->y;
+			draw_Sprite(mlx, tmp);
 			tmp = tmp->next;
-			draw_Sprite(mlx);
 		}
 	}
 	drawMap(mlx);

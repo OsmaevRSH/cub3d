@@ -12,15 +12,18 @@
 
 #include "../includes/cub3d.h"
 
-void 	draw_Sprite(t_mlx *mlx)
+void 	draw_Sprite(t_mlx *mlx, t_sprite *sprite)
 {
+	int save = 0;
 	ft_bzero(&mlx->draw_sprite, sizeof(mlx->draw_sprite));
 	if (ft_draw_sprite_one(mlx))
 		return;
 	ft_draw_sprite_two(mlx);
 	mlx->draw_sprite.h_koef = 64.0 / mlx->draw_sprite.sprite_screen_size;
 	while (mlx->draw_sprite.y_offset < mlx->draw_sprite.check_y)
-		ft_draw_sprite_three(mlx);
+	{
+		ft_draw_sprite_three(mlx, sprite, save);
+	}
 }
 
 int         main()
@@ -30,6 +33,7 @@ int         main()
 	ft_bzero(&mlx, sizeof(mlx));
     mlx.mlx = mlx_init();
 	ft_parce("maps/map1.cub", &mlx);
+	mlx.player.tilt = -400;
 	ft_init_textures(&mlx);
 	replace(&mlx);
 	output_count_sprites = ft_strjoin("Number of collected sprites: ", ft_itoa(mlx.collect_sprites));

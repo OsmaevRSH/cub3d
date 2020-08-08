@@ -35,6 +35,8 @@ void	drawMap(t_mlx *mlx)
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x0000FF00);
 			else if (mlx->map.worldMap[y >> 3u][x >> 3u] == '2')
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x00000000);
+			else if (mlx->map.worldMap[y >> 3u][x >> 3u] == '3')
+				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x00FFFFFF);
 			else
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x000000FF);
 			y++;

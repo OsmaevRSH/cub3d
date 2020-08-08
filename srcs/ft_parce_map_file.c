@@ -120,6 +120,8 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 			ft_get_textures(split_str[1], split_str[2], mlx, &flag.EA, &mlx->map.EA);
 		else if (!ft_strncmp(split_str[0], "S", ft_strlen(split_str[0])) && flag.S == 0)
 			ft_get_textures(split_str[1], split_str[2], mlx, &flag.S, &mlx->map.S);
+		else if (!ft_strncmp(split_str[0], "SS", ft_strlen(split_str[0])) && flag.SS == 0)
+			ft_get_textures(split_str[1], split_str[2], mlx, &flag.SS, &mlx->map.SS);
 		else if (!ft_strncmp(split_str[0], "F", ft_strlen(split_str[0])) && flag.F == 0)
 			ft_get_color(split_str[1], split_str[2], &flag.F, &mlx->map.F);
 		else if (!ft_strncmp(split_str[0], "C", ft_strlen(split_str[0])) && flag.C == 0)
@@ -142,7 +144,7 @@ int check_map(char **map, t_mlx *mlx)
 
 int check(char **map, int x, int y)
 {
-	if (map[y][x] == '1' || map[y][x] == '2' || map[y][x] == '.')
+	if (map[y][x] == '1' || map[y][x] == '2' || map[y][x] == '.' || map[y][x] == '3')
 		return (1);
 	if (map[y + 1][x] == ' ' || map[y][x + 1] == ' ' || map[y - 1][x] == ' ' || map[y][x - 1] == ' ')
 	{
@@ -167,14 +169,17 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 	mlx->count_lines_in_map++;
 	while (str[i])
 	{
-		if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'N' && str[i] != 'S' && str[i] != 'W' && str[i] != 'E' && str[i] != ' ')
+		if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'N' && str[i] != 'S' && str[i] != 'W' && str[i] != 'E' && str[i] != ' ' && str[i] != '3')
 		{
 			printf("%s", "map error1");
 			exit(0);
 		}
-		if (str[i] == '2')
+		if (str[i] == '2' || str[i] == '3')
 		{
-			ft_push_back_new_sprite((i + 1) * 64 + 32, mlx->count_lines_in_map * 64 + 32, sprite_id, &mlx->head_for_sprite_list);
+			if (str[i] == '2')
+				ft_push_back_new_sprite((i + 1) * 64 + 32, mlx->count_lines_in_map * 64 + 32, sprite_id, &mlx->head_for_sprite_list, 0);
+			else
+				ft_push_back_new_sprite((i + 1) * 64 + 32, mlx->count_lines_in_map * 64 + 32, sprite_id, &mlx->head_for_sprite_list, 1);
 			sprite_id++;
 		}
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
