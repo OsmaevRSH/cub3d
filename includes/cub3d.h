@@ -182,4 +182,5 @@ void				ft_init_textures(t_mlx *mlx);
 int					ft_get_color_from_rgb(int r, int g, int b);
 void				ft_lst_map_add(int len, char *str, t_map_len **head);
 int					ft_search_max_len_in_lst(t_map_len **head);
+void				ft_delete_sprite_by_rectangle(t_sprite **head, int x_rectangle, int y_rectangle);
 #endif

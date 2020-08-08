@@ -27,12 +27,14 @@ void	drawMap(t_mlx *mlx)
 	unsigned int map_x = mapWidth;
 	unsigned int map_y = mapHeight;
 
-	while (x < map_x << 4u)
+	while (x < map_x << 3u)
 	{
-		while (y < map_y << 4u)
+		while (y < map_y << 3u)
 		{
-			if (mlx->map.worldMap[y >> 4u][x >> 4u] == '1')
+			if (mlx->map.worldMap[y >> 3u][x >> 3u] == '1')
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x0000FF00);
+			else if (mlx->map.worldMap[y >> 3u][x >> 3u] == '2')
+				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x00000000);
 			else
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x000000FF);
 			y++;

@@ -33,22 +33,25 @@ void	replace(t_mlx *mlx)
 		vector += step;
 	}
 	count_sprites = ft_count_sprites(mlx->head_for_sprite_list);
-	while (i < count_sprites)
+	if (count_sprites > 0)
 	{
-		tmp = ft_search_sprite(i, mlx->head_for_sprite_list);
-		tmp->distance = ft_get_distance(mlx, tmp);
-		i++;
-	}
-	ft_list_sort(&mlx->head_for_sprite_list);
-	tmp = mlx->head_for_sprite_list;
-	while (count_sprites--)
-	{
-		mlx->sprite.x = tmp->x;
-		mlx->sprite.y = tmp->y;
-		tmp = tmp->next;
-		draw_Sprite(mlx);
+		while (i < count_sprites)
+		{
+			tmp = ft_search_sprite(i, mlx->head_for_sprite_list);
+			tmp->distance = ft_get_distance(mlx, tmp);
+			i++;
+		}
+		ft_list_sort(&mlx->head_for_sprite_list);
+		tmp = mlx->head_for_sprite_list;
+		while (count_sprites--)
+		{
+			mlx->sprite.x = tmp->x;
+			mlx->sprite.y = tmp->y;
+			tmp = tmp->next;
+			draw_Sprite(mlx);
+		}
 	}
 	drawMap(mlx);
-	drawPlayer(mlx, (unsigned int)mlx->player.x >> 2u, (unsigned int)mlx->player.y >> 2u);
+	drawPlayer(mlx, (unsigned int)mlx->player.x >> 3u, (unsigned int)mlx->player.y >> 3u);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->mlx_img, 0, 0);
 }

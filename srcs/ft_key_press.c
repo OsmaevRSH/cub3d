@@ -78,6 +78,11 @@ int  key_press(int keycode, t_mlx *mlx)
 	ft_left_right(keycode, mlx);
 	ft_go_left_right(keycode, mlx);
 	ft_go_forward_back(keycode, mlx);
+	if ((mlx->map.worldMap[(unsigned int)(mlx->player.y) >> 6u][(unsigned int)(mlx->player.x) >> 6u]) == '2')
+	{
+		ft_delete_sprite_by_rectangle(&mlx->head_for_sprite_list, (int)(mlx->player.x) / 64, (int)(mlx->player.y) / 64);
+		(mlx->map.worldMap[(unsigned int)(mlx->player.y) >> 6u][(unsigned int)(mlx->player.x) >> 6u]) = '.';
+	}
 	replace(mlx);
 	return (0);
 }

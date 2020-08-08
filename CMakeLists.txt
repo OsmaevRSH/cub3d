@@ -1,65 +1,26 @@
 cmake_minimum_required(VERSION 3.16)
-project(cub3d)
+project(debug_cub3d)
 
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 include_directories(cmake-build-debug)
+include_directories(includes)
 include_directories(libft)
+include_directories(maps)
 include_directories(mlx)
+include_directories(srcs)
 include_directories(texture_bmp)
 include_directories(texture_xpm)
 
-add_executable(cub3d
-        libft/ft_atoi.c
-        libft/ft_bzero.c
-        libft/ft_calloc.c
-        libft/ft_check_file_extension.c
-        libft/ft_isalnum.c
-        libft/ft_isalpha.c
-        libft/ft_isascii.c
-        libft/ft_isdigit.c
-        libft/ft_isdigit_from_string.c
-        libft/ft_isprint.c
-        libft/ft_itoa.c
-        libft/ft_lstadd_back.c
-        libft/ft_lstadd_front.c
-        libft/ft_lstclear.c
-        libft/ft_lstdelone.c
-        libft/ft_lstiter.c
-        libft/ft_lstlast.c
-        libft/ft_lstmap.c
-        libft/ft_lstnew.c
-        libft/ft_lstsize.c
-        libft/ft_memccpy.c
-        libft/ft_memchr.c
-        libft/ft_memcmp.c
-        libft/ft_memcpy.c
-        libft/ft_memmove.c
-        libft/ft_memset.c
-        libft/ft_putchar_fd.c
-        libft/ft_putendl_fd.c
-        libft/ft_putnbr_fd.c
-        libft/ft_putstr_fd.c
-        libft/ft_split.c
-        libft/ft_strchr.c
-        libft/ft_strdup.c
-        libft/ft_strjoin.c
-        libft/ft_strlcat.c
-        libft/ft_strlcpy.c
-        libft/ft_strlen.c
-        libft/ft_strmapi.c
-        libft/ft_strncmp.c
-        libft/ft_strnstr.c
-        libft/ft_strrchr.c
-        libft/ft_strtrim.c
-        libft/ft_substr.c
-        libft/ft_tolower.c
-        libft/ft_toupper.c
-        libft/get_next_line.c
-        libft/get_next_line_utils.c
-        libft/libft.h
-        libft/Makefile
+add_executable(debug_cub3d
+        cmake-build-debug/cmake_install.cmake
+        cmake-build-debug/CMakeCache.txt
+        cmake-build-debug/cub3d.cbp
+        cmake-build-debug/Makefile
+        includes/cub3d.h
+        includes/ft_trace.h
+        maps/map1.cub
         mlx/man/man3/mlx.3
         mlx/man/man3/mlx_loop.3
         mlx/man/man3/mlx_new_image.3
@@ -90,6 +51,19 @@ add_executable(cub3d
         mlx/mlx_window.swiftmodule
         mlx/mlx_xpm.c
         mlx/mlx_xpm.o
+        srcs/cub3d.c
+        srcs/ft_create_bitmap.c
+        srcs/ft_draw_sprite.c
+        srcs/ft_draw_world.c
+        srcs/ft_init_struct.c
+        srcs/ft_key_press.c
+        srcs/ft_lst_in_map.c
+        srcs/ft_parce_map_file.c
+        srcs/ft_replace_frame.c
+        srcs/ft_sprite_list_1.c
+        srcs/ft_sprite_list_2.c
+        srcs/ft_trace.c
+        srcs/ft_utils.c
         texture_bmp/sprite.png
         texture_bmp/WALL1.bmp
         texture_bmp/WALL32.bmp
@@ -110,20 +84,8 @@ add_executable(cub3d
         texture_xpm/WALL77.xpm
         texture_xpm/WALL82.xpm
         texture_xpm/WALL83.xpm
-        srcs/cub3d.c
-        includes/cub3d.h
-        srcs/ft_create_bitmap.c
-        srcs/ft_draw_sprite.c
-        srcs/ft_draw_world.c
-        srcs/ft_init_struct.c
-        srcs/ft_replace_frame.c
-        srcs/ft_sprite_list_1.c
-        srcs/ft_sprite_list_2.c
-        srcs/ft_trace.c
-        includes/ft_trace.h
+        CMakeLists.txt
         Makefile
-        maps/map1.cub
-        srcs/ft_parce_map_file.c
         README.md
         Screenshot.bmp
-        start.sh srcs/ft_key_press.c srcs/ft_utils.c srcs/ft_lst_in_map.c)
+        start.sh)

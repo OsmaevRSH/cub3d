@@ -39,10 +39,52 @@ void			ft_list_sort(t_sprite **sprite)
 	}
 }
 
+void		ft_delete_sprite(t_sprite *goal, t_sprite **head)
+{
+	t_sprite *tmp;
+	size_t save_id;
+
+	save_id = goal->tex_id;
+	tmp = *head;
+	if (goal == *head)
+	{
+		*head = goal->next;
+		free(goal);
+	}
+	else
+	{
+		while (tmp->next != goal)
+			tmp = tmp->next;
+		tmp->next = goal->next;
+		free(goal);
+	}
+	tmp = *head;
+	while (tmp)
+	{
+		if (tmp->tex_id > save_id)
+			tmp->tex_id = tmp->tex_id - 1;
+		tmp = tmp->next;
+	}
+}
+
 double			ft_get_distance(t_mlx *mlx, t_sprite *sprite)
 {
 	double		sprite_dist;
 
 	sprite_dist = sqrt(pow(mlx->player.x - sprite->x, 2) + pow(mlx->player.y - sprite->y, 2));
 	return (sprite_dist);
+}
+
+void		ft_delete_sprite_by_rectangle(t_sprite **head, int x_rectangle, int y_rectangle)
+{
+	t_sprite *tmp;
+
+	tmp = *head;
+	while (tmp)
+	{
+		if ((int)(tmp->x / 64) == x_rectangle && (int)(tmp->y / 64) == y_rectangle)
+			break;
+		tmp = tmp->next;
+	}
+	ft_delete_sprite(tmp, head);
 }
