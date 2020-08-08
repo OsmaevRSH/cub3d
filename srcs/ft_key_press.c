@@ -28,6 +28,19 @@ static void		ft_left_right(int keycode, t_mlx *mlx)
 	}
 }
 
+static void		ft_tilt_up_down(int keycode, t_mlx *mlx)
+{
+	if (keycode == 125)
+	{
+		if (mlx->player.tilt > -500)
+			mlx->player.tilt -= 10;
+	}
+	if (keycode == 126)
+	{
+		if (mlx->player.tilt < 500)
+			mlx->player.tilt += 10;
+	}
+}
 
 static void ft_go_left_right(int keycode, t_mlx *mlx)
 {
@@ -49,14 +62,14 @@ static void ft_go_left_right(int keycode, t_mlx *mlx)
 
 static void ft_go_forward_back(int keycode, t_mlx *mlx)
 {
-	if (keycode == 13 || keycode == 126)
+	if (keycode == 13)
 	{
 		if ((mlx->map.worldMap[(unsigned int)(mlx->player.y + 10 * sin(mlx->player.angle)) >> 6u][(unsigned int)(mlx->player.x) >> 6u]) != '1')
 			mlx->player.y += 10 * sin(mlx->player.angle);
 		if ((mlx->map.worldMap[(unsigned int)(mlx->player.y) >> 6u][(unsigned int)(mlx->player.x + 10 * cos(mlx->player.angle)) >> 6u]) != '1')
 			mlx->player.x += 10 * cos(mlx->player.angle);
 	}
-	if (keycode == 1 || keycode == 125)
+	if (keycode == 1)
 	{
 		if ((mlx->map.worldMap[(unsigned int)(mlx->player.y - 10 * sin(mlx->player.angle)) >> 6u][(unsigned int)(mlx->player.x) >> 6u]) != '1')
 			mlx->player.y -= 10 * sin(mlx->player.angle);
@@ -79,6 +92,7 @@ int  key_press(int keycode, t_mlx *mlx)
 	ft_left_right(keycode, mlx);
 	ft_go_left_right(keycode, mlx);
 	ft_go_forward_back(keycode, mlx);
+	ft_tilt_up_down(keycode, mlx);
 	if ((mlx->map.worldMap[(unsigned int)(mlx->player.y) >> 6u][(unsigned int)(mlx->player.x) >> 6u]) == '2')
 	{
 		mlx->collect_sprites++;

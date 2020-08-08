@@ -39,12 +39,12 @@ void	ft_draw_sprite_two(t_mlx *mlx)
 		mlx->draw_sprite.x_offset = mlx->map.R.width - 1;
 	if (mlx->draw_sprite.x_offset < 0)
 		mlx->draw_sprite.x_offset = 0;
-	mlx->draw_sprite.y_offset = mlx->map.R.height / 2 - mlx->draw_sprite.sprite_screen_size / 2;
+	mlx->draw_sprite.y_offset = mlx->map.R.height / 2 - mlx->draw_sprite.sprite_screen_size / 2 + mlx->player.tilt;
 	mlx->draw_sprite.check_x = mlx->draw_sprite.x_offset + mlx->draw_sprite.sprite_screen_size;
 	if (mlx->draw_sprite.check_x > mlx->map.R.width)
 		mlx->draw_sprite.check_x = mlx->map.R.width;
 	mlx->draw_sprite.check_y = mlx->draw_sprite.y_offset + mlx->draw_sprite.sprite_screen_size;
-	if (mlx->draw_sprite.check_y > mlx->map.R.height)
+	if (mlx->draw_sprite.check_y> mlx->map.R.height)
 		mlx->draw_sprite.check_y = mlx->map.R.height;
 	if (mlx->draw_sprite.angel - (mlx->draw_sprite.sprite_screen_size / 2.0 * mlx->draw_sprite.step_for_angle) < -M_PI / 6.0)
 	{

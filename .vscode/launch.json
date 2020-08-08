@@ -8,10 +8,10 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Users/ltheresi/Documents/debug_cub3d/cub3d",
+            "program": "/Users/ltheresi/Documents/cub3d/cub3d",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/Users/ltheresi/Documents/debug_cub3d",
+            "cwd": "/Users/ltheresi/Documents/cub3d",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb"

@@ -111,6 +111,7 @@ typedef struct		s_player
 	double			angle;
 	int 			rectangle_x;
 	int 			rectangle_y;
+	int				tilt;
 }               	t_player;
 
 typedef struct		s_color

@@ -1,3 +1,3 @@
 make
-make clean
+#make clean
 ./cub3d
