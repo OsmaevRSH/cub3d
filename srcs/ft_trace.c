@@ -123,18 +123,18 @@ void    trace(t_mlx *mlx, double vector, int x)
 {
 	t_trace trace;
 
-	ft_init_tracer_struct(&trace);
+	ft_bzero(&trace, sizeof(trace));
 	trace.angle = mlx->player.angle + vector;
 	trace.angle > 2*M_PI ? trace.angle -= 2*M_PI : 0;
 	trace.angle < 0 ? trace.angle += 2*M_PI : 0;
 	search_first_point_a(&trace, mlx);
-	while (trace.first_point_ax > 0 && trace.first_point_ay > 0 && trace.first_point_ax < (unsigned int)mapWidth << 6u && trace.first_point_ay < (unsigned int)mapHeight << 6u && mlx->map.worldMap[(unsigned int)trace.first_point_ay >> 6u][(unsigned int)trace.first_point_ax >> 6u] != '1')
+	while (trace.first_point_ax > 0 && trace.first_point_ay > 0 && trace.first_point_ax < (unsigned int)mlx->count_elem_in_line_map << 6u && trace.first_point_ay < (unsigned int)mlx->count_lines_in_map << 6u && mlx->map.worldMap[(unsigned int)trace.first_point_ay >> 6u][(unsigned int)trace.first_point_ax >> 6u] != '1')
 	{
 		if (!search_wall_for_point_a(&trace))
 			break;
 	}
 	search_first_point_b(&trace, mlx);
-	while (trace.first_point_bx > 0 && trace.first_point_by > 0 && trace.first_point_bx < (unsigned int)mapWidth << 6u && trace.first_point_by < (unsigned int)mapHeight << 6u && mlx->map.worldMap[(unsigned int)trace.first_point_by >> 6u][(unsigned int)trace.first_point_bx >> 6u] != '1')
+	while (trace.first_point_bx > 0 && trace.first_point_by > 0 && trace.first_point_bx < (unsigned int)mlx->count_elem_in_line_map << 6u && trace.first_point_by < (unsigned int)mlx->count_lines_in_map << 6u && mlx->map.worldMap[(unsigned int)trace.first_point_by >> 6u][(unsigned int)trace.first_point_bx >> 6u] != '1')
 	{
 		if (!search_wall_for_point_b(&trace))
 			break;

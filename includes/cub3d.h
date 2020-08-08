@@ -19,8 +19,6 @@
 # include		"../libft/libft.h"
 # include		"fcntl.h"
 # include		"stdio.h"
-# define mapWidth 39
-# define mapHeight 16
 
 typedef struct		s_screen_size
 {
@@ -133,6 +131,9 @@ typedef struct		s_mlx
 	int				mlx_bits_per_pixel;
 	int				mlx_line_length;
 	int				mlx_endian;
+	int				collect_sprites;
+	int				count_lines_in_map;
+	int 			count_elem_in_line_map;
 	struct s_sprite	*head_for_sprite_list;
 	t_player		player;
 	t_color			color;

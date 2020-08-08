@@ -1,25 +1,65 @@
 cmake_minimum_required(VERSION 3.16)
-project(debug_cub3d)
+project(cub3d)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(.)
-include_directories(cmake-build-debug)
 include_directories(includes)
 include_directories(libft)
-include_directories(maps)
 include_directories(mlx)
-include_directories(srcs)
-include_directories(texture_bmp)
-include_directories(texture_xpm)
 
-add_executable(debug_cub3d
-        cmake-build-debug/cmake_install.cmake
-        cmake-build-debug/CMakeCache.txt
-        cmake-build-debug/cub3d.cbp
-        cmake-build-debug/Makefile
+add_executable(cub3d
         includes/cub3d.h
         includes/ft_trace.h
+        libft/ft_atoi.c
+        libft/ft_bzero.c
+        libft/ft_calloc.c
+        libft/ft_check_file_extension.c
+        libft/ft_isalnum.c
+        libft/ft_isalpha.c
+        libft/ft_isascii.c
+        libft/ft_isdigit.c
+        libft/ft_isdigit_from_string.c
+        libft/ft_isprint.c
+        libft/ft_itoa.c
+        libft/ft_lstadd_back.c
+        libft/ft_lstadd_front.c
+        libft/ft_lstclear.c
+        libft/ft_lstdelone.c
+        libft/ft_lstiter.c
+        libft/ft_lstlast.c
+        libft/ft_lstmap.c
+        libft/ft_lstnew.c
+        libft/ft_lstsize.c
+        libft/ft_memccpy.c
+        libft/ft_memchr.c
+        libft/ft_memcmp.c
+        libft/ft_memcpy.c
+        libft/ft_memmove.c
+        libft/ft_memset.c
+        libft/ft_putchar_fd.c
+        libft/ft_putendl_fd.c
+        libft/ft_putnbr_fd.c
+        libft/ft_putstr_fd.c
+        libft/ft_split.c
+        libft/ft_strchr.c
+        libft/ft_strdup.c
+        libft/ft_strjoin.c
+        libft/ft_strlcat.c
+        libft/ft_strlcpy.c
+        libft/ft_strlen.c
+        libft/ft_strmapi.c
+        libft/ft_strncmp.c
+        libft/ft_strnstr.c
+        libft/ft_strrchr.c
+        libft/ft_strtrim.c
+        libft/ft_substr.c
+        libft/ft_tolower.c
+        libft/ft_toupper.c
+        libft/get_next_line.c
+        libft/get_next_line_utils.c
+        libft/libft.a
+        libft/libft.h
+        libft/Makefile
         maps/map1.cub
         mlx/man/man3/mlx.3
         mlx/man/man3/mlx_loop.3
@@ -84,7 +124,6 @@ add_executable(debug_cub3d
         texture_xpm/WALL77.xpm
         texture_xpm/WALL82.xpm
         texture_xpm/WALL83.xpm
-        CMakeLists.txt
         Makefile
         README.md
         Screenshot.bmp

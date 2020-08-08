@@ -73,6 +73,7 @@ int close_window(t_mlx *mlx)
 
 int  key_press(int keycode, t_mlx *mlx)
 {
+	char *output_count_sprites;
 	if (keycode == 53)
 		exit(0);
 	ft_left_right(keycode, mlx);
@@ -80,9 +81,13 @@ int  key_press(int keycode, t_mlx *mlx)
 	ft_go_forward_back(keycode, mlx);
 	if ((mlx->map.worldMap[(unsigned int)(mlx->player.y) >> 6u][(unsigned int)(mlx->player.x) >> 6u]) == '2')
 	{
+		mlx->collect_sprites++;
 		ft_delete_sprite_by_rectangle(&mlx->head_for_sprite_list, (int)(mlx->player.x) / 64, (int)(mlx->player.y) / 64);
 		(mlx->map.worldMap[(unsigned int)(mlx->player.y) >> 6u][(unsigned int)(mlx->player.x) >> 6u]) = '.';
 	}
 	replace(mlx);
+	output_count_sprites = ft_strjoin("Number of collected sprites: ", ft_itoa(mlx->collect_sprites));
+	mlx_string_put(mlx->mlx, mlx->mlx_win, (int)(mlx->map.R.width / 2 - ft_strlen(output_count_sprites) / 2), mlx->map.R.height - 100, 0x00000FFFF, output_count_sprites);
+	free(output_count_sprites);
 	return (0);
 }

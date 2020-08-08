@@ -24,8 +24,8 @@ void	drawMap(t_mlx *mlx)
 {
 	unsigned int x = 0;
 	unsigned int y = 0;
-	unsigned int map_x = mapWidth;
-	unsigned int map_y = mapHeight;
+	unsigned int map_x = mlx->count_elem_in_line_map + 2;
+	unsigned int map_y = mlx->count_lines_in_map + 2;
 
 	while (x < map_x << 3u)
 	{

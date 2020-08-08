@@ -160,12 +160,11 @@ int check(char **map, int x, int y)
 void		check_count_player_in_map(const char *str, t_mlx *mlx)
 {
 	static int count;
-	static int line_number;
 	int i;
 	static size_t sprite_id;
 
 	i = 0;
-	line_number++;
+	mlx->count_lines_in_map++;
 	while (str[i])
 	{
 		if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'N' && str[i] != 'S' && str[i] != 'W' && str[i] != 'E' && str[i] != ' ')
@@ -175,7 +174,7 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 		}
 		if (str[i] == '2')
 		{
-			ft_push_back_new_sprite((i + 1) * 64 + 32, line_number * 64 + 32, sprite_id, &mlx->head_for_sprite_list);
+			ft_push_back_new_sprite((i + 1) * 64 + 32, mlx->count_lines_in_map * 64 + 32, sprite_id, &mlx->head_for_sprite_list);
 			sprite_id++;
 		}
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
@@ -188,8 +187,8 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 			}
 			mlx->player.x = (i + 1) * 64 + 32;
 			mlx->player.rectangle_x = i + 1;
-			mlx->player.y = line_number * 64 + 32;
-			mlx->player.rectangle_y = line_number;
+			mlx->player.y = mlx->count_lines_in_map * 64 + 32;
+			mlx->player.rectangle_y = mlx->count_lines_in_map;
 			if (str[i] == 'N')
 				mlx->player.angle = 3 * M_PI_2;
 			else if (str[i] == 'S')
@@ -209,7 +208,6 @@ char			*ft_parce_map(int fd, char *line, t_mlx *mlx)
 	t_map_len	*tmp;
 	char		*tmp_str;
 	char		*str;
-	int			max_len;
 
 	check_count_player_in_map(line, mlx);
 	ft_lst_map_add(ft_strlen(line), line, &str_in_map);
@@ -220,32 +218,32 @@ char			*ft_parce_map(int fd, char *line, t_mlx *mlx)
 	}
 	check_count_player_in_map(line, mlx);
 	ft_lst_map_add(ft_strlen(line), line, &str_in_map);
-	max_len = ft_search_max_len_in_lst(&str_in_map);
-	if (!(line = (char *)malloc(max_len + 4)))
+	mlx->count_elem_in_line_map = ft_search_max_len_in_lst(&str_in_map);
+	if (!(line = (char *)malloc(mlx->count_elem_in_line_map + 4)))
 		return (0);
-	ft_memset(line, ' ', max_len + 2);
-	line[max_len + 2] = '\n';
-	line[max_len + 3] = '\0';
+	ft_memset(line, ' ', mlx->count_elem_in_line_map + 2);
+	line[mlx->count_elem_in_line_map + 2] = '\n';
+	line[mlx->count_elem_in_line_map + 3] = '\0';
 	tmp = str_in_map;
 	while (tmp)
 	{
-		if (!(str = (char *)malloc(max_len + 4)))
+		if (!(str = (char *)malloc(mlx->count_elem_in_line_map + 4)))
 			return (0);
-		ft_memset(str, ' ', max_len + 2);
+		ft_memset(str, ' ', mlx->count_elem_in_line_map + 2);
 		ft_memcpy(str + 1, tmp->str, ft_strlen(tmp->str));
-		str[max_len + 2] = '\n';
-		str[max_len + 3] = '\0';
+		str[mlx->count_elem_in_line_map + 2] = '\n';
+		str[mlx->count_elem_in_line_map + 3] = '\0';
 		tmp_str = line;
 		line = ft_strjoin(line, str);
 		free(str);
 		free(tmp_str);
 		tmp = tmp->next;
 	}
-	if (!(str = (char *)malloc(max_len + 4)))
+	if (!(str = (char *)malloc(mlx->count_elem_in_line_map + 4)))
 		return (0);
-	ft_memset(str, ' ', max_len + 2);
-	str[max_len + 2] = '\n';
-	str[max_len + 3] = '\0';
+	ft_memset(str, ' ', mlx->count_elem_in_line_map + 2);
+	str[mlx->count_elem_in_line_map + 2] = '\n';
+	str[mlx->count_elem_in_line_map + 3] = '\0';
 	tmp_str = line;
 	line = ft_strjoin(line, str);
 	free(tmp_str);

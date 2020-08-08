@@ -1,3 +1,3 @@
-/Users/ltheresi/Documents/debug_cub3d/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/ltheresi/Documents/debug_cub3d/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/ltheresi/Documents/debug_cub3d/cmake-build-debug/CMakeFiles/debug_cub3d.dir
+/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir

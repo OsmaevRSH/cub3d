@@ -14,7 +14,7 @@
 
 void 	draw_Sprite(t_mlx *mlx)
 {
-	ft_init_draw_sprite_struct(&mlx->draw_sprite);
+	ft_bzero(&mlx->draw_sprite, sizeof(mlx->draw_sprite));
 	if (ft_draw_sprite_one(mlx))
 		return;
 	ft_draw_sprite_two(mlx);
@@ -26,11 +26,15 @@ void 	draw_Sprite(t_mlx *mlx)
 int         main()
 {
 	t_mlx   mlx;
-	mlx.head_for_sprite_list = NULL;
+	char *output_count_sprites;
+	ft_bzero(&mlx, sizeof(mlx));
     mlx.mlx = mlx_init();
 	ft_parce("maps/map1.cub", &mlx);
 	ft_init_textures(&mlx);
 	replace(&mlx);
+	output_count_sprites = ft_strjoin("Number of collected sprites: ", ft_itoa(mlx.collect_sprites));
+	mlx_string_put(mlx.mlx, mlx.mlx_win, (int)(mlx.map.R.width / 2 - ft_strlen(output_count_sprites) / 2), mlx.map.R.height - 100, 0x00000FFFF, output_count_sprites);
+	free(output_count_sprites);
 	mlx_hook(mlx.mlx_win, 2, 0L, key_press, &mlx);
 	mlx_hook(mlx.mlx_win, 17, 0L, close_window, &mlx);
 	mlx_loop(mlx.mlx);
