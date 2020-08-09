@@ -12,9 +12,9 @@
 
 #include "../includes/cub3d.h"
 
-static t_sprite	*ft_create_new_sprite(int x, int y, size_t id, int text_id)
+static t_sprite		*ft_create_new_sprite(int x, int y, size_t id, int text_id)
 {
-	t_sprite	*new_list;
+	t_sprite		*new_list;
 
 	if (!(new_list = (t_sprite *)malloc(sizeof(t_sprite))))
 		return (0);
@@ -26,10 +26,11 @@ static t_sprite	*ft_create_new_sprite(int x, int y, size_t id, int text_id)
 	return (new_list);
 }
 
-void			ft_push_back_new_sprite(int x, int y,
-				size_t id, t_sprite **head, int text_id)
+void				ft_push_back_new_sprite(int x, int y,
+					t_sprite **head, int text_id)
 {
-	t_sprite	*tmp_list;
+	t_sprite		*tmp_list;
+	static size_t	id;
 
 	tmp_list = *head;
 	if (!tmp_list)
@@ -40,11 +41,12 @@ void			ft_push_back_new_sprite(int x, int y,
 			tmp_list = tmp_list->next;
 		tmp_list->next = ft_create_new_sprite(x, y, id, text_id);
 	}
+	id++;
 }
 
-int				ft_count_sprites(t_sprite *head)
+int					ft_count_sprites(t_sprite *head)
 {
-	size_t		count;
+	size_t			count;
 
 	count = 0;
 	while (head)
@@ -55,7 +57,7 @@ int				ft_count_sprites(t_sprite *head)
 	return (count);
 }
 
-t_sprite		*ft_search_sprite(size_t id, t_sprite *head)
+t_sprite			*ft_search_sprite(size_t id, t_sprite *head)
 {
 	while (head)
 	{
@@ -66,9 +68,10 @@ t_sprite		*ft_search_sprite(size_t id, t_sprite *head)
 	return (0);
 }
 
-void			ft_swap_elem_in_list(t_sprite *first, t_sprite *second, t_sprite **head)
+void				ft_swap_elem_in_list(t_sprite *first,
+					t_sprite *second, t_sprite **head)
 {
-	t_sprite	*tmp;
+	t_sprite		*tmp;
 
 	tmp = *head;
 	if (first == *head)

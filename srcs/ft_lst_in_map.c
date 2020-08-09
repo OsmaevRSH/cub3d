@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lst_in_map.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/09 17:44:37 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/09 17:44:39 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static t_map_len	*ft_lst_map_new(int len, char *str)
 {
-	t_map_len *data;
+	t_map_len		*data;
 
 	if (!(data = (t_map_len *)malloc(sizeof(t_map_len))))
 		return (0);
@@ -12,9 +24,9 @@ static t_map_len	*ft_lst_map_new(int len, char *str)
 	return (data);
 }
 
-void	ft_lst_map_add(int len, char *str, t_map_len **head)
+void				ft_lst_map_add(int len, char *str, t_map_len **head)
 {
-	t_map_len *tmp;
+	t_map_len		*tmp;
 
 	tmp = *head;
 	if (!*head)
@@ -27,10 +39,10 @@ void	ft_lst_map_add(int len, char *str, t_map_len **head)
 	}
 }
 
-int		ft_search_max_len_in_lst(t_map_len **head)
+int					ft_search_max_len_in_lst(t_map_len **head)
 {
-	t_map_len *tmp;
-	int max;
+	t_map_len		*tmp;
+	int				max;
 
 	max = -9999;
 	tmp = *head;

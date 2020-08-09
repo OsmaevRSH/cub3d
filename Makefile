@@ -28,7 +28,8 @@ SRC = srcs/cub3d.c \
 		srcs/ft_replace_frame.c \
 		srcs/ft_key_press.c \
 		srcs/ft_utils.c \
-		srcs/ft_lst_in_map.c
+		srcs/ft_lst_in_map.c \
+		srcs/ft_utils_2.c
 
 OBJ = $(SRC:.c=.o)
 

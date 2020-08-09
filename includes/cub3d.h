@@ -19,6 +19,7 @@
 # include		"../libft/libft.h"
 # include		"fcntl.h"
 # include		"stdio.h"
+# define SPEED	7
 
 typedef struct		s_screen_size
 {
@@ -59,9 +60,9 @@ typedef struct		s_draw_sprite
 	int				color;
 	int				x_offset;
 	int				y_offset;
-	int				sprite_screen_size;
+	int				spr_sc_size;
 	double			save;
-	double			step_for_angle;
+	double			st_for_an;
 	double			sprite_dir;
 	double			angel;
 	double			sprite_dist;
@@ -144,7 +145,7 @@ typedef struct		s_mlx
 	t_save_text 	texture;
 	t_parce 		map;
 	t_sprite		sprite;
-	t_draw_sprite	draw_sprite;
+	t_draw_sprite	dr_spr;
 }					t_mlx;
 
 typedef struct		s_check
@@ -160,8 +161,8 @@ typedef struct		s_check
 	int				SS;
 }					t_check;
 
-void    			drawPlayer(t_mlx *mlx, double x, double y);
-void				drawMap(t_mlx *mlx);
+void    			ft_draw_sprite(t_mlx *mlx, double x, double y);
+void				ft_draw_map(t_mlx *mlx);
 void    			trace(t_mlx *mlx, double vector, int x);
 void				ft_parce(char *file_name, t_mlx *mlx);
 char				*ft_parce_map(int fd, char *line, t_mlx *mlx);
@@ -174,12 +175,11 @@ void        		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int					ft_draw_sprite_one(t_mlx *mlx);
 void				ft_draw_sprite_two(t_mlx *mlx);
 void				ft_draw_sprite_three(t_mlx *mlx, t_sprite *sprite, int save);
-void				ft_init_draw_sprite_struct(t_draw_sprite *sprite);
-void				ft_push_back_new_sprite(int x, int y,size_t id, t_sprite **head, int text_id);
+void				ft_push_back_new_sprite(int x, int y, t_sprite **head, int text_id);
 void				ft_swap_elem_in_list(t_sprite *first, t_sprite *second, t_sprite **head);
 void				ft_list_sort(t_sprite **sprite);
 double				ft_get_distance(t_mlx *mlx, t_sprite *sprite);
-void				replace(t_mlx *mlx);
+void				replace(t_mlx *mlx, double vector, double step);
 int					key_press(int keycode, t_mlx *mlx);
 void				my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int					close_window(t_mlx *mlx);

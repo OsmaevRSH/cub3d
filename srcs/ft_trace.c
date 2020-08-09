@@ -14,58 +14,58 @@
 
 static void		search_first_point_a(t_trace *trace, t_mlx *mlx)
 {
-	if ((trace->angle > 0 && trace->angle < M_PI)) // 1 and 2
-	{
+	if ((trace->angle > 0 && trace->angle < M_PI) && (trace->flag1 = 1))
 		trace->first_point_ay = ((unsigned int)(mlx->player.y / 64) << 6u) + 64;
-		trace->flag1 = 1;
-	}
-	else if ((trace->angle > M_PI && trace->angle < 2 * M_PI)) // 3 and 4
-	{
-		trace->first_point_ay = ((unsigned int)(mlx->player.y / 64) << 6u) - 0.00000001;
-		trace->flag1 = 2;
-	}
+	else if ((trace->angle > M_PI && trace->angle < 2 * M_PI) &&
+	(trace->flag1 = 2))
+		trace->first_point_ay = ((unsigned int)(mlx->player.y / 64)
+				<< 6u) - 0.00000001;
 	else
 		trace->first_point_ay = mlx->player.y;
-	if (trace->angle >= 0 && trace->angle <  (M_PI_2)) // 1
-		trace->first_point_ax = mlx->player.x + (trace->first_point_ay - mlx->player.y) * tan((M_PI_2) - trace->angle);
-	else if (trace->angle > (M_PI_2) && trace->angle <= M_PI) // 2
-		trace->first_point_ax = mlx->player.x - (trace->first_point_ay - mlx->player.y) * tan(trace->angle - (M_PI_2));
-	else if (trace->angle >= M_PI && trace->angle < 3.0 * M_PI_2) // 3
-		trace->first_point_ax = mlx->player.x - (mlx->player.y - trace->first_point_ay) * tan(3.0 * M_PI_2 - trace->angle);
-	else if (trace->angle > 3.0 * M_PI_2 && trace->angle <= 2 * M_PI) // 4
-		trace->first_point_ax = mlx->player.x + (mlx->player.y - trace->first_point_ay) * tan(trace->angle - 3.0 * M_PI_2);
+	if (trace->angle >= 0 && trace->angle < (M_PI_2))
+		trace->first_point_ax = mlx->player.x + (trace->first_point_ay
+				- mlx->player.y) * tan((M_PI_2) - trace->angle);
+	else if (trace->angle > (M_PI_2) && trace->angle <= M_PI)
+		trace->first_point_ax = mlx->player.x - (trace->first_point_ay
+				- mlx->player.y) * tan(trace->angle - (M_PI_2));
+	else if (trace->angle >= M_PI && trace->angle < 3.0 * M_PI_2)
+		trace->first_point_ax = mlx->player.x - (mlx->player.y
+				- trace->first_point_ay) * tan(3.0 * M_PI_2 - trace->angle);
+	else if (trace->angle > 3.0 * M_PI_2 && trace->angle <= 2 * M_PI)
+		trace->first_point_ax = mlx->player.x + (mlx->player.y
+				- trace->first_point_ay) * tan(trace->angle - 3.0 * M_PI_2);
 	else
 		trace->first_point_ax = mlx->player.x;
 }
 
 static void		search_first_point_b(t_trace *trace, t_mlx *mlx)
 {
-	if ((trace->angle >= 0 && trace->angle < (M_PI_2)) || (trace->angle > 3.0 * M_PI_2 && trace->angle <= 2 * M_PI)) // 1 and 4
-	{
+	if (((trace->angle >= 0 && trace->angle < (M_PI_2)) || (trace->angle >
+	3.0 * M_PI_2 && trace->angle <= 2 * M_PI)) && (trace->flag2 = 1))
 		trace->first_point_bx = ((unsigned int)(mlx->player.x / 64) << 6u) + 64;
-		trace->flag2 = 1;
-	}
-	else if ((trace->angle > (M_PI_2) && trace->angle <= M_PI) || (trace->angle > M_PI && trace->angle < 3.0 * M_PI_2)) // 2 and 3
-	{
-		trace->first_point_bx = ((unsigned int)(mlx->player.x / 64) << 6u) - 0.00000001;
-		trace->flag2 = 2;
-	}
+	else if (((trace->angle > (M_PI_2) && trace->angle <= M_PI) ||
+	(trace->angle > M_PI && trace->angle < 3.0 * M_PI_2)) && (trace->flag2 = 2))
+		trace->first_point_bx = ((unsigned int)(mlx->player.x / 64)
+				<< 6u) - 0.00000001;
 	else
 		trace->first_point_bx = mlx->player.x;
-
-	if (trace->angle >= 0 && trace->angle < (M_PI_2)) // 1
-		trace->first_point_by = mlx->player.y + (trace->first_point_bx - mlx->player.x) * tan(trace->angle);
-	else if (trace->angle > (M_PI_2) && trace->angle <= M_PI) // 2
-		trace->first_point_by = mlx->player.y + (mlx->player.x - trace->first_point_bx) * tan(M_PI - trace->angle);
-	else if (trace->angle > M_PI && trace->angle < 3.0 * M_PI_2) // 3
-		trace->first_point_by = mlx->player.y - (mlx->player.x - trace->first_point_bx) * tan(trace->angle - M_PI);
-	else if (trace->angle > 3.0 * M_PI_2 && trace->angle <= 2 * M_PI) // 4
-		trace->first_point_by = mlx->player.y - (trace->first_point_bx - mlx->player.x) * tan(2 * M_PI - trace->angle);
+	if (trace->angle >= 0 && trace->angle < (M_PI_2))
+		trace->first_point_by = mlx->player.y + (trace->first_point_bx
+				- mlx->player.x) * tan(trace->angle);
+	else if (trace->angle > (M_PI_2) && trace->angle <= M_PI)
+		trace->first_point_by = mlx->player.y + (mlx->player.x
+				- trace->first_point_bx) * tan(M_PI - trace->angle);
+	else if (trace->angle > M_PI && trace->angle < 3.0 * M_PI_2)
+		trace->first_point_by = mlx->player.y - (mlx->player.x
+				- trace->first_point_bx) * tan(trace->angle - M_PI);
+	else if (trace->angle > 3.0 * M_PI_2 && trace->angle <= 2 * M_PI)
+		trace->first_point_by = mlx->player.y - (trace->first_point_bx
+				- mlx->player.x) * tan(2 * M_PI - trace->angle);
 	else
 		trace->first_point_by = mlx->player.y;
 }
 
-static int		search_wall_for_point_a(t_trace *trace)
+int				search_wall_for_point_a(t_trace *trace)
 {
 	if (trace->angle > 0 && trace->angle <= (M_PI_2))
 	{
@@ -92,7 +92,7 @@ static int		search_wall_for_point_a(t_trace *trace)
 	return (1);
 }
 
-static int		search_wall_for_point_b(t_trace *trace)
+int				search_wall_for_point_b(t_trace *trace)
 {
 	if (trace->angle >= 0 && trace->angle < (M_PI_2))
 	{
@@ -119,26 +119,18 @@ static int		search_wall_for_point_b(t_trace *trace)
 	return (1);
 }
 
-void    trace(t_mlx *mlx, double vector, int x)
+void			trace(t_mlx *mlx, double vector, int x)
 {
-	t_trace trace;
+	t_trace		trace;
 
 	ft_bzero(&trace, sizeof(trace));
 	trace.angle = mlx->player.angle + vector;
-	trace.angle > 2*M_PI ? trace.angle -= 2*M_PI : 0;
-	trace.angle < 0 ? trace.angle += 2*M_PI : 0;
+	trace.angle > 2 * M_PI ? trace.angle -= 2 * M_PI : 0;
+	trace.angle < 0 ? trace.angle += 2 * M_PI : 0;
 	search_first_point_a(&trace, mlx);
-	while (trace.first_point_ax > 0 && trace.first_point_ay > 0 && trace.first_point_ax < (unsigned int)mlx->count_elem_in_line_map << 6u && trace.first_point_ay < (unsigned int)mlx->count_lines_in_map << 6u && mlx->map.worldMap[(unsigned int)trace.first_point_ay >> 6u][(unsigned int)trace.first_point_ax >> 6u] != '1')
-	{
-		if (!search_wall_for_point_a(&trace))
-			break;
-	}
+	ft_search_rectangle(mlx, &trace, 1);
 	search_first_point_b(&trace, mlx);
-	while (trace.first_point_bx > 0 && trace.first_point_by > 0 && trace.first_point_bx < (unsigned int)mlx->count_elem_in_line_map << 6u && trace.first_point_by < (unsigned int)mlx->count_lines_in_map << 6u && mlx->map.worldMap[(unsigned int)trace.first_point_by >> 6u][(unsigned int)trace.first_point_bx >> 6u] != '1')
-	{
-		if (!search_wall_for_point_b(&trace))
-			break;
-	}
+	ft_search_rectangle(mlx, &trace, 0);
 	ft_check_len_to_wall(&trace, mlx);
 	if (trace.len_line != INFINITY)
 	{
@@ -148,4 +140,3 @@ void    trace(t_mlx *mlx, double vector, int x)
 		ft_draw_floor(&trace, mlx, x);
 	}
 }
-

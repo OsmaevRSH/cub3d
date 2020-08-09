@@ -95,6 +95,9 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/Screenshot.bmp">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/ft_utils_2.c">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/includes/cub3d.h">
 			<Option target="cub3d"/>
 		</Unit>

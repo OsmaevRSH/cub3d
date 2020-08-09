@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/cub3d.dir/ft_utils_2.c.o"
   "CMakeFiles/cub3d.dir/libft/ft_atoi.c.o"
   "CMakeFiles/cub3d.dir/libft/ft_bzero.c.o"
   "CMakeFiles/cub3d.dir/libft/ft_calloc.c.o"

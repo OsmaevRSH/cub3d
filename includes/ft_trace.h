@@ -49,6 +49,8 @@ void			ft_get_wall_size(t_trace *trace, t_mlx *mlx, int x);
 void			ft_draw_roof(t_trace *trace, t_mlx *mlx, int x);
 void			ft_draw_wall(t_trace *trace, t_mlx *mlx, int x);
 void			ft_draw_floor(t_trace *trace, t_mlx *mlx, int x);
-void			ft_init_tracer_struct(t_trace *trace);
+int				search_wall_for_point_a(t_trace *trace);
+int				search_wall_for_point_b(t_trace *trace);
+void			ft_search_rectangle(t_mlx *mlx, t_trace *trace, int flag);
 
 #endif

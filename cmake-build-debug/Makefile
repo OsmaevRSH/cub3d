@@ -123,6 +123,33 @@ cub3d/fast:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/build
 .PHONY : cub3d/fast
 
+ft_utils_2.o: ft_utils_2.c.o
+
+.PHONY : ft_utils_2.o
+
+# target to build an object file
+ft_utils_2.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_utils_2.c.o
+.PHONY : ft_utils_2.c.o
+
+ft_utils_2.i: ft_utils_2.c.i
+
+.PHONY : ft_utils_2.i
+
+# target to preprocess a source file
+ft_utils_2.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_utils_2.c.i
+.PHONY : ft_utils_2.c.i
+
+ft_utils_2.s: ft_utils_2.c.s
+
+.PHONY : ft_utils_2.s
+
+# target to generate assembly for a file
+ft_utils_2.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_utils_2.c.s
+.PHONY : ft_utils_2.c.s
+
 libft/ft_atoi.o: libft/ft_atoi.c.o
 
 .PHONY : libft/ft_atoi.o
@@ -1887,6 +1914,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... cub3d"
+	@echo "... ft_utils_2.o"
+	@echo "... ft_utils_2.i"
+	@echo "... ft_utils_2.s"
 	@echo "... libft/ft_atoi.o"
 	@echo "... libft/ft_atoi.i"
 	@echo "... libft/ft_atoi.s"

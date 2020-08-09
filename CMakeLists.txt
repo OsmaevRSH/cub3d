@@ -127,4 +127,4 @@ add_executable(cub3d
         Makefile
         README.md
         Screenshot.bmp
-        start.sh)
+        start.sh srcs/ft_utils_2.c)

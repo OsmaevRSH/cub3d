@@ -163,7 +163,6 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 {
 	static int count;
 	int i;
-	static size_t sprite_id;
 
 	i = 0;
 	mlx->count_lines_in_map++;
@@ -177,10 +176,9 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 		if (str[i] == '2' || str[i] == '3')
 		{
 			if (str[i] == '2')
-				ft_push_back_new_sprite((i + 1) * 64 + 32, mlx->count_lines_in_map * 64 + 32, sprite_id, &mlx->head_for_sprite_list, 0);
+				ft_push_back_new_sprite((i + 1) * 64 + 32, mlx->count_lines_in_map * 64 + 32, &mlx->head_for_sprite_list, 0);
 			else
-				ft_push_back_new_sprite((i + 1) * 64 + 32, mlx->count_lines_in_map * 64 + 32, sprite_id, &mlx->head_for_sprite_list, 1);
-			sprite_id++;
+				ft_push_back_new_sprite((i + 1) * 64 + 32, mlx->count_lines_in_map * 64 + 32, &mlx->head_for_sprite_list, 1);
 		}
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
 		{
