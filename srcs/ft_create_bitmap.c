@@ -45,7 +45,9 @@ static int				ft_get_bitmap_color(t_mlx *mlx, int x, int y)
 	char				*color;
 	int					rgb;
 
-	color = mlx->mlx_addr + (abs(y - mlx->map.R.height + 1) * mlx->mlx_line_length + abs(x) * ((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
+	color = mlx->mlx_addr + (abs(y - mlx->map.R.height + 1) *
+	mlx->mlx_line_length + abs(x) *
+	((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
 	rgb = *(int *)color;
 	return (rgb);
 }

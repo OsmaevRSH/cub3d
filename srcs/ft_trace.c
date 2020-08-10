@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_trace.h"
+#include "../includes/cub3d.h"
 
 static void		search_first_point_a(t_trace *trace, t_mlx *mlx)
 {

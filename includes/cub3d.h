@@ -13,18 +13,21 @@
 #ifndef CUB3D_H
 #define CUB3D_H
 
-#include		"../mlx/mlx.h"
+#include        "../mlx/mlx.h"
 # include		<stdlib.h>
 # include		"math.h"
 # include		"../libft/libft.h"
 # include		"fcntl.h"
 # include		"stdio.h"
-# define SPEED	7
+# include		"errno.h"
+# include		"string.h"
+# define SPEED	10
 
 typedef struct		s_screen_size
 {
 	int				width;
 	int				height;
+	int				flag;
 }					t_screen_size;
 
 typedef struct		s_color_floor_and_roof
@@ -140,6 +143,7 @@ typedef struct		s_mlx
 	int				count_lines_in_map;
 	int 			count_elem_in_line_map;
 	struct s_sprite	*head_for_sprite_list;
+	struct s_map_len *head_for_map_len_list;
 	t_player		player;
 	t_color			color;
 	t_save_text 	texture;
@@ -161,13 +165,42 @@ typedef struct		s_check
 	int				SS;
 }					t_check;
 
+typedef struct	s_trace
+{
+	double		projected_slice_height;
+	double		first_point_ax;
+	double		first_point_ay;
+	double		first_point_bx;
+	double		first_point_by;
+	double		len1;
+	double		len2;
+	double		len_line;
+	double		i;
+	double		angle;
+	double		len_to_viewport;
+	double		h_koef;
+	int			up_start;
+	int			h_texture;
+	int			down_stop;
+	int			save;
+	int			color;
+	int			check_1;
+	int			check_2;
+	int			flag1;
+	int			flag2;
+	int			tx;
+	int			h_k;
+	int			k;
+	char		*dst;
+}				t_trace;
+
 void    			ft_draw_sprite(t_mlx *mlx, double x, double y);
 void				ft_draw_map(t_mlx *mlx);
 void    			trace(t_mlx *mlx, double vector, int x);
 void				ft_parce(char *file_name, t_mlx *mlx);
 char				*ft_parce_map(int fd, char *line, t_mlx *mlx);
-int					check_map(char **map, t_mlx *mlx);
 int					check(char **map, int x, int y);
+void				check_map(char **map, t_mlx *mlx);
 int					ft_count_sprites(t_sprite *head);
 t_sprite			*ft_search_sprite(size_t id, t_sprite *head);
 int					save_bmp(t_mlx *mlx);
@@ -189,4 +222,18 @@ void				ft_lst_map_add(int len, char *str, t_map_len **head);
 int					ft_search_max_len_in_lst(t_map_len **head);
 void				ft_delete_sprite_by_rectangle(t_sprite **head, int x_rectangle, int y_rectangle);
 void 				draw_Sprite(t_mlx *mlx, t_sprite *sprite);
+void				ft_free_mlx(t_mlx *mlx);
+void				ft_check_len_to_wall(t_trace *trace, t_mlx *mlx);
+void				ft_get_wall_size(t_trace *trace, t_mlx *mlx, int x);
+void				ft_draw_roof(t_trace *trace, t_mlx *mlx, int x);
+void				ft_draw_wall(t_trace *trace, t_mlx *mlx, int x);
+void				ft_draw_floor(t_trace *trace, t_mlx *mlx, int x);
+int					search_wall_for_point_a(t_trace *trace);
+int					search_wall_for_point_b(t_trace *trace);
+void				ft_search_rectangle(t_mlx *mlx, t_trace *trace, int flag);
+int					ft_get_textures(char *str_1, const char *str_2, int *flag, char **mlx_str);
+int					ft_if_for_get_color(char **color, t_color_f_and_r *data);
+int					ft_get_color(const char *str_1, const char *str_2, int *flag, t_color_f_and_r *data);
+int					ft_get_resolution_size(char *str_1, char *str_2, const char *str_3, int *flag, t_screen_size *data);
+void				ft_get_map(t_check flag, char *line, int fd, t_mlx *mlx);
 #endif

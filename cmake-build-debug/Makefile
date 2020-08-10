@@ -123,33 +123,6 @@ cub3d/fast:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/build
 .PHONY : cub3d/fast
 
-ft_utils_2.o: ft_utils_2.c.o
-
-.PHONY : ft_utils_2.o
-
-# target to build an object file
-ft_utils_2.c.o:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_utils_2.c.o
-.PHONY : ft_utils_2.c.o
-
-ft_utils_2.i: ft_utils_2.c.i
-
-.PHONY : ft_utils_2.i
-
-# target to preprocess a source file
-ft_utils_2.c.i:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_utils_2.c.i
-.PHONY : ft_utils_2.c.i
-
-ft_utils_2.s: ft_utils_2.c.s
-
-.PHONY : ft_utils_2.s
-
-# target to generate assembly for a file
-ft_utils_2.c.s:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/ft_utils_2.c.s
-.PHONY : ft_utils_2.c.s
-
 libft/ft_atoi.o: libft/ft_atoi.c.o
 
 .PHONY : libft/ft_atoi.o
@@ -1662,6 +1635,33 @@ srcs/ft_draw_world.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_draw_world.c.s
 .PHONY : srcs/ft_draw_world.c.s
 
+srcs/ft_free_all_struct.o: srcs/ft_free_all_struct.c.o
+
+.PHONY : srcs/ft_free_all_struct.o
+
+# target to build an object file
+srcs/ft_free_all_struct.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_free_all_struct.c.o
+.PHONY : srcs/ft_free_all_struct.c.o
+
+srcs/ft_free_all_struct.i: srcs/ft_free_all_struct.c.i
+
+.PHONY : srcs/ft_free_all_struct.i
+
+# target to preprocess a source file
+srcs/ft_free_all_struct.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_free_all_struct.c.i
+.PHONY : srcs/ft_free_all_struct.c.i
+
+srcs/ft_free_all_struct.s: srcs/ft_free_all_struct.c.s
+
+.PHONY : srcs/ft_free_all_struct.s
+
+# target to generate assembly for a file
+srcs/ft_free_all_struct.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_free_all_struct.c.s
+.PHONY : srcs/ft_free_all_struct.c.s
+
 srcs/ft_init_struct.o: srcs/ft_init_struct.c.o
 
 .PHONY : srcs/ft_init_struct.o
@@ -1743,32 +1743,59 @@ srcs/ft_lst_in_map.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_lst_in_map.c.s
 .PHONY : srcs/ft_lst_in_map.c.s
 
-srcs/ft_parce_map_file.o: srcs/ft_parce_map_file.c.o
+srcs/ft_parce_map_file_1.o: srcs/ft_parce_map_file_1.c.o
 
-.PHONY : srcs/ft_parce_map_file.o
+.PHONY : srcs/ft_parce_map_file_1.o
 
 # target to build an object file
-srcs/ft_parce_map_file.c.o:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file.c.o
-.PHONY : srcs/ft_parce_map_file.c.o
+srcs/ft_parce_map_file_1.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_1.c.o
+.PHONY : srcs/ft_parce_map_file_1.c.o
 
-srcs/ft_parce_map_file.i: srcs/ft_parce_map_file.c.i
+srcs/ft_parce_map_file_1.i: srcs/ft_parce_map_file_1.c.i
 
-.PHONY : srcs/ft_parce_map_file.i
+.PHONY : srcs/ft_parce_map_file_1.i
 
 # target to preprocess a source file
-srcs/ft_parce_map_file.c.i:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file.c.i
-.PHONY : srcs/ft_parce_map_file.c.i
+srcs/ft_parce_map_file_1.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_1.c.i
+.PHONY : srcs/ft_parce_map_file_1.c.i
 
-srcs/ft_parce_map_file.s: srcs/ft_parce_map_file.c.s
+srcs/ft_parce_map_file_1.s: srcs/ft_parce_map_file_1.c.s
 
-.PHONY : srcs/ft_parce_map_file.s
+.PHONY : srcs/ft_parce_map_file_1.s
 
 # target to generate assembly for a file
-srcs/ft_parce_map_file.c.s:
-	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file.c.s
-.PHONY : srcs/ft_parce_map_file.c.s
+srcs/ft_parce_map_file_1.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_1.c.s
+.PHONY : srcs/ft_parce_map_file_1.c.s
+
+srcs/ft_parce_map_file_2.o: srcs/ft_parce_map_file_2.c.o
+
+.PHONY : srcs/ft_parce_map_file_2.o
+
+# target to build an object file
+srcs/ft_parce_map_file_2.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_2.c.o
+.PHONY : srcs/ft_parce_map_file_2.c.o
+
+srcs/ft_parce_map_file_2.i: srcs/ft_parce_map_file_2.c.i
+
+.PHONY : srcs/ft_parce_map_file_2.i
+
+# target to preprocess a source file
+srcs/ft_parce_map_file_2.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_2.c.i
+.PHONY : srcs/ft_parce_map_file_2.c.i
+
+srcs/ft_parce_map_file_2.s: srcs/ft_parce_map_file_2.c.s
+
+.PHONY : srcs/ft_parce_map_file_2.s
+
+# target to generate assembly for a file
+srcs/ft_parce_map_file_2.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_2.c.s
+.PHONY : srcs/ft_parce_map_file_2.c.s
 
 srcs/ft_replace_frame.o: srcs/ft_replace_frame.c.o
 
@@ -1905,6 +1932,33 @@ srcs/ft_utils.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_utils.c.s
 .PHONY : srcs/ft_utils.c.s
 
+srcs/ft_utils_2.o: srcs/ft_utils_2.c.o
+
+.PHONY : srcs/ft_utils_2.o
+
+# target to build an object file
+srcs/ft_utils_2.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_utils_2.c.o
+.PHONY : srcs/ft_utils_2.c.o
+
+srcs/ft_utils_2.i: srcs/ft_utils_2.c.i
+
+.PHONY : srcs/ft_utils_2.i
+
+# target to preprocess a source file
+srcs/ft_utils_2.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_utils_2.c.i
+.PHONY : srcs/ft_utils_2.c.i
+
+srcs/ft_utils_2.s: srcs/ft_utils_2.c.s
+
+.PHONY : srcs/ft_utils_2.s
+
+# target to generate assembly for a file
+srcs/ft_utils_2.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_utils_2.c.s
+.PHONY : srcs/ft_utils_2.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1914,9 +1968,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... cub3d"
-	@echo "... ft_utils_2.o"
-	@echo "... ft_utils_2.i"
-	@echo "... ft_utils_2.s"
 	@echo "... libft/ft_atoi.o"
 	@echo "... libft/ft_atoi.i"
 	@echo "... libft/ft_atoi.s"
@@ -2085,6 +2136,9 @@ help:
 	@echo "... srcs/ft_draw_world.o"
 	@echo "... srcs/ft_draw_world.i"
 	@echo "... srcs/ft_draw_world.s"
+	@echo "... srcs/ft_free_all_struct.o"
+	@echo "... srcs/ft_free_all_struct.i"
+	@echo "... srcs/ft_free_all_struct.s"
 	@echo "... srcs/ft_init_struct.o"
 	@echo "... srcs/ft_init_struct.i"
 	@echo "... srcs/ft_init_struct.s"
@@ -2094,9 +2148,12 @@ help:
 	@echo "... srcs/ft_lst_in_map.o"
 	@echo "... srcs/ft_lst_in_map.i"
 	@echo "... srcs/ft_lst_in_map.s"
-	@echo "... srcs/ft_parce_map_file.o"
-	@echo "... srcs/ft_parce_map_file.i"
-	@echo "... srcs/ft_parce_map_file.s"
+	@echo "... srcs/ft_parce_map_file_1.o"
+	@echo "... srcs/ft_parce_map_file_1.i"
+	@echo "... srcs/ft_parce_map_file_1.s"
+	@echo "... srcs/ft_parce_map_file_2.o"
+	@echo "... srcs/ft_parce_map_file_2.i"
+	@echo "... srcs/ft_parce_map_file_2.s"
 	@echo "... srcs/ft_replace_frame.o"
 	@echo "... srcs/ft_replace_frame.i"
 	@echo "... srcs/ft_replace_frame.s"
@@ -2112,6 +2169,9 @@ help:
 	@echo "... srcs/ft_utils.o"
 	@echo "... srcs/ft_utils.i"
 	@echo "... srcs/ft_utils.s"
+	@echo "... srcs/ft_utils_2.o"
+	@echo "... srcs/ft_utils_2.i"
+	@echo "... srcs/ft_utils_2.s"
 .PHONY : help
 
 

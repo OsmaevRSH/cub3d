@@ -6,5 +6,5 @@ C_FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacO
 
 C_DEFINES = 
 
-C_INCLUDES = -I/Users/ltheresi/Documents/cub3d/includes -I/Users/ltheresi/Documents/cub3d/libft -I/Users/ltheresi/Documents/cub3d/mlx 
+C_INCLUDES = -I/Users/ltheresi/Documents/cub3d/. -I/Users/ltheresi/Documents/cub3d/includes -I/Users/ltheresi/Documents/cub3d/libft -I/Users/ltheresi/Documents/cub3d/mlx -I/Users/ltheresi/Documents/cub3d/srcs -I/Users/ltheresi/Documents/cub3d/texture_bmp -I/Users/ltheresi/Documents/cub3d/texture_xpm 
 

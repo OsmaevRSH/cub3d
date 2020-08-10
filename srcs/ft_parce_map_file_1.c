@@ -9,88 +9,123 @@
 /*   Updated: 2020/08/06 20:52:39 by ltheresi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../includes/cub3d.h"
 
-void		ft_get_textures(char *str_1, const char *str_2, t_mlx *mlx, int *flag, char **mlx_str)
+int			ft_get_textures(char *str_1, const char *str_2,
+							   int *flag, char **mlx_str)
 {
-	int fd;
-	if ((fd = open(str_1, O_RDONLY)) && ft_check_file_extension(str_1, "xpm") && str_2 == NULL)
+	int		fd;
+
+	fd = open(str_1, O_RDONLY);
+	if (fd != -1 &&
+		ft_check_file_extension(str_1, "xpm") && str_2 == NULL)
 	{
 		*flag = 1;
 		close(fd);
 		*mlx_str = ft_strdup(str_1);
+		return (0);
 	}
 	else
 	{
-		printf("%s", "texture error");
-		exit(0);
+		if (fd != -1)
+		{
+			ft_putstr_fd("Error:\nInvalid texture\n", 1);
+			return (1);
+		}
+		perror("Texture error");
+		return (1);
 	}
 }
 
-void		ft_get_color(const char *str_1, const char *str_2, int *flag, t_color_f_and_r *data)
+int			ft_if_for_get_color(char **color, t_color_f_and_r *data)
 {
-	char **color;
+	if (color[3] == NULL)
+	{
+		if (ft_isdigit_from_string(color[0]) && ft_atoi(color[0])
+												>= 0 && ft_atoi(color[0]) <= 255
+			&& ft_isdigit_from_string(color[1]) && ft_atoi(color[1])
+												   >= 0 && ft_atoi(color[1]) <= 255
+			&& ft_isdigit_from_string(color[2]) && ft_atoi(color[2])
+												   >= 0 && ft_atoi(color[2]) <= 255)
+		{
+			(*data).r = ft_atoi(color[0]);
+			(*data).g = ft_atoi(color[1]);
+			(*data).b = ft_atoi(color[2]);
+		}
+		else
+		{
+			ft_putstr_fd("Error:\nInvalid color format\n", 1);
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int			ft_get_color(const char *str_1,
+							const char *str_2, int *flag, t_color_f_and_r *data)
+{
+	char	**color;
+	int		i;
+
+	i = 0;
 	if (str_1 && str_2 == NULL)
 	{
 		*flag = 1;
 		color = ft_split(str_1, ',');
-		if (color[3] == NULL)
-		{
-			if (ft_isdigit_from_string(color[0]) && ft_atoi(color[0]) >= 0 && ft_atoi(color[0]) <= 255
-			&& ft_isdigit_from_string(color[1]) && ft_atoi(color[1]) >= 0 && ft_atoi(color[1]) <= 255
-			&& ft_isdigit_from_string(color[2]) && ft_atoi(color[2]) >= 0 && ft_atoi(color[2]) <= 255)
-			{
-				(*data).r = ft_atoi(color[0]);
-				(*data).g = ft_atoi(color[1]);
-				(*data).b = ft_atoi(color[2]);
-			}
-			else
-			{
-				printf("%s", "invalid color");
-				exit(0);
-			}
-		}
+		if (ft_if_for_get_color(color, data))
+			return (1);
+		while (color[i] != NULL)
+			free(color[i++]);
+		free(color);
 	}
 	else
 	{
-		printf("%s", "invalid color");
-		exit(0);
+		ft_putstr_fd("Error:\nInvalid color format\n", 1);
+		return (1);
 	}
+	return (0);
 }
 
-void		ft_get_resolution_size(char *str_1, char *str_2, const char *str_3, int *flag, t_screen_size *data)
+int			ft_get_resolution_size(char *str_1, char *str_2,
+			const char *str_3, int *flag, t_screen_size *data)
 {
-	if (ft_isdigit_from_string(str_1) && ft_isdigit_from_string(str_2) && str_3 == NULL)
+	if (ft_isdigit_from_string(str_1) &&
+		ft_isdigit_from_string(str_2) && str_3 == NULL)
 	{
 		*flag = 1;
 		(*data).width = ft_atoi(str_1);
 		(*data).height = ft_atoi(str_2);
+		return (0);
 	}
 	else
 	{
-		printf("%s", "1");
-		exit(0);
+		ft_putstr_fd("Error:\nInvali format resolution\n", 1);
+		return (1);
 	}
 }
 
 void		ft_get_map(t_check flag, char *line, int fd, t_mlx *mlx)
 {
-	if (flag.F && flag.S && flag.EA && flag.WE && flag.SO && flag.NO && flag.R && flag.C)
+	if (flag.F && flag.S && flag.EA &&
+		flag.WE && flag.SO && flag.NO && flag.R && flag.C)
 	{
 		if (!(line = ft_parce_map(fd, line, mlx)))
 		{
-			printf("%s", "mapError");
-			exit(0);
+			ft_putstr_fd("Error:\nMap incorrect", 1);
+			ft_free_mlx(mlx);
+			exit(1);
 		}
 		mlx->map.worldMap = ft_split(line, '\n');
+		free(line);
 		check_map(mlx->map.worldMap, mlx);
-		return;
 	}
 	else
 	{
-		printf("%s", "mapError");
-		exit(0);
+		ft_putstr_fd("Error:\nInvalid map file\n", 1);
+		{
+			ft_free_mlx(mlx);
+			exit(1);
+		}
 	}
 }
 
@@ -100,63 +135,88 @@ void		ft_parce(char *file_name, t_mlx *mlx)
 	char *line;
 	char **split_str;
 	t_check flag;
+	int i;
+	int check;
 
-
+	ft_bzero(&flag, sizeof(t_check));
 	fd = open(file_name, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error map file");
+		exit(1);
+	}
 	while (get_next_line(fd, &line))
 	{
+		i = 0;
 		split_str = ft_split(line, ' ');
 		if (split_str[0] == NULL)
+		{
+			free(split_str);
+			free(line);
 			continue ;
+		}
 		else if (!ft_strncmp(split_str[0], "R", ft_strlen(split_str[0])) && flag.R == 0)
-			ft_get_resolution_size(split_str[1], split_str[2], split_str[3], &flag.R, &mlx->map.R);
+			check = ft_get_resolution_size(split_str[1], split_str[2], split_str[3], &flag.R, &mlx->map.R) == 0 ? 0 : 1;
 		else if (!ft_strncmp(split_str[0], "NO", ft_strlen(split_str[0])) && flag.NO == 0)
-			ft_get_textures(split_str[1], split_str[2], mlx, &flag.NO, &mlx->map.NO);
+			check = ft_get_textures(split_str[1], split_str[2], &flag.NO, &mlx->map.NO) == 0 ? 0 : 1;
 		else if (!ft_strncmp(split_str[0], "SO", ft_strlen(split_str[0])) && flag.SO == 0)
-			ft_get_textures(split_str[1], split_str[2], mlx, &flag.SO, &mlx->map.SO);
+			check = ft_get_textures(split_str[1], split_str[2], &flag.SO, &mlx->map.SO) == 0 ? 0 : 1;
 		else if (!ft_strncmp(split_str[0], "WE", ft_strlen(split_str[0])) && flag.WE == 0)
-			ft_get_textures(split_str[1], split_str[2], mlx, &flag.WE, &mlx->map.WE);
+			check = ft_get_textures(split_str[1], split_str[2], &flag.WE, &mlx->map.WE) == 0 ? 0 : 1;
 		else if (!ft_strncmp(split_str[0], "EA", ft_strlen(split_str[0])) && flag.EA == 0)
-			ft_get_textures(split_str[1], split_str[2], mlx, &flag.EA, &mlx->map.EA);
+			check = ft_get_textures(split_str[1], split_str[2], &flag.EA, &mlx->map.EA) == 0 ? 0 : 1;
 		else if (!ft_strncmp(split_str[0], "S", ft_strlen(split_str[0])) && flag.S == 0)
-			ft_get_textures(split_str[1], split_str[2], mlx, &flag.S, &mlx->map.S);
+			check = ft_get_textures(split_str[1], split_str[2], &flag.S, &mlx->map.S) == 0 ? 0 : 1;
 		else if (!ft_strncmp(split_str[0], "SS", ft_strlen(split_str[0])) && flag.SS == 0)
-			ft_get_textures(split_str[1], split_str[2], mlx, &flag.SS, &mlx->map.SS);
+			check = ft_get_textures(split_str[1], split_str[2], &flag.SS, &mlx->map.SS) == 0 ? 0 : 1;
 		else if (!ft_strncmp(split_str[0], "F", ft_strlen(split_str[0])) && flag.F == 0)
-			ft_get_color(split_str[1], split_str[2], &flag.F, &mlx->map.F);
+			check = ft_get_color(split_str[1], split_str[2], &flag.F, &mlx->map.F) == 0 ? 0 : 1;
 		else if (!ft_strncmp(split_str[0], "C", ft_strlen(split_str[0])) && flag.C == 0)
-			ft_get_color(split_str[1], split_str[2], &flag.C, &mlx->map.C);
+			check = ft_get_color(split_str[1], split_str[2], &flag.C, &mlx->map.C) == 0 ? 0 : 1;
 		else
 			ft_get_map(flag, line, fd, mlx);
+		while (split_str[i] != NULL)
+			free(split_str[i++]);
+		free(split_str);
+		free(line);
+		if (check == 1)
+		{
+			ft_free_mlx(mlx);
+			exit(1);
+		}
 	}
+	free(line);
 }
 
-int check_map(char **map, t_mlx *mlx)
+void check_map(char **map, t_mlx *mlx)
 {
 	int x;
 	int y;
 
 	x = mlx->player.rectangle_x;
 	y = mlx->player.rectangle_y;
-	check(map, x, y);
-	return (1);
+	if (check(map, x, y) == 1)
+	{
+		ft_free_mlx(mlx);
+		exit(1);
+	}
 }
 
 int check(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == '2' || map[y][x] == '.' || map[y][x] == '3')
-		return (1);
+		return (0);
 	if (map[y + 1][x] == ' ' || map[y][x + 1] == ' ' || map[y - 1][x] == ' ' || map[y][x - 1] == ' ')
 	{
-		printf("%s", "error map don't close");
-		exit(0);
+		ft_putstr_fd("Error:\nMap don`t close\n", 1);
+		return (1);
 	}
 	map[y][x] = '.';
 	check(map, x - 1, y);
 	check(map, x + 1, y);
 	check(map, x, y - 1);
 	check(map, x, y + 1);
-	return (1);
+	return (0);
 }
 
 void		check_count_player_in_map(const char *str, t_mlx *mlx)
@@ -170,8 +230,9 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 	{
 		if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'N' && str[i] != 'S' && str[i] != 'W' && str[i] != 'E' && str[i] != ' ' && str[i] != '3')
 		{
-			printf("%s", "map error1");
-			exit(0);
+			ft_putstr_fd("Error:\nInvalid symbol in map\n", 1);
+			ft_free_mlx(mlx);
+			exit(1);
 		}
 		if (str[i] == '2' || str[i] == '3')
 		{
@@ -185,8 +246,8 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 			count++;
 			if (count == 2)
 			{
-				printf("%s", "map error2");
-				exit(0);
+				ft_putstr_fd("Error:\nInvalid number of players\n", 1);
+				exit(1);
 			}
 			mlx->player.x = (i + 1) * 64 + 32;
 			mlx->player.rectangle_x = i + 1;
@@ -207,27 +268,26 @@ void		check_count_player_in_map(const char *str, t_mlx *mlx)
 
 char			*ft_parce_map(int fd, char *line, t_mlx *mlx)
 {
-	t_map_len	*str_in_map = NULL;
 	t_map_len	*tmp;
 	char		*tmp_str;
 	char		*str;
 
 	check_count_player_in_map(line, mlx);
-	ft_lst_map_add(ft_strlen(line), line, &str_in_map);
+	ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list);
 	while (get_next_line(fd, &line))
 	{
 		check_count_player_in_map(line, mlx);
-		ft_lst_map_add(ft_strlen(line), line, &str_in_map);
+		ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list);
 	}
 	check_count_player_in_map(line, mlx);
-	ft_lst_map_add(ft_strlen(line), line, &str_in_map);
-	mlx->count_elem_in_line_map = ft_search_max_len_in_lst(&str_in_map);
+	ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list);
+	mlx->count_elem_in_line_map = ft_search_max_len_in_lst(&mlx->head_for_map_len_list);
 	if (!(line = (char *)malloc(mlx->count_elem_in_line_map + 4)))
 		return (0);
 	ft_memset(line, ' ', mlx->count_elem_in_line_map + 2);
 	line[mlx->count_elem_in_line_map + 2] = '\n';
 	line[mlx->count_elem_in_line_map + 3] = '\0';
-	tmp = str_in_map;
+	tmp = mlx->head_for_map_len_list;
 	while (tmp)
 	{
 		if (!(str = (char *)malloc(mlx->count_elem_in_line_map + 4)))
@@ -244,13 +304,11 @@ char			*ft_parce_map(int fd, char *line, t_mlx *mlx)
 	}
 	if (!(str = (char *)malloc(mlx->count_elem_in_line_map + 4)))
 		return (0);
-	ft_memset(str, ' ', mlx->count_elem_in_line_map + 2);
-	str[mlx->count_elem_in_line_map + 2] = '\n';
+	ft_memset(str, ' ', mlx->count_elem_in_line_map + 3);
 	str[mlx->count_elem_in_line_map + 3] = '\0';
 	tmp_str = line;
 	line = ft_strjoin(line, str);
 	free(tmp_str);
+	free(str);
 	return (line);
 }
-
-

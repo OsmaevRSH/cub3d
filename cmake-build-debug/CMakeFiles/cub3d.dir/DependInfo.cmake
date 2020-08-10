@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/ltheresi/Documents/cub3d/ft_utils_2.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/ft_utils_2.c.o"
   "/Users/ltheresi/Documents/cub3d/libft/ft_atoi.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/libft/ft_atoi.c.o"
   "/Users/ltheresi/Documents/cub3d/libft/ft_bzero.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/libft/ft_bzero.c.o"
   "/Users/ltheresi/Documents/cub3d/libft/ft_calloc.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/libft/ft_calloc.c.o"
@@ -61,23 +60,30 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/ltheresi/Documents/cub3d/srcs/ft_create_bitmap.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_create_bitmap.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_draw_sprite.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_draw_sprite.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_draw_world.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_draw_world.c.o"
+  "/Users/ltheresi/Documents/cub3d/srcs/ft_free_all_struct.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_free_all_struct.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_init_struct.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_init_struct.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_key_press.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_key_press.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_lst_in_map.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_lst_in_map.c.o"
-  "/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_parce_map_file.c.o"
+  "/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file_1.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_1.c.o"
+  "/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file_2.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_2.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_replace_frame.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_replace_frame.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_sprite_list_1.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_sprite_list_1.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_sprite_list_2.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_sprite_list_2.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_trace.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_trace.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_utils.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_utils.c.o"
+  "/Users/ltheresi/Documents/cub3d/srcs/ft_utils_2.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_utils_2.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../."
   "../includes"
   "../libft"
   "../mlx"
+  "../srcs"
+  "../texture_bmp"
+  "../texture_xpm"
   )
 
 # Targets to which this target links.

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_trace.h"
+#include "../includes/cub3d.h"
 
 void				my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
@@ -25,20 +25,20 @@ void				ft_draw_map(t_mlx *mlx)
 {
 	unsigned int	x;
 	unsigned int	y;
-	unsigned int	map_x;
-	unsigned int	map_y;
+	unsigned int	value_x;
+	unsigned int	value_y;
 
 	x = 0;
 	y = 0;
-	map_x = mlx->count_elem_in_line_map + 2;
-	map_y = mlx->count_lines_in_map + 2;
-	while (x < map_x << 3u)
+	value_y = mlx->map.R.height <= 300 ? 2u : 3u;
+	value_x = mlx->map.R.width <= 500 ? 2u : 3u;
+	while (x < (unsigned int)(mlx->count_elem_in_line_map + 2) << value_x)
 	{
-		while (y < map_y << 3u)
+		while (y < (unsigned int)(mlx->count_lines_in_map + 2) << value_y)
 		{
-			if (mlx->map.worldMap[y >> 3u][x >> 3u] == '1')
+			if (mlx->map.worldMap[y >> value_y][x >> value_x] == '1')
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x0000FF00);
-			else if (mlx->map.worldMap[y >> 3u][x >> 3u] == '2')
+			else if (mlx->map.worldMap[y >> value_y][x >> value_x] == '2')
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x00000000);
 			else
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x000000FF);

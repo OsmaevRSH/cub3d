@@ -39,7 +39,11 @@ void			replace(t_mlx *mlx, double vector, double step)
 {
 	int			count_sprites;
 	double		x;
+	unsigned int	value_x;
+	unsigned int	value_y;
 
+	value_y = mlx->map.R.height <= 300 ? 4u : 3u;
+	value_x = mlx->map.R.width <= 500 ? 4u : 3u;
 	x = 0;
 	mlx_destroy_image(mlx->mlx, mlx->mlx_img);
 	if (!(mlx->mlx_img = mlx_new_image(mlx->mlx,
@@ -58,7 +62,7 @@ void			replace(t_mlx *mlx, double vector, double step)
 	if (count_sprites > 0)
 		ft_create_sprites(count_sprites, mlx);
 	ft_draw_map(mlx);
-	ft_draw_sprite(mlx, (unsigned int)mlx->player.x >> 3u,
-			(unsigned int)mlx->player.y >> 3u);
+	ft_draw_sprite(mlx, (unsigned int)mlx->player.x >> value_x,
+			(unsigned int)mlx->player.y >> value_y);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->mlx_img, 0, 0);
 }

@@ -44,9 +44,13 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/ltheresi/Documents/cub3d/."/>
 					<Add directory="/Users/ltheresi/Documents/cub3d/includes"/>
 					<Add directory="/Users/ltheresi/Documents/cub3d/libft"/>
 					<Add directory="/Users/ltheresi/Documents/cub3d/mlx"/>
+					<Add directory="/Users/ltheresi/Documents/cub3d/srcs"/>
+					<Add directory="/Users/ltheresi/Documents/cub3d/texture_bmp"/>
+					<Add directory="/Users/ltheresi/Documents/cub3d/texture_xpm"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
@@ -68,9 +72,13 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/ltheresi/Documents/cub3d/."/>
 					<Add directory="/Users/ltheresi/Documents/cub3d/includes"/>
 					<Add directory="/Users/ltheresi/Documents/cub3d/libft"/>
 					<Add directory="/Users/ltheresi/Documents/cub3d/mlx"/>
+					<Add directory="/Users/ltheresi/Documents/cub3d/srcs"/>
+					<Add directory="/Users/ltheresi/Documents/cub3d/texture_bmp"/>
+					<Add directory="/Users/ltheresi/Documents/cub3d/texture_xpm"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
@@ -95,16 +103,7 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/Screenshot.bmp">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/ft_utils_2.c">
-			<Option target="cub3d"/>
-		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/includes/cub3d.h">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/includes/ft_trace.h">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/Makefile">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/ft_atoi.c">
@@ -248,13 +247,7 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/get_next_line_utils.c">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/libft.a">
-			<Option target="cub3d"/>
-		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/libft/libft.h">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/maps/map1.cub">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/Makefile">
@@ -263,13 +256,7 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/font.c">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/interface.o">
-			<Option target="cub3d"/>
-		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/interface.swift">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/libmlx.dylib">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/man/man3/mlx.3">
@@ -290,34 +277,13 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx.h">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_image.o">
-			<Option target="cub3d"/>
-		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_image.swift">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_image.swiftdoc">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_image.swiftmodule">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_init.o">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_init.swift">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_init.swiftdoc">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_init.swiftmodule">
-			<Option target="cub3d"/>
-		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_png.c">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_png.o">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_rgb.c">
@@ -326,25 +292,10 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_string_put.c">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_string_put.o">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_window.o">
-			<Option target="cub3d"/>
-		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_window.swift">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_window.swiftdoc">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_window.swiftmodule">
-			<Option target="cub3d"/>
-		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_xpm.c">
-			<Option target="cub3d"/>
-		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/mlx/mlx_xpm.o">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/cub3d.c">
@@ -359,6 +310,9 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_draw_world.c">
 			<Option target="cub3d"/>
 		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_free_all_struct.c">
+			<Option target="cub3d"/>
+		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_init_struct.c">
 			<Option target="cub3d"/>
 		</Unit>
@@ -368,7 +322,10 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_lst_in_map.c">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file.c">
+		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file_1.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file_2.c">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_replace_frame.c">
@@ -384,6 +341,9 @@
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_utils.c">
+			<Option target="cub3d"/>
+		</Unit>
+		<Unit filename="/Users/ltheresi/Documents/cub3d/srcs/ft_utils_2.c">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/start.sh">
@@ -443,10 +403,10 @@
 		<Unit filename="/Users/ltheresi/Documents/cub3d/texture_xpm/WALL83.xpm">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/texture_xpm/pngwing.com.xpm">
+		<Unit filename="/Users/ltheresi/Documents/cub3d/texture_xpm/sprite.xpm">
 			<Option target="cub3d"/>
 		</Unit>
-		<Unit filename="/Users/ltheresi/Documents/cub3d/texture_xpm/sprite.xpm">
+		<Unit filename="/Users/ltheresi/Documents/cub3d/texture_xpm/Бесшовная-текстура-ковра-_6637.xpm">
 			<Option target="cub3d"/>
 		</Unit>
 		<Unit filename="/Users/ltheresi/Documents/cub3d/CMakeLists.txt">

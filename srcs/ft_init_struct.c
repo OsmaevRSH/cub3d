@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_trace.h"
+#include "../includes/cub3d.h"
 
 void	ft_init_mlx_img(t_mlx *mlx)
 {

@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/Users/ltheresi/Documents/cub3d/cub3d",
-            "args": [],
+            "args": ["maps/map1.cub"],
             "stopAtEntry": false,
             "cwd": "/Users/ltheresi/Documents/cub3d",
             "environment": [],

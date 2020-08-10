@@ -1,3 +1,3 @@
 make
 #make clean
-./cub3d
+./cub3d maps/map1.cub
