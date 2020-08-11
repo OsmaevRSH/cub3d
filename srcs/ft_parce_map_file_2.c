@@ -93,7 +93,15 @@ int			ft_get_resolution_size(t_mlx *mlx,
 	{
 		*flag = 1;
 		(*data).width = ft_atoi(mlx->str_1);
+		if ((*data).height > 1440)
+			(*data).height = 1440;
+		if ((*data).height < 200)
+			(*data).height = 200;
 		(*data).height = ft_atoi(mlx->str_2);
+		if ((*data).width > 2560)
+			(*data).width = 2560;
+		if ((*data).width < 320)
+			(*data).width = 320;
 		return (0);
 	}
 	else
@@ -105,17 +113,17 @@ int			ft_get_resolution_size(t_mlx *mlx,
 
 void		ft_get_map(t_check flag, char *line, int fd, t_mlx *mlx)
 {
-	if (flag.F && flag.S && flag.EA &&
-		flag.WE && flag.SO && flag.NO && flag.R && flag.C)
+	if (flag.f && flag.s && flag.ea &&
+		flag.we && flag.so && flag.no && flag.r && flag.c)
 	{
 		if (!(line = ft_parce_map(fd, line, mlx)))
 		{
 			ft_putstr_fd("Error:\nMap incorrect", 1);
 			ft_free_mlx(mlx, 1);
 		}
-		mlx->map.worldMap = ft_split(line, '\n');
+		mlx->map.world_map = ft_split(line, '\n');
 		free(line);
-		check_map(mlx->map.worldMap, mlx);
+		check_map(mlx->map.world_map, mlx);
 	}
 	else
 	{

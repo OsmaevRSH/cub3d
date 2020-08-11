@@ -30,15 +30,15 @@ void				ft_draw_map(t_mlx *mlx)
 
 	x = 0;
 	y = 0;
-	value_y = mlx->map.R.height <= 300 ? 2u : 3u;
-	value_x = mlx->map.R.width <= 500 ? 2u : 3u;
+	value_y = mlx->map.r.height <= 300 ? 2u : 3u;
+	value_x = mlx->map.r.width <= 500 ? 2u : 3u;
 	while (x < (unsigned int)(mlx->count_elem_in_line_map + 2) << value_x)
 	{
 		while (y < (unsigned int)(mlx->count_lines_in_map + 2) << value_y)
 		{
-			if (mlx->map.worldMap[y >> value_y][x >> value_x] == '1')
+			if (mlx->map.world_map[y >> value_y][x >> value_x] == '1')
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x0000FF00);
-			else if (mlx->map.worldMap[y >> value_y][x >> value_x] == '2')
+			else if (mlx->map.world_map[y >> value_y][x >> value_x] == '2')
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x00000000);
 			else
 				my_mlx_pixel_put(mlx, (int)x, (int)y, 0x000000FF);
@@ -63,14 +63,14 @@ void				ft_draw_sprite(t_mlx *mlx, double x, double y)
 	while (i <= len_line)
 	{
 		my_mlx_pixel_put(mlx, (int)(x + i * cos(mlx->player.angle)),
-				(int)(y + i * sin(mlx->player.angle)), mlx->color.RED);
+				(int)(y + i * sin(mlx->player.angle)), 0x00FF0000);
 		i++;
 	}
 	while (tmp_x < x + 3)
 	{
 		while (tmp_y < y + 3)
 		{
-			my_mlx_pixel_put(mlx, (int)tmp_x, (int)tmp_y, mlx->color.RED);
+			my_mlx_pixel_put(mlx, (int)tmp_x, (int)tmp_y, 0x00FF0000);
 			tmp_y++;
 		}
 		tmp_y = y - 4;
@@ -93,7 +93,7 @@ void				ft_search_rectangle(t_mlx *mlx, t_trace *trace, int flag)
 		while (trace->first_point_ax > 0 && trace->first_point_ay > 0 &&
 		trace->first_point_ax < (unsigned int)mlx->count_elem_in_line_map << 6u
 		&& trace->first_point_ay < (unsigned int)mlx->count_lines_in_map << 6u
-		&& mlx->map.worldMap[(unsigned int)trace->first_point_ay >> 6u]
+		&& mlx->map.world_map[(unsigned int)trace->first_point_ay >> 6u]
 		[(unsigned int)trace->first_point_ax >> 6u] != '1')
 		{
 			if (!search_wall_for_point_a(trace))
@@ -105,7 +105,7 @@ void				ft_search_rectangle(t_mlx *mlx, t_trace *trace, int flag)
 		while (trace->first_point_bx > 0 && trace->first_point_by > 0 &&
 		trace->first_point_bx < (unsigned int)mlx->count_elem_in_line_map << 6u
 		&& trace->first_point_by < (unsigned int)mlx->count_lines_in_map << 6u
-		&& mlx->map.worldMap[(unsigned int)trace->first_point_by >> 6u]
+		&& mlx->map.world_map[(unsigned int)trace->first_point_by >> 6u]
 		[(unsigned int)trace->first_point_bx >> 6u] != '1')
 		{
 			if (!search_wall_for_point_b(trace))

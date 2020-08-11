@@ -30,7 +30,7 @@ let MLX_SYNC_WIN_CMD_COMPLETED = Int32(3)
 
 
 
-/// C decl
+/// c decl
 
 
 @_cdecl("mlx_init")

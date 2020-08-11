@@ -14,20 +14,20 @@
 
 void	ft_init_mlx_img(t_mlx *mlx)
 {
-	mlx->mlx_img = mlx_new_image(mlx->mlx, mlx->map.R.width,
-	mlx->map.R.height);
+	mlx->mlx_img = mlx_new_image(mlx->mlx, mlx->map.r.width,
+	mlx->map.r.height);
 	mlx->texture.t1.mlx_img = mlx_xpm_file_to_image(mlx->mlx,
-	mlx->map.SO, &mlx->texture.t1.weight, &mlx->texture.t1.height);
+	mlx->map.so, &mlx->texture.t1.weight, &mlx->texture.t1.height);
 	mlx->texture.t2.mlx_img = mlx_xpm_file_to_image(mlx->mlx,
-	mlx->map.NO, &mlx->texture.t2.weight, &mlx->texture.t2.height);
+	mlx->map.no, &mlx->texture.t2.weight, &mlx->texture.t2.height);
 	mlx->texture.t3.mlx_img = mlx_xpm_file_to_image(mlx->mlx,
-	mlx->map.EA, &mlx->texture.t3.weight, &mlx->texture.t3.height);
+	mlx->map.ea, &mlx->texture.t3.weight, &mlx->texture.t3.height);
 	mlx->texture.t4.mlx_img = mlx_xpm_file_to_image(mlx->mlx,
-	mlx->map.WE, &mlx->texture.t4.weight, &mlx->texture.t4.height);
+	mlx->map.we, &mlx->texture.t4.weight, &mlx->texture.t4.height);
 	mlx->texture.sprite_1.mlx_img = mlx_xpm_file_to_image(mlx->mlx,
-	mlx->map.S, &mlx->texture.sprite_1.weight, &mlx->texture.sprite_1.height);
+	mlx->map.s, &mlx->texture.sprite_1.weight, &mlx->texture.sprite_1.height);
 	mlx->texture.sprite_2.mlx_img = mlx_xpm_file_to_image(mlx->mlx,
-	mlx->map.SS, &mlx->texture.sprite_2.weight, &mlx->texture.sprite_2.height);
+	mlx->map.ss, &mlx->texture.sprite_2.weight, &mlx->texture.sprite_2.height);
 }
 
 void	ft_init_mlx_addr(t_mlx *mlx)
@@ -59,9 +59,9 @@ void	ft_init_mlx_addr(t_mlx *mlx)
 void	ft_init_textures(t_mlx *mlx)
 {
 	mlx->texture.arr_len_trace =
-	(double *)malloc(sizeof(double) * mlx->map.R.width);
-	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->map.R.width,
-	mlx->map.R.height, "cub3d");
+	(double *)malloc(sizeof(double) * mlx->map.r.width);
+	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->map.r.width,
+	mlx->map.r.height, "cub3d");
 	ft_init_mlx_img(mlx);
 	ft_init_mlx_addr(mlx);
 }

@@ -44,21 +44,21 @@ void	ft_get_wall_size(t_trace *trace, t_mlx *mlx, int x)
 {
 	mlx->texture.arr_len_trace[x] = trace->len_line;
 	trace->len_line = trace->len_line * cos(mlx->player.angle - trace->angle);
-	trace->len_to_viewport = (((unsigned int)mlx->map.R.width
+	trace->len_to_viewport = (((unsigned int)mlx->map.r.width
 	>> 1u) / tan(M_PI / 6.0));
 	trace->projected_slice_height = (trace->len_to_viewport
-	/ (64 * trace->len_line)) * mlx->map.R.height;
-	trace->up_start = (int)(((unsigned int)mlx->map.R.height >> 1u)
+	/ (64 * trace->len_line)) * mlx->map.r.height;
+	trace->up_start = (int)(((unsigned int)mlx->map.r.height >> 1u)
 	- trace->projected_slice_height + mlx->player.tilt);
 	trace->h_texture = 64;
 	trace->h_koef = trace->h_texture / (trace->projected_slice_height * 2);
 	trace->save = trace->up_start;
 	if (trace->up_start <= 0)
 		trace->up_start = 0;
-	trace->down_stop = (int)(((unsigned int)mlx->map.R.height >> 1u)
+	trace->down_stop = (int)(((unsigned int)mlx->map.r.height >> 1u)
 	+ trace->projected_slice_height + mlx->player.tilt);
-	if (trace->down_stop >= mlx->map.R.height)
-		trace->down_stop = mlx->map.R.height - 1;
+	if (trace->down_stop >= mlx->map.r.height)
+		trace->down_stop = mlx->map.r.height - 1;
 }
 
 void	ft_draw_roof(t_trace *trace, t_mlx *mlx, int x)
@@ -72,7 +72,7 @@ void	ft_draw_roof(t_trace *trace, t_mlx *mlx, int x)
 			mlx->mlx_line_length + abs(x) *
 			((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
 			*(unsigned int*)trace->dst =
-			ft_get_color_from_rgb(mlx->map.C.r, mlx->map.C.g, mlx->map.C.b);
+			ft_get_color_from_rgb(mlx->map.c.r, mlx->map.c.g, mlx->map.c.b);
 			trace->k++;
 		}
 	}
@@ -102,16 +102,16 @@ void	ft_draw_wall(t_trace *trace, t_mlx *mlx, int x)
 
 void	ft_draw_floor(t_trace *trace, t_mlx *mlx, int x)
 {
-	if (trace->k < mlx->map.R.height - 1)
+	if (trace->k < mlx->map.r.height - 1)
 	{
 		trace->k = trace->down_stop;
-		while (trace->k < mlx->map.R.height - 1)
+		while (trace->k < mlx->map.r.height - 1)
 		{
 			trace->dst = mlx->mlx_addr + (abs(trace->k) *
 			mlx->mlx_line_length + abs(x) *
 			((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
 			*(unsigned int *)trace->dst =
-			ft_get_color_from_rgb(mlx->map.F.r, mlx->map.F.g, mlx->map.F.b);
+			ft_get_color_from_rgb(mlx->map.f.r, mlx->map.f.g, mlx->map.f.b);
 			trace->k++;
 		}
 	}

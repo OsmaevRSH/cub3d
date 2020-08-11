@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free_all_struct.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/11 14:57:03 by ltheresi          #+#    #+#             */
+/*   Updated: 2020/08/11 14:57:05 by ltheresi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void		ft_free_map_list(t_map_len **head)
@@ -33,32 +45,31 @@ static void		ft_free_texture(t_texture *texture)
 	free(texture->mlx_img);
 }
 
-static void 	ft_free_map(t_mlx *mlx)
+static void		ft_free_map(t_mlx *mlx)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	free(mlx->mlx);
 	free(mlx->mlx_win);
 	free(mlx->mlx_img);
 	free(mlx->mlx_addr);
-	free(mlx->map.NO);
-	free(mlx->map.SO);
-	free(mlx->map.WE);
-	free(mlx->map.EA);
-	free(mlx->map.S);
-	free(mlx->map.SS);
-	if (mlx->map.worldMap)
+	free(mlx->map.no);
+	free(mlx->map.so);
+	free(mlx->map.we);
+	free(mlx->map.ea);
+	free(mlx->map.s);
+	free(mlx->map.ss);
+	if (mlx->map.world_map)
 	{
-		while (mlx->map.worldMap[i] != NULL)
-			free(mlx->map.worldMap[i++]);
-		free(mlx->map.worldMap);
+		while (mlx->map.world_map[i] != NULL)
+			free(mlx->map.world_map[i++]);
+		free(mlx->map.world_map);
 	}
 }
 
-void		ft_free_mlx(t_mlx *mlx, int flag)
+void			ft_free_mlx(t_mlx *mlx, int flag)
 {
-
 	ft_free_map(mlx);
 	ft_free_map_list(&mlx->head_for_map_len_list);
 	ft_free_sprite_list(&mlx->head_for_sprite_list);
@@ -74,4 +85,3 @@ void		ft_free_mlx(t_mlx *mlx, int flag)
 	else
 		exit(0);
 }
-

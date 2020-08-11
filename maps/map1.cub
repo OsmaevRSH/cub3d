@@ -1,23 +1,23 @@
-R 1920 1080
+r 1920 1080
 
 
 
-NO ./texture_xpm/WALL74.xpm
+no ./texture_xpm/WALL74.xpm
 
 
 
-SO ./texture_xpm/WALL1.xpm
-WE ./texture_xpm/WALL76.xpm
+so ./texture_xpm/WALL1.xpm
+we ./texture_xpm/WALL76.xpm
 
-EA ./texture_xpm/WALL83.xpm
-S ./texture_xpm/1111.xpm
-SS ./texture_xpm/sprite.xpm
+ea ./texture_xpm/WALL83.xpm
+s ./texture_xpm/1111.xpm
+ss ./texture_xpm/sprite.xpm
 
 
 
-F 220,100,0
+f 220,100,0
 
-C 225,30,0
+c 225,30,0
 
 
 

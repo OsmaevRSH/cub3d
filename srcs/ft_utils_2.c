@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-int	close_window(t_mlx *mlx)
+int		close_window(t_mlx *mlx)
 {
 	ft_free_mlx(mlx, 0);
 	return (0);

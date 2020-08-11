@@ -33,8 +33,8 @@ static int				ft_create_bitmap(int size_bitmap, int fd, t_mlx mlx)
 	ft_set_hex(size_bitmap, header + 2);
 	ft_set_hex(54, header + 10);
 	ft_set_hex(40, header + 14);
-	ft_set_hex(mlx.map.R.width, header + 18);
-	ft_set_hex(mlx.map.R.height, header + 22);
+	ft_set_hex(mlx.map.r.width, header + 18);
+	ft_set_hex(mlx.map.r.height, header + 22);
 	header[26] = (unsigned char)1;
 	header[28] = (unsigned char)24;
 	return (write(fd, header, 54));
@@ -45,7 +45,7 @@ static int				ft_get_bitmap_color(t_mlx *mlx, int x, int y)
 	char				*color;
 	int					rgb;
 
-	color = mlx->mlx_addr + (abs(y - mlx->map.R.height + 1) *
+	color = mlx->mlx_addr + (abs(y - mlx->map.r.height + 1) *
 	mlx->mlx_line_length + abs(x) *
 	((unsigned int)mlx->mlx_bits_per_pixel >> 3u));
 	rgb = *(int *)color;
@@ -60,9 +60,9 @@ static void				ft_create_bitmap_raster_data(t_mlx *mlx, int fd)
 
 	i = 0;
 	j = 0;
-	while (i < mlx->map.R.height)
+	while (i < mlx->map.r.height)
 	{
-		while (j < mlx->map.R.width)
+		while (j < mlx->map.r.width)
 		{
 			color = ft_get_bitmap_color(mlx, j, i);
 			write(fd, &color, 3);
@@ -79,7 +79,7 @@ int						save_bmp(t_mlx *mlx)
 	int					bitmap_size;
 
 	fd = open("Screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0666);
-	bitmap_size = (mlx->map.R.width * mlx->map.R.height * 4) + 54;
+	bitmap_size = (mlx->map.r.width * mlx->map.r.height * 4) + 54;
 	ft_create_bitmap(bitmap_size, fd, *mlx);
 	ft_create_bitmap_raster_data(mlx, fd);
 	close(fd);
