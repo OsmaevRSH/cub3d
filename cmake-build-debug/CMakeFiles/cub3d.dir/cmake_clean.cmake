@@ -61,6 +61,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/cub3d.dir/srcs/ft_lst_in_map.c.o"
   "CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_1.c.o"
   "CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_2.c.o"
+  "CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_3.c.o"
+  "CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_4.c.o"
   "CMakeFiles/cub3d.dir/srcs/ft_replace_frame.c.o"
   "CMakeFiles/cub3d.dir/srcs/ft_sprite_list_1.c.o"
   "CMakeFiles/cub3d.dir/srcs/ft_sprite_list_2.c.o"

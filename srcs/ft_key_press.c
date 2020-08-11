@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static void		ft_left_right(int keycode, t_mlx *mlx)
+void		ft_left_right(int keycode, t_mlx *mlx)
 {
 	if (keycode == 123)
 	{
@@ -28,7 +28,7 @@ static void		ft_left_right(int keycode, t_mlx *mlx)
 	}
 }
 
-static void		ft_tilt_up_down(int keycode, t_mlx *mlx)
+void		ft_tilt_up_down(int keycode, t_mlx *mlx)
 {
 	if (keycode == 125)
 	{
@@ -42,7 +42,7 @@ static void		ft_tilt_up_down(int keycode, t_mlx *mlx)
 	}
 }
 
-static void		ft_go_left_right(int keycode, t_mlx *mlx)
+void		ft_go_left_right(int keycode, t_mlx *mlx)
 {
 	if (keycode == 0)
 	{
@@ -68,7 +68,7 @@ static void		ft_go_left_right(int keycode, t_mlx *mlx)
 	}
 }
 
-static void		ft_go_forward_back(int keycode, t_mlx *mlx)
+void		ft_go_forward_back(int keycode, t_mlx *mlx)
 {
 	if (keycode == 13)
 	{
@@ -98,15 +98,10 @@ int				key_press(int keycode, t_mlx *mlx)
 {
 	char		*output_count_sprites;
 	char		*count;
+
 	if (keycode == 53)
-	{
-		ft_free_mlx(mlx);
-		exit(0);
-	}
-	ft_left_right(keycode, mlx);
-	ft_go_left_right(keycode, mlx);
-	ft_go_forward_back(keycode, mlx);
-	ft_tilt_up_down(keycode, mlx);
+		ft_free_mlx(mlx, 0);
+	ft_key_events(keycode, mlx);
 	if ((mlx->map.worldMap[(unsigned int)(mlx->player.y) >> 6u]
 	[(unsigned int)(mlx->player.x) >> 6u]) == '2')
 	{
@@ -118,11 +113,11 @@ int				key_press(int keycode, t_mlx *mlx)
 	}
 	replace(mlx, -M_PI / 6, M_PI / (3 * mlx->map.R.width));
 	output_count_sprites = ft_strjoin("Number of collected sprites: ",
-			count = ft_itoa(mlx->collect_sprites));
+	count = ft_itoa(mlx->collect_sprites));
 	free(count);
 	mlx_string_put(mlx->mlx, mlx->mlx_win, (int)(mlx->map.R.width
 	/ 2 - 5 * ft_strlen(output_count_sprites)), mlx->map.R.height - 50,
-			0x00000FFFF, output_count_sprites);
+	0x00000FFFF, output_count_sprites);
 	free(output_count_sprites);
 	return (0);
 }

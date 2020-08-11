@@ -46,8 +46,7 @@ int         main(int argc, char **argv)
 		if (argc == 3 && !ft_strncmp(argv[2], "--save", 6))
 		{
 			save_bmp(&mlx);
-			ft_free_mlx(&mlx);
-			exit(0);
+			ft_free_mlx(&mlx, 0);
 		}
 		count = ft_itoa(mlx.collect_sprites);
 		output_count_sprites = ft_strjoin("Number of collected sprites: ", count);

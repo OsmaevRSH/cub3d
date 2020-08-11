@@ -19,6 +19,8 @@ HEADER = headers/cub3d.h
 SRC = srcs/cub3d.c \
 		srcs/ft_parce_map_file_1.c \
 		srcs/ft_parce_map_file_2.c \
+		srcs/ft_parce_map_file_3.c \
+		srcs/ft_parce_map_file_4.c \
 		srcs/ft_sprite_list_1.c \
 		srcs/ft_create_bitmap.c \
 		srcs/ft_trace.c \

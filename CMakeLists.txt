@@ -116,4 +116,4 @@ add_executable(cub3d
     Makefile
     README.md
     Screenshot.bmp
-    start.sh)
+    start.sh srcs/ft_parce_map_file_3.c srcs/ft_parce_map_file_4.c)

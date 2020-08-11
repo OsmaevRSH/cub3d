@@ -66,6 +66,8 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/ltheresi/Documents/cub3d/srcs/ft_lst_in_map.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_lst_in_map.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file_1.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_1.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file_2.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_2.c.o"
+  "/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file_3.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_3.c.o"
+  "/Users/ltheresi/Documents/cub3d/srcs/ft_parce_map_file_4.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_4.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_replace_frame.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_replace_frame.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_sprite_list_1.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_sprite_list_1.c.o"
   "/Users/ltheresi/Documents/cub3d/srcs/ft_sprite_list_2.c" "/Users/ltheresi/Documents/cub3d/cmake-build-debug/CMakeFiles/cub3d.dir/srcs/ft_sprite_list_2.c.o"

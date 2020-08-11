@@ -1,12 +1,26 @@
 R 1920 1080
+
+
+
 NO ./texture_xpm/WALL74.xpm
+
+
+
 SO ./texture_xpm/WALL1.xpm
 WE ./texture_xpm/WALL76.xpm
+
 EA ./texture_xpm/WALL83.xpm
 S ./texture_xpm/1111.xpm
 SS ./texture_xpm/sprite.xpm
+
+
+
 F 220,100,0
+
 C 225,30,0
+
+
+
             1111111111111111111111111
             1000300000110003000003001
             1011000001110302002000001

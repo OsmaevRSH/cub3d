@@ -1797,6 +1797,60 @@ srcs/ft_parce_map_file_2.c.s:
 	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_2.c.s
 .PHONY : srcs/ft_parce_map_file_2.c.s
 
+srcs/ft_parce_map_file_3.o: srcs/ft_parce_map_file_3.c.o
+
+.PHONY : srcs/ft_parce_map_file_3.o
+
+# target to build an object file
+srcs/ft_parce_map_file_3.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_3.c.o
+.PHONY : srcs/ft_parce_map_file_3.c.o
+
+srcs/ft_parce_map_file_3.i: srcs/ft_parce_map_file_3.c.i
+
+.PHONY : srcs/ft_parce_map_file_3.i
+
+# target to preprocess a source file
+srcs/ft_parce_map_file_3.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_3.c.i
+.PHONY : srcs/ft_parce_map_file_3.c.i
+
+srcs/ft_parce_map_file_3.s: srcs/ft_parce_map_file_3.c.s
+
+.PHONY : srcs/ft_parce_map_file_3.s
+
+# target to generate assembly for a file
+srcs/ft_parce_map_file_3.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_3.c.s
+.PHONY : srcs/ft_parce_map_file_3.c.s
+
+srcs/ft_parce_map_file_4.o: srcs/ft_parce_map_file_4.c.o
+
+.PHONY : srcs/ft_parce_map_file_4.o
+
+# target to build an object file
+srcs/ft_parce_map_file_4.c.o:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_4.c.o
+.PHONY : srcs/ft_parce_map_file_4.c.o
+
+srcs/ft_parce_map_file_4.i: srcs/ft_parce_map_file_4.c.i
+
+.PHONY : srcs/ft_parce_map_file_4.i
+
+# target to preprocess a source file
+srcs/ft_parce_map_file_4.c.i:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_4.c.i
+.PHONY : srcs/ft_parce_map_file_4.c.i
+
+srcs/ft_parce_map_file_4.s: srcs/ft_parce_map_file_4.c.s
+
+.PHONY : srcs/ft_parce_map_file_4.s
+
+# target to generate assembly for a file
+srcs/ft_parce_map_file_4.c.s:
+	$(MAKE) -f CMakeFiles/cub3d.dir/build.make CMakeFiles/cub3d.dir/srcs/ft_parce_map_file_4.c.s
+.PHONY : srcs/ft_parce_map_file_4.c.s
+
 srcs/ft_replace_frame.o: srcs/ft_replace_frame.c.o
 
 .PHONY : srcs/ft_replace_frame.o
@@ -2154,6 +2208,12 @@ help:
 	@echo "... srcs/ft_parce_map_file_2.o"
 	@echo "... srcs/ft_parce_map_file_2.i"
 	@echo "... srcs/ft_parce_map_file_2.s"
+	@echo "... srcs/ft_parce_map_file_3.o"
+	@echo "... srcs/ft_parce_map_file_3.i"
+	@echo "... srcs/ft_parce_map_file_3.s"
+	@echo "... srcs/ft_parce_map_file_4.o"
+	@echo "... srcs/ft_parce_map_file_4.i"
+	@echo "... srcs/ft_parce_map_file_4.s"
 	@echo "... srcs/ft_replace_frame.o"
 	@echo "... srcs/ft_replace_frame.i"
 	@echo "... srcs/ft_replace_frame.s"
