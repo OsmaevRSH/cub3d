@@ -88,18 +88,24 @@ int			ft_get_color(t_mlx *mlx, int *flag, t_color_f_and_r *data)
 int			ft_get_resolution_size(t_mlx *mlx,
 			const char *str_3, int *flag, t_screen_size *data)
 {
+	int w;
+	int h;
+
+	mlx_get_screen_size(mlx->mlx, &w, &h);
+	ft_putnbr_fd(w, 1);
+	ft_putnbr_fd(h, 1);
 	if (ft_isdigit_from_string(mlx->str_1) &&
 		ft_isdigit_from_string(mlx->str_2) && str_3 == NULL)
 	{
 		*flag = 1;
 		(*data).width = ft_atoi(mlx->str_1);
-		if ((*data).height > 1440)
-			(*data).height = 1440;
+		if ((*data).height > h)
+			(*data).height = h;
 		if ((*data).height < 200)
 			(*data).height = 200;
 		(*data).height = ft_atoi(mlx->str_2);
-		if ((*data).width > 2560)
-			(*data).width = 2560;
+		if ((*data).width > w)
+			(*data).width = w;
 		if ((*data).width < 320)
 			(*data).width = 320;
 		return (0);

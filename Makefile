@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ltheresi <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/08/06 20:53:58 by ltheresi          #+#    #+#              #
-#    Updated: 2020/08/06 20:54:00 by ltheresi         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = cub3d
 CC = gcc -g
 FLAGS = -Wall -Wextra -Werror
@@ -37,26 +25,31 @@ SRC = srcs/cub3d.c \
 
 OBJ = $(SRC:.c=.o)
 
+%.o: %.c
+		$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+
 all: $(NAME)
+
+$(NAME): $(OBJ) libft mlx
+		cp ./mlx/libmlx.dylib ./
+		$(CC) -Lmlx ./libft/libft.a -lmlx -framework OpenGL -framework AppKit $(OBJ) -o $(NAME)
 
 libft:
 		$(MAKE) -C libft
 
-$(NAME): $(OBJ) libft
-		$(CC) ./libft/libft.a -lmlx -framework OpenGL -framework AppKit $(OBJ) -o $(NAME)
-
-%.o: %.c $(HEADER)
-		$(CC) $(FLAGS) $(LIB) -c $< -o $@
+mlx:
+		$(MAKE) -C mlx
 
 clean:
 		/bin/rm $(OBJ)
 		$(MAKE) -C libft clean
+		$(MAKE) -C mlx clean
 
 fclean:
-		/bin/rm $(OBJ) $(NAME)
+		/bin/rm -rf $(OBJ) $(NAME)
+		/bin/rm -rf libmlx.dylib
 		$(MAKE) -C libft fclean
-
 
 re:		fclean all
 
-.PHONY: clean fclean all re libft
+.PHONY: clean fclean all re libft mlx

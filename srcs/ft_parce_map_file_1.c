@@ -104,8 +104,6 @@ void			ft_parce_map_3(t_mlx *mlx, char **line)
 
 char			*ft_parce_map(int fd, char *line, t_mlx *mlx)
 {
-	t_map_len	*tmp;
-
 	check_count_player_in_map(line, mlx);
 	if (!(ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list)))
 		ft_free_mlx(mlx, 1);
