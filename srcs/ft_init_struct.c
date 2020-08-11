@@ -58,8 +58,9 @@ void	ft_init_mlx_addr(t_mlx *mlx)
 
 void	ft_init_textures(t_mlx *mlx)
 {
-	mlx->texture.arr_len_trace =
-	(double *)malloc(sizeof(double) * mlx->map.r.width);
+	if (!(mlx->texture.arr_len_trace =
+	(double *)malloc(sizeof(double) * mlx->map.r.width)))
+		ft_free_mlx(mlx, 1);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->map.r.width,
 	mlx->map.r.height, "cub3d");
 	ft_init_mlx_img(mlx);

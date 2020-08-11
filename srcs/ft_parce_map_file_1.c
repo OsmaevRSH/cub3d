@@ -107,23 +107,26 @@ char			*ft_parce_map(int fd, char *line, t_mlx *mlx)
 	t_map_len	*tmp;
 
 	check_count_player_in_map(line, mlx);
-	ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list);
+	if (!(ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list)))
+		ft_free_mlx(mlx, 1);
 	while (get_next_line(fd, &line))
 	{
 		check_count_player_in_map(line, mlx);
-		ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list);
+		if (!(ft_lst_map_add(ft_strlen(line),
+		line, &mlx->head_for_map_len_list)))
+			ft_free_mlx(mlx, 1);
 	}
 	check_count_player_in_map(line, mlx);
-	ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list);
+	if (!(ft_lst_map_add(ft_strlen(line), line, &mlx->head_for_map_len_list)))
+		ft_free_mlx(mlx, 1);
 	mlx->count_elem_in_line_map =
 	ft_search_max_len_in_lst(&mlx->head_for_map_len_list);
 	if (!(line = (char *)malloc(mlx->count_elem_in_line_map + 4)))
-		return (0);
+		ft_free_mlx(mlx, 1);
 	ft_memset(line, ' ', mlx->count_elem_in_line_map + 2);
 	line[mlx->count_elem_in_line_map + 2] = '\n';
 	line[mlx->count_elem_in_line_map + 3] = '\0';
-	tmp = mlx->head_for_map_len_list;
-	ft_parce_map_2(tmp, mlx, &line);
+	ft_parce_map_2(mlx->head_for_map_len_list, mlx, &line);
 	ft_parce_map_3(mlx, &line);
 	return (line);
 }

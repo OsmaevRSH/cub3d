@@ -203,7 +203,7 @@ int						ft_draw_sprite_one(t_mlx *mlx);
 void					ft_draw_sprite_two(t_mlx *mlx);
 void					ft_draw_sprite_three(t_mlx *mlx,
 						t_sprite *sprite, int save);
-void					ft_push_back_new_sprite(int x, int y,
+int						ft_push_back_new_sprite(int x, int y,
 						t_sprite **head, int text_id);
 void					ft_swap_elem_in_list(t_sprite *first,
 						t_sprite *second, t_sprite **head);
@@ -216,7 +216,7 @@ void					my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 int						close_window(t_mlx *mlx);
 void					ft_init_textures(t_mlx *mlx);
 int						ft_get_color_from_rgb(int r, int g, int b);
-void					ft_lst_map_add(int len, char *str, t_map_len **head);
+int						ft_lst_map_add(int len, char *str, t_map_len **head);
 int						ft_search_max_len_in_lst(t_map_len **head);
 void					ft_delete_sprite_by_rectangle(t_sprite **head,
 						int x_rectangle, int y_rectangle);

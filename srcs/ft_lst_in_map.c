@@ -24,19 +24,24 @@ static t_map_len	*ft_lst_map_new(int len, char *str)
 	return (data);
 }
 
-void				ft_lst_map_add(int len, char *str, t_map_len **head)
+int					ft_lst_map_add(int len, char *str, t_map_len **head)
 {
 	t_map_len		*tmp;
 
 	tmp = *head;
 	if (!*head)
-		*head = ft_lst_map_new(len, str);
+	{
+		if (!(*head = ft_lst_map_new(len, str)))
+			return (0);
+	}
 	else
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = ft_lst_map_new(len, str);
+		if (!(tmp->next = ft_lst_map_new(len, str)))
+			return (0);
 	}
+	return (1);
 }
 
 int					ft_search_max_len_in_lst(t_map_len **head)

@@ -72,13 +72,19 @@ void			ft_check_sprite(const char *str, t_mlx *mlx, int i)
 	if (str[i] == '2' || str[i] == '3')
 	{
 		if (str[i] == '2')
-			ft_push_back_new_sprite((i + 1) * 64 + 32,
-									mlx->count_lines_in_map * 64 + 32,
-									&mlx->head_for_sprite_list, 0);
+		{
+			if (!(ft_push_back_new_sprite((i + 1) * 64 + 32,
+			mlx->count_lines_in_map * 64 + 32,
+			&mlx->head_for_sprite_list, 0)))
+				ft_free_mlx(mlx, 1);
+		}
 		else
-			ft_push_back_new_sprite((i + 1) * 64 + 32,
-									mlx->count_lines_in_map * 64 + 32,
-									&mlx->head_for_sprite_list, 1);
+		{
+			if (!(ft_push_back_new_sprite((i + 1) * 64 + 32,
+			mlx->count_lines_in_map * 64 + 32,
+			&mlx->head_for_sprite_list, 1)))
+				ft_free_mlx(mlx, 1);
+		}
 	}
 }
 

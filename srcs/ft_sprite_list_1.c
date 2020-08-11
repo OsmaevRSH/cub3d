@@ -26,7 +26,7 @@ static t_sprite		*ft_create_new_sprite(int x, int y, size_t id, int text_id)
 	return (new_list);
 }
 
-void				ft_push_back_new_sprite(int x, int y,
+int					ft_push_back_new_sprite(int x, int y,
 					t_sprite **head, int text_id)
 {
 	t_sprite		*tmp_list;
@@ -34,14 +34,19 @@ void				ft_push_back_new_sprite(int x, int y,
 
 	tmp_list = *head;
 	if (!tmp_list)
-		*head = ft_create_new_sprite(x, y, id, text_id);
+	{
+		if (!(*head = ft_create_new_sprite(x, y, id, text_id)))
+			return (0);
+	}
 	else
 	{
 		while (tmp_list->next)
 			tmp_list = tmp_list->next;
-		tmp_list->next = ft_create_new_sprite(x, y, id, text_id);
+		if (!(tmp_list->next = ft_create_new_sprite(x, y, id, text_id)))
+			return (0);
 	}
 	id++;
+	return (1);
 }
 
 int					ft_count_sprites(t_sprite *head)
