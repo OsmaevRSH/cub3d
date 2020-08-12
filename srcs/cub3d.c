@@ -45,11 +45,9 @@ int			ft_write_cub(t_mlx *mlx, char **argv, int argc)
 {
 	char	*output_count_sprites;
 	char	*count;
-	int a, b;
 
 	ft_bzero(mlx, sizeof(*mlx));
 	mlx->mlx = mlx_init();
-	mlx_get_screen_size(mlx->mlx, &a, &b);
 	ft_parce(argv[1], mlx);
 	ft_init_textures(mlx);
 	ft_argc_3(argc, argv, mlx);

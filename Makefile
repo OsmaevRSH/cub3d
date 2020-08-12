@@ -26,7 +26,7 @@ SRC = srcs/cub3d.c \
 OBJ = $(SRC:.c=.o)
 
 %.o: %.c
-		$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+		$(CC) $(FLAGS) -Imlx -c $< -o $@
 
 all: $(NAME)
 
@@ -41,13 +41,14 @@ mlx:
 		$(MAKE) -C mlx
 
 clean:
-		/bin/rm $(OBJ)
+		/bin/rm -rf $(OBJ)
 		$(MAKE) -C libft clean
 		$(MAKE) -C mlx clean
 
 fclean:
 		/bin/rm -rf $(OBJ) $(NAME)
 		/bin/rm -rf libmlx.dylib
+		$(MAKE) -C mlx clean
 		$(MAKE) -C libft fclean
 
 re:		fclean all

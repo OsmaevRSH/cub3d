@@ -92,8 +92,6 @@ int			ft_get_resolution_size(t_mlx *mlx,
 	int h;
 
 	mlx_get_screen_size(mlx->mlx, &w, &h);
-	ft_putnbr_fd(w, 1);
-	ft_putnbr_fd(h, 1);
 	if (ft_isdigit_from_string(mlx->str_1) &&
 		ft_isdigit_from_string(mlx->str_2) && str_3 == NULL)
 	{
