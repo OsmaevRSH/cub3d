@@ -48,6 +48,11 @@ int			ft_write_cub(t_mlx *mlx, char **argv, int argc)
 
 	ft_bzero(mlx, sizeof(*mlx));
 	mlx->mlx = mlx_init();
+	if (!ft_check_file_extension(argv[1], "cub"))
+	{
+		ft_putstr_fd("Error:\nInvalid file extention\n", 1);
+		ft_free_mlx(mlx, 1);
+	}
 	ft_parce(argv[1], mlx);
 	ft_init_textures(mlx);
 	ft_argc_3(argc, argv, mlx);

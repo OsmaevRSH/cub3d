@@ -97,15 +97,15 @@ int			ft_get_resolution_size(t_mlx *mlx,
 	{
 		*flag = 1;
 		(*data).width = ft_atoi(mlx->str_1);
-		if ((*data).height > h)
-			(*data).height = h;
-		if ((*data).height < 200)
-			(*data).height = 200;
-		(*data).height = ft_atoi(mlx->str_2);
 		if ((*data).width > w)
 			(*data).width = w;
 		if ((*data).width < 320)
 			(*data).width = 320;
+		(*data).height = ft_atoi(mlx->str_2);
+		if ((*data).height > h)
+			(*data).height = h;
+		if ((*data).height < 200)
+			(*data).height = 200;
 		return (0);
 	}
 	else

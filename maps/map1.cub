@@ -1,4 +1,4 @@
-R 2880 1620
+R 1 1
 
 
 
@@ -10,8 +10,8 @@ SO ./texture_xpm/WALL1.xpm
 WE ./texture_xpm/WALL76.xpm
 
 EA ./texture_xpm/WALL83.xpm
-S ./texture_xpm/1111.xpm
-SS ./texture_xpm/sprite.xpm
+S ./texture_xpm/sphere.xpm
+SS ./texture_xpm/lamp.xpm
 
 
 
