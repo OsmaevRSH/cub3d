@@ -2,14 +2,14 @@ R 1920 1080
 
 
 
-NO ./texture_xpm/WALL74.xpm
+NO ./texture_xpm/WALL71.xpm
 
 
 
-SO ./texture_xpm/WALL1.xpm
-WE ./texture_xpm/WALL76.xpm
-EA ./texture_xpm/WALL83.xpm
-S ./texture_xpm/sphere.xpm
+SO ./texture_xpm/WALL71.xpm
+WE ./texture_xpm/WALL71.xpm
+EA ./texture_xpm/WALL71.xpm
+S ./texture_xpm/barrel.xpm
 SS ./texture_xpm/lamp.xpm
 
 
