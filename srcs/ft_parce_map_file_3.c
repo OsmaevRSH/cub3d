@@ -19,11 +19,11 @@ void			check_map(char **map, t_mlx *mlx)
 
 	x = mlx->player.rectangle_x;
 	y = mlx->player.rectangle_y;
-	if (check(map, x, y) == 1)
+	if (check(map, x, y, mlx) == 1)
 		ft_free_mlx(mlx, 1);
 }
 
-int				check(char **map, int x, int y)
+int				check(char **map, int x, int y, t_mlx *mlx)
 {
 	if (map[y][x] == '1' || map[y][x] == '2'
 	|| map[y][x] == '.' || map[y][x] == '3')
@@ -31,14 +31,14 @@ int				check(char **map, int x, int y)
 	if (map[y + 1][x] == ' ' || map[y][x + 1] == ' '
 	|| map[y - 1][x] == ' ' || map[y][x - 1] == ' ')
 	{
-		ft_putstr_fd("Error:\nMap don`t close\n", 1);
-		return (1);
+		ft_putstr_fd("Error:\nInvalid map\n", 1);
+		ft_free_mlx(mlx, 1);
 	}
 	map[y][x] = '.';
-	check(map, x - 1, y);
-	check(map, x + 1, y);
-	check(map, x, y - 1);
-	check(map, x, y + 1);
+	check(map, x - 1, y, mlx);
+	check(map, x + 1, y, mlx);
+	check(map, x, y - 1, mlx);
+	check(map, x, y + 1, mlx);
 	return (0);
 }
 
@@ -101,7 +101,7 @@ void			check_count_player_in_map(const char *str, t_mlx *mlx)
 		str[i] != 'N' && str[i] != 'S' && str[i] != 'W' &&
 		str[i] != 'E' && str[i] != ' ' && str[i] != '3')
 		{
-			ft_putstr_fd("Error:\nInvalid symbol in map\n", 1);
+			ft_putstr_fd("Error:\nInvalid map file\n", 1);
 			ft_free_mlx(mlx, 1);
 		}
 		ft_check_sprite(str, mlx, i);

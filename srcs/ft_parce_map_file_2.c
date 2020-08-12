@@ -20,7 +20,7 @@ int			ft_gettex(t_mlx *mlx, int *flag, char **mlx_str)
 	if (fd != -1 &&
 		ft_check_file_extension(mlx->str_1, "xpm") && mlx->str_2 == NULL)
 	{
-		*flag = 1;
+		*flag += 1;
 		close(fd);
 		*mlx_str = ft_strdup(mlx->str_1);
 		return (0);
@@ -69,7 +69,7 @@ int			ft_get_color(t_mlx *mlx, int *flag, t_color_f_and_r *data)
 	i = 0;
 	if (mlx->str_1 && mlx->str_2 == NULL)
 	{
-		*flag = 1;
+		*flag += 1;
 		color = ft_split(mlx->str_1, ',');
 		if (ft_if_for_get_color(color, data))
 			return (1);
@@ -117,8 +117,9 @@ int			ft_get_resolution_size(t_mlx *mlx,
 
 void		ft_get_map(t_check flag, char *line, int fd, t_mlx *mlx)
 {
-	if (flag.f && flag.s && flag.ea &&
-		flag.we && flag.so && flag.no && flag.r && flag.c)
+	if (flag.f == 1 && flag.s == 1 && flag.ea == 1 &&
+		flag.we == 1 && flag.so == 1 && flag.no == 1 &&
+		flag.r == 1 && flag.c == 1 && flag.ss == 1)
 	{
 		if (!(line = ft_parce_map(fd, line, mlx)))
 		{
@@ -131,7 +132,7 @@ void		ft_get_map(t_check flag, char *line, int fd, t_mlx *mlx)
 	}
 	else
 	{
-		ft_putstr_fd("Error:\nInvalid map file\n", 1);
+		ft_putstr_fd("Error:\nWrong number of parameters in map file\n", 1);
 		ft_free_mlx(mlx, 1);
 	}
 }

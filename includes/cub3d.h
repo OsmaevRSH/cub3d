@@ -193,7 +193,7 @@ void					ft_draw_map(t_mlx *mlx);
 void					trace(t_mlx *mlx, double vector, int x);
 void					ft_parce(char *file_name, t_mlx *mlx);
 char					*ft_parce_map(int fd, char *line, t_mlx *mlx);
-int						check(char **map, int x, int y);
+int						check(char **map, int x, int y, t_mlx *mlx);
 void					check_map(char **map, t_mlx *mlx);
 int						ft_count_sprites(t_sprite *head);
 t_sprite				*ft_search_sprite(size_t id, t_sprite *head);

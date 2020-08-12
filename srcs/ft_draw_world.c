@@ -66,6 +66,8 @@ void	ft_draw_roof(t_trace *trace, t_mlx *mlx, int x)
 	if (trace->up_start > 0)
 	{
 		trace->k = 0;
+		if (trace->up_start > mlx->map.r.height - 1)
+			trace->up_start = mlx->map.r.height - 1;
 		while (trace->k < trace->up_start)
 		{
 			trace->dst = mlx->mlx_addr + (abs(trace->k) *

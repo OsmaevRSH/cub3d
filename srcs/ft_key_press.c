@@ -32,12 +32,12 @@ void			ft_tilt_up_down(int keycode, t_mlx *mlx)
 {
 	if (keycode == 125)
 	{
-		if (mlx->player.tilt > -500)
+		if (mlx->player.tilt > -250)
 			mlx->player.tilt -= 10;
 	}
 	if (keycode == 126)
 	{
-		if (mlx->player.tilt < 500)
+		if (mlx->player.tilt < 250)
 			mlx->player.tilt += 10;
 	}
 }

@@ -76,7 +76,7 @@ int			main(int argc, char **argv)
 
 	if (argc != 2 && argc != 3)
 	{
-		write(1, "Error\nInvalid number of arguments\n", 34);
+		ft_putstr_fd("Error\nInvalid number of arguments\n", 1);
 		exit(0);
 	}
 	else
