@@ -58,6 +58,12 @@ static void		ft_free_map(t_mlx *mlx)
 	}
 }
 
+void			ft_free_only_map(t_mlx *mlx)
+{
+	ft_free_map(mlx);
+	exit(1);
+}
+
 void			ft_free_mlx(t_mlx *mlx, int flag)
 {
 	ft_free_map(mlx);

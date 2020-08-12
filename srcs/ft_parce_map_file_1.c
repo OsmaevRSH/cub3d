@@ -57,6 +57,14 @@ void			ft_parce(char *file_name, t_mlx *mlx)
 		ft_free_mlx(mlx, 1);
 	}
 	ft_parce_2(mlx, &line, split_str, &flag);
+	if (((unsigned int)mlx->map.r.width <
+	(unsigned int)mlx->count_elem_in_line_map << 4u) ||
+	((unsigned int)mlx->map.r.height <
+	(unsigned int)mlx->count_lines_in_map << 3u))
+	{
+		ft_putstr_fd("Error:\nPlease increase resolution\n", 1);
+		ft_free_only_map(mlx);
+	}
 	free(line);
 }
 

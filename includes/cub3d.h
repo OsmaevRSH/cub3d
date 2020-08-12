@@ -248,4 +248,5 @@ void					ft_left_right(int keycode, t_mlx *mlx);
 void					ft_tilt_up_down(int keycode, t_mlx *mlx);
 void					ft_go_left_right(int keycode, t_mlx *mlx);
 void					ft_go_forward_back(int keycode, t_mlx *mlx);
+void					ft_free_only_map(t_mlx *mlx);
 #endif
